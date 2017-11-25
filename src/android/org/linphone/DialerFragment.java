@@ -39,216 +39,216 @@ import org.linphone.ui.CallButton;
 import org.linphone.ui.EraseButton;
 
 public class DialerFragment extends Fragment {
-	private static DialerFragment instance;
-	private static boolean isCallTransferOngoing = false;
+    private static DialerFragment instance;
+    private static boolean isCallTransferOngoing = false;
 
-	private AddressAware numpad;
-	private AddressText mAddress;
-	private CallButton mCall;
-	private ImageView mAddContact;
-	private OnClickListener addContactListener, cancelListener, transferListener;
-	private boolean shouldEmptyAddressField = true;
+    private AddressAware numpad;
+    private AddressText mAddress;
+    private CallButton mCall;
+    private ImageView mAddContact;
+    private OnClickListener addContactListener, cancelListener, transferListener;
+    private boolean shouldEmptyAddressField = true;
 
-	@Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-        Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialer, container, false);
-
-		mAddress = (AddressText) view.findViewById(R.id.address);
-		mAddress.setDialerFragment(this);
-
-		EraseButton erase = (EraseButton) view.findViewById(R.id.erase);
-		erase.setAddressWidget(mAddress);
-
-		mCall = (CallButton) view.findViewById(R.id.call);
-		mCall.setAddressWidget(mAddress);
-		if (LinphoneActivity.isInstanciated() && LinphoneManager.getLcIfManagerNotDestroyedOrNull() != null && LinphoneManager.getLcIfManagerNotDestroyedOrNull().getCallsNb() > 0) {
-			if (isCallTransferOngoing) {
-				mCall.setImageResource(R.drawable.call_transfer);
-			} else {
-				mCall.setImageResource(R.drawable.call_add);
-			}
-		} else {
-			if (LinphoneManager.getLcIfManagerNotDestroyedOrNull() != null && LinphoneManager.getLcIfManagerNotDestroyedOrNull().getVideoAutoInitiatePolicy()) {
-				mCall.setImageResource(R.drawable.call_video_start);
-			} else {
-				mCall.setImageResource(R.drawable.call_audio_start);
-			}
-		}
-
-		numpad = (AddressAware) view.findViewById(R.id.numpad);
-		if (numpad != null) {
-			numpad.setAddressWidget(mAddress);
-		}
-
-		mAddContact = (ImageView) view.findViewById(R.id.add_contact);
-		mAddContact.setEnabled(!(LinphoneActivity.isInstanciated() && LinphoneManager.getLcIfManagerNotDestroyedOrNull() != null && LinphoneManager.getLc().getCallsNb() > 0));
-
-		addContactListener = new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				LinphoneActivity.instance().displayContactsForEdition(mAddress.getText().toString());
-			}
-		};
-		cancelListener = new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				LinphoneActivity.instance().resetClassicMenuLayoutAndGoBackToCallIfStillRunning();
-			}
-		};
-		transferListener = new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				LinphoneCore lc = LinphoneManager.getLc();
-				if (lc.getCurrentCall() == null) {
-					return;
-				}
-				lc.transferCall(lc.getCurrentCall(), mAddress.getText().toString());
-				isCallTransferOngoing = false;
-				LinphoneActivity.instance().resetClassicMenuLayoutAndGoBackToCallIfStillRunning();
-			}
-		};
-
-		resetLayout(isCallTransferOngoing);
-
-		if (getArguments() != null) {
-			shouldEmptyAddressField = false;
-			String number = getArguments().getString("SipUri");
-			String displayName = getArguments().getString("DisplayName");
-			String photo = getArguments().getString("PhotoUri");
-			mAddress.setText(number);
-			if (displayName != null) {
-				mAddress.setDisplayedName(displayName);
-			}
-			if (photo != null) {
-				mAddress.setPictureUri(Uri.parse(photo));
-			}
-		}
-
-		instance = this;
-
-		return view;
+    /**
+     * @return null if not ready yet
+     */
+    public static DialerFragment instance() {
+        return instance;
     }
 
-	/**
-	 * @return null if not ready yet
-	 */
-	public static DialerFragment instance() {
-		return instance;
-	}
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.dialer, container, false);
 
-	@Override
-	public void onPause() {
-		instance = null;
-		super.onPause();
-	}
+        mAddress = (AddressText) view.findViewById(R.id.address);
+        mAddress.setDialerFragment(this);
 
-	@Override
-	public void onResume() {
-		super.onResume();
-		instance = this;
+        EraseButton erase = (EraseButton) view.findViewById(R.id.erase);
+        erase.setAddressWidget(mAddress);
 
-		if (LinphoneActivity.isInstanciated()) {
-			LinphoneActivity.instance().selectMenu(FragmentsAvailable.DIALER);
-			LinphoneActivity.instance().updateDialerFragment(this);
-			LinphoneActivity.instance().showStatusBar();
-			LinphoneActivity.instance().hideTabBar(false);
-		}
+        mCall = (CallButton) view.findViewById(R.id.call);
+        mCall.setAddressWidget(mAddress);
+        if (LinphoneActivity.isInstanciated() && LinphoneManager.getLcIfManagerNotDestroyedOrNull() != null && LinphoneManager.getLcIfManagerNotDestroyedOrNull().getCallsNb() > 0) {
+            if (isCallTransferOngoing) {
+                mCall.setImageResource(R.drawable.call_transfer);
+            } else {
+                mCall.setImageResource(R.drawable.call_add);
+            }
+        } else {
+            if (LinphoneManager.getLcIfManagerNotDestroyedOrNull() != null && LinphoneManager.getLcIfManagerNotDestroyedOrNull().getVideoAutoInitiatePolicy()) {
+                mCall.setImageResource(R.drawable.call_video_start);
+            } else {
+                mCall.setImageResource(R.drawable.call_audio_start);
+            }
+        }
 
-		boolean isOrientationLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
-		if(isOrientationLandscape && !getResources().getBoolean(R.bool.isTablet)) {
-			((LinearLayout) numpad).setVisibility(View.GONE);
-		} else {
-			((LinearLayout) numpad).setVisibility(View.VISIBLE);
-		}
+        numpad = (AddressAware) view.findViewById(R.id.numpad);
+        if (numpad != null) {
+            numpad.setAddressWidget(mAddress);
+        }
 
-		if (shouldEmptyAddressField) {
-			mAddress.setText("");
-		} else {
-			shouldEmptyAddressField = true;
-		}
-		resetLayout(isCallTransferOngoing);
+        mAddContact = (ImageView) view.findViewById(R.id.add_contact);
+        mAddContact.setEnabled(!(LinphoneActivity.isInstanciated() && LinphoneManager.getLcIfManagerNotDestroyedOrNull() != null && LinphoneManager.getLc().getCallsNb() > 0));
 
-		String addressWaitingToBeCalled = LinphoneActivity.instance().mAddressWaitingToBeCalled;
-		if (addressWaitingToBeCalled != null) {
-			mAddress.setText(addressWaitingToBeCalled);
-			if (getResources().getBoolean(R.bool.automatically_start_intercepted_outgoing_gsm_call)) {
-				newOutgoingCall(addressWaitingToBeCalled);
-			}
-			LinphoneActivity.instance().mAddressWaitingToBeCalled = null;
-		}
-	}
+        addContactListener = new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LinphoneActivity.instance().displayContactsForEdition(mAddress.getText().toString());
+            }
+        };
+        cancelListener = new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LinphoneActivity.instance().resetClassicMenuLayoutAndGoBackToCallIfStillRunning();
+            }
+        };
+        transferListener = new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LinphoneCore lc = LinphoneManager.getLc();
+                if (lc.getCurrentCall() == null) {
+                    return;
+                }
+                lc.transferCall(lc.getCurrentCall(), mAddress.getText().toString());
+                isCallTransferOngoing = false;
+                LinphoneActivity.instance().resetClassicMenuLayoutAndGoBackToCallIfStillRunning();
+            }
+        };
 
-	public void resetLayout(boolean callTransfer) {
-		if (!LinphoneActivity.isInstanciated()) {
-			return;
-		}
-		isCallTransferOngoing = LinphoneActivity.instance().isCallTransfer();
-		LinphoneCore lc = LinphoneManager.getLcIfManagerNotDestroyedOrNull();
-		if (lc == null) {
-			return;
-		}
+        resetLayout(isCallTransferOngoing);
 
-		if (lc.getCallsNb() > 0) {
-			if (isCallTransferOngoing) {
-				mCall.setImageResource(R.drawable.call_transfer);
-				mCall.setExternalClickListener(transferListener);
-			} else {
-				mCall.setImageResource(R.drawable.call_add);
-				mCall.resetClickListener();
-			}
-			mAddContact.setEnabled(true);
-			mAddContact.setImageResource(R.drawable.call_alt_back);
-			mAddContact.setOnClickListener(cancelListener);
-		} else {
-			if (LinphoneManager.getLc().getVideoAutoInitiatePolicy()) {
-				mCall.setImageResource(R.drawable.call_video_start);
-			} else {
-				mCall.setImageResource(R.drawable.call_audio_start);
-			}
-			mAddContact.setEnabled(false);
-			mAddContact.setImageResource(R.drawable.contact_add_button);
-			mAddContact.setOnClickListener(addContactListener);
-			enableDisableAddContact();
-		}
-	}
+        if (getArguments() != null) {
+            shouldEmptyAddressField = false;
+            String number = getArguments().getString("SipUri");
+            String displayName = getArguments().getString("DisplayName");
+            String photo = getArguments().getString("PhotoUri");
+            mAddress.setText(number);
+            if (displayName != null) {
+                mAddress.setDisplayedName(displayName);
+            }
+            if (photo != null) {
+                mAddress.setPictureUri(Uri.parse(photo));
+            }
+        }
 
-	public void enableDisableAddContact() {
-		mAddContact.setEnabled(LinphoneManager.getLcIfManagerNotDestroyedOrNull() != null && LinphoneManager.getLc().getCallsNb() > 0 || !mAddress.getText().toString().equals(""));
-	}
+        instance = this;
 
-	public void displayTextInAddressBar(String numberOrSipAddress) {
-		shouldEmptyAddressField = false;
-		mAddress.setText(numberOrSipAddress);
-	}
+        return view;
+    }
 
-	public void newOutgoingCall(String numberOrSipAddress) {
-		displayTextInAddressBar(numberOrSipAddress);
-		LinphoneManager.getInstance().newOutgoingCall(mAddress);
-	}
+    @Override
+    public void onPause() {
+        instance = null;
+        super.onPause();
+    }
 
-	public void newOutgoingCall(Intent intent) {
-		if (intent != null && intent.getData() != null) {
-			String scheme = intent.getData().getScheme();
-			if (scheme.startsWith("imto")) {
-				mAddress.setText("sip:" + intent.getData().getLastPathSegment());
-			} else if (scheme.startsWith("call") || scheme.startsWith("sip")) {
-				mAddress.setText(intent.getData().getSchemeSpecificPart());
-			} else {
-				Uri contactUri = intent.getData();
-				String address = ContactsManager.getAddressOrNumberForAndroidContact(LinphoneService.instance().getContentResolver(), contactUri);
-				if(address != null) {
-					mAddress.setText(address);
-				} else {
-					Log.e("Unknown scheme: ", scheme);
-					mAddress.setText(intent.getData().getSchemeSpecificPart());
-				}
-			}
+    @Override
+    public void onResume() {
+        super.onResume();
+        instance = this;
 
-			mAddress.clearDisplayedName();
-			intent.setData(null);
+        if (LinphoneActivity.isInstanciated()) {
+            LinphoneActivity.instance().selectMenu(FragmentsAvailable.DIALER);
+            LinphoneActivity.instance().updateDialerFragment(this);
+            LinphoneActivity.instance().showStatusBar();
+            LinphoneActivity.instance().hideTabBar(false);
+        }
 
-			LinphoneManager.getInstance().newOutgoingCall(mAddress);
-		}
-	}
+        boolean isOrientationLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+        if (isOrientationLandscape && !getResources().getBoolean(R.bool.isTablet)) {
+            ((LinearLayout) numpad).setVisibility(View.GONE);
+        } else {
+            ((LinearLayout) numpad).setVisibility(View.VISIBLE);
+        }
+
+        if (shouldEmptyAddressField) {
+            mAddress.setText("");
+        } else {
+            shouldEmptyAddressField = true;
+        }
+        resetLayout(isCallTransferOngoing);
+
+        String addressWaitingToBeCalled = LinphoneActivity.instance().mAddressWaitingToBeCalled;
+        if (addressWaitingToBeCalled != null) {
+            mAddress.setText(addressWaitingToBeCalled);
+            if (getResources().getBoolean(R.bool.automatically_start_intercepted_outgoing_gsm_call)) {
+                newOutgoingCall(addressWaitingToBeCalled);
+            }
+            LinphoneActivity.instance().mAddressWaitingToBeCalled = null;
+        }
+    }
+
+    public void resetLayout(boolean callTransfer) {
+        if (!LinphoneActivity.isInstanciated()) {
+            return;
+        }
+        isCallTransferOngoing = LinphoneActivity.instance().isCallTransfer();
+        LinphoneCore lc = LinphoneManager.getLcIfManagerNotDestroyedOrNull();
+        if (lc == null) {
+            return;
+        }
+
+        if (lc.getCallsNb() > 0) {
+            if (isCallTransferOngoing) {
+                mCall.setImageResource(R.drawable.call_transfer);
+                mCall.setExternalClickListener(transferListener);
+            } else {
+                mCall.setImageResource(R.drawable.call_add);
+                mCall.resetClickListener();
+            }
+            mAddContact.setEnabled(true);
+            mAddContact.setImageResource(R.drawable.call_alt_back);
+            mAddContact.setOnClickListener(cancelListener);
+        } else {
+            if (LinphoneManager.getLc().getVideoAutoInitiatePolicy()) {
+                mCall.setImageResource(R.drawable.call_video_start);
+            } else {
+                mCall.setImageResource(R.drawable.call_audio_start);
+            }
+            mAddContact.setEnabled(false);
+            mAddContact.setImageResource(R.drawable.contact_add_button);
+            mAddContact.setOnClickListener(addContactListener);
+            enableDisableAddContact();
+        }
+    }
+
+    public void enableDisableAddContact() {
+        mAddContact.setEnabled(LinphoneManager.getLcIfManagerNotDestroyedOrNull() != null && LinphoneManager.getLc().getCallsNb() > 0 || !mAddress.getText().toString().equals(""));
+    }
+
+    public void displayTextInAddressBar(String numberOrSipAddress) {
+        shouldEmptyAddressField = false;
+        mAddress.setText(numberOrSipAddress);
+    }
+
+    public void newOutgoingCall(String numberOrSipAddress) {
+        displayTextInAddressBar(numberOrSipAddress);
+        LinphoneManager.getInstance().newOutgoingCall(mAddress);
+    }
+
+    public void newOutgoingCall(Intent intent) {
+        if (intent != null && intent.getData() != null) {
+            String scheme = intent.getData().getScheme();
+            if (scheme.startsWith("imto")) {
+                mAddress.setText("sip:" + intent.getData().getLastPathSegment());
+            } else if (scheme.startsWith("call") || scheme.startsWith("sip")) {
+                mAddress.setText(intent.getData().getSchemeSpecificPart());
+            } else {
+                Uri contactUri = intent.getData();
+                String address = ContactsManager.getAddressOrNumberForAndroidContact(LinphoneService.instance().getContentResolver(), contactUri);
+                if (address != null) {
+                    mAddress.setText(address);
+                } else {
+                    Log.e("Unknown scheme: ", scheme);
+                    mAddress.setText(intent.getData().getSchemeSpecificPart());
+                }
+            }
+
+            mAddress.clearDisplayedName();
+            intent.setData(null);
+
+            LinphoneManager.getInstance().newOutgoingCall(mAddress);
+        }
+    }
 }

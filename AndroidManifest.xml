@@ -77,11 +77,6 @@
             android:theme="@style/NoTitle"
             android:windowSoftInputMode="adjustPan|stateHidden">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-            <intent-filter>
                 <action android:name="android.intent.action.CALL"/>
                 <action android:name="android.intent.action.CALL_PRIVILEGED"/>
 
@@ -357,6 +352,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".LinphoneGenericActivity">
+        </activity>
+        <activity android:name="com.mmi.linphone.DemoCallingActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 </manifest>

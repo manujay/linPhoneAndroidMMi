@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
 import org.linphone.DialerFragment;
-import org.linphone.LinphoneManager.AddressType;
+import org.linphone.AddressType;
 import org.linphone.R;
 
 import android.content.Context;

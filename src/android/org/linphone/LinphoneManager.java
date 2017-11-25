@@ -122,7 +122,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.InetAddress;
 import java.nio.ByteBuffer;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -595,19 +594,6 @@ public class LinphoneManager implements LinphoneCoreListener, LinphoneChatMessag
 		LinphoneManager.getLc().setVideoDevice(camId);
 	}
 
-	public static interface AddressType {
-		void setText(CharSequence s);
-		CharSequence getText();
-		void setDisplayedName(String s);
-		String getDisplayedName();
-	}
-
-
-	public static interface NewOutgoingCallUiListener {
-		public void onWrongDestinationAddress();
-		public void onCannotGetCallParameters();
-		public void onAlreadyInCall();
-	}
 
 	public boolean toggleEnableCamera() {
 		if (mLc.isIncall()) {
