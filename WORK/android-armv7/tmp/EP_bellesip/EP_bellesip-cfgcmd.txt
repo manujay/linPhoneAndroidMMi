@@ -1,0 +1,1 @@
+cmd='/Applications/CMake.app/Contents/bin/cmake;-DENABLE_RTP_MAP_ALWAYS_IN_SDP=;-DENABLE_TUNNEL=;-DENABLE_TESTS=NO;-DENABLE_STATIC=YES;-DENABLE_SHARED=NO;-C/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7//tmp/EP_bellesip/EP_bellesip-cache-$<CONFIG>.cmake;-GUnix Makefiles;/Users/ceinfo/LinPhoneAndroidProject/linphone-android/submodules/belle-sip'

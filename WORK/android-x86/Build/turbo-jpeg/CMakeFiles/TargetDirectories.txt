@@ -1,0 +1,7 @@
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/turbo-jpeg/CMakeFiles/install/local.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/turbo-jpeg/CMakeFiles/install/strip.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/turbo-jpeg/CMakeFiles/install.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/turbo-jpeg/CMakeFiles/turbojpeg-static.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/turbo-jpeg/CMakeFiles/list_install_components.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/turbo-jpeg/CMakeFiles/rebuild_cache.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/turbo-jpeg/CMakeFiles/edit_cache.dir

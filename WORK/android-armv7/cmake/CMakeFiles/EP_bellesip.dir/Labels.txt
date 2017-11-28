@@ -1,0 +1,14 @@
+# Target labels
+ EP_bellesip
+# Source files and their labels
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/cmake/CMakeFiles/EP_bellesip
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/cmake/CMakeFiles/EP_bellesip.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/cmake/CMakeFiles/EP_bellesip-complete.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_bellesip/EP_bellesip-install.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_bellesip/EP_bellesip-mkdir.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_bellesip/EP_bellesip-download.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_bellesip/EP_bellesip-update.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_bellesip/EP_bellesip-patch.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_bellesip/EP_bellesip-configure.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_bellesip/EP_bellesip-build.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_bellesip/EP_bellesip-force_build.rule

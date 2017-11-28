@@ -1,0 +1,43 @@
+{
+  "sources": [
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/cmake/CMakeFiles/EP_xml2"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/cmake/CMakeFiles/EP_xml2.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/cmake/CMakeFiles/EP_xml2-complete.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_xml2/EP_xml2-install.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_xml2/EP_xml2-mkdir.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_xml2/EP_xml2-download.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_xml2/EP_xml2-update.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_xml2/EP_xml2-patch.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_xml2/EP_xml2-configure.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_xml2/EP_xml2-build.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_xml2/EP_xml2-force_build.rule"
+    }
+  ],
+  "target": {
+    "labels": [
+      "EP_xml2"
+    ],
+    "name": "EP_xml2"
+  }
+}

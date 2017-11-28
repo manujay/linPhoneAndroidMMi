@@ -1,0 +1,6 @@
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/liblinphone-sdk/android-armv7/lib/libopus.a
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/liblinphone-sdk/android-armv7/include/opus/opus.h
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/liblinphone-sdk/android-armv7/include/opus/opus_custom.h
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/liblinphone-sdk/android-armv7/include/opus/opus_defines.h
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/liblinphone-sdk/android-armv7/include/opus/opus_multistream.h
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/liblinphone-sdk/android-armv7/include/opus/opus_types.h

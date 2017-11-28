@@ -1,0 +1,31 @@
+Determining if the include file sys/audio.h exists failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/ortp/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_bafc8/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_bafc8.dir/build.make CMakeFiles/cmTC_bafc8.dir/build
+Building C object CMakeFiles/cmTC_bafc8.dir/CheckIncludeFile.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=armv7-none-linux-androideabi --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-arm   -march=armv7-a -mthumb -mfpu=neon -mfloat-abi=softfp -fpic -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_bafc8.dir/CheckIncludeFile.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/ortp/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/ortp/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'sys/audio.h' file not found
+#include <sys/audio.h>
+         ^~~~~~~~~~~~~
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_bafc8.dir/CheckIncludeFile.c.o] Error 1
+make[4]: *** [cmTC_bafc8/fast] Error 2
+
+
+Determining if the include file stdatomic.h exists failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/ortp/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_528ed/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_528ed.dir/build.make CMakeFiles/cmTC_528ed.dir/build
+Building C object CMakeFiles/cmTC_528ed.dir/CheckIncludeFile.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=armv7-none-linux-androideabi --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-arm   -march=armv7-a -mthumb -mfpu=neon -mfloat-abi=softfp -fpic -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_528ed.dir/CheckIncludeFile.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/ortp/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+In file included from /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/ortp/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/5.0.300080/include/stdatomic.h:150:11: fatal error: 'uchar.h' file not found
+# include <uchar.h>  /* For char16_t and char32_t.              */
+          ^~~~~~~~~
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_528ed.dir/CheckIncludeFile.c.o] Error 1
+make[4]: *** [cmTC_528ed/fast] Error 2
+
+

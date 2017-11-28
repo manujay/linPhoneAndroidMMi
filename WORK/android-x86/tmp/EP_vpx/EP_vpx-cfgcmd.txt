@@ -1,0 +1,1 @@
+cmd='/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/cmake/EP_vpx_configure.sh'

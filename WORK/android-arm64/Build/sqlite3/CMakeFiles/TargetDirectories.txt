@@ -1,0 +1,7 @@
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Build/sqlite3/CMakeFiles/install/local.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Build/sqlite3/CMakeFiles/install/strip.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Build/sqlite3/CMakeFiles/install.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Build/sqlite3/CMakeFiles/list_install_components.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Build/sqlite3/CMakeFiles/rebuild_cache.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Build/sqlite3/CMakeFiles/edit_cache.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Build/sqlite3/CMakeFiles/sqlite3.dir

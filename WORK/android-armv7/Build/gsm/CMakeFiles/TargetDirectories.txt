@@ -1,0 +1,7 @@
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/gsm/CMakeFiles/install/local.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/gsm/CMakeFiles/install/strip.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/gsm/CMakeFiles/install.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/gsm/CMakeFiles/gsm.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/gsm/CMakeFiles/list_install_components.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/gsm/CMakeFiles/rebuild_cache.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/gsm/CMakeFiles/edit_cache.dir

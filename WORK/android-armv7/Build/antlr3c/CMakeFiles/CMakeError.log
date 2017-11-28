@@ -1,0 +1,30 @@
+Determining if the include file socket.h exists failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/antlr3c/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_fd44c/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_fd44c.dir/build.make CMakeFiles/cmTC_fd44c.dir/build
+Building C object CMakeFiles/cmTC_fd44c.dir/CheckIncludeFile.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=armv7-none-linux-androideabi --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-arm   -march=armv7-a -mthumb -mfpu=neon -mfloat-abi=softfp -fpic -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_fd44c.dir/CheckIncludeFile.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/antlr3c/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/antlr3c/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'socket.h' file not found
+#include <socket.h>
+         ^~~~~~~~~~
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_fd44c.dir/CheckIncludeFile.c.o] Error 1
+make[4]: *** [cmTC_fd44c/fast] Error 2
+
+
+Determining if the include file sys/malloc.h exists failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/antlr3c/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_67c7d/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_67c7d.dir/build.make CMakeFiles/cmTC_67c7d.dir/build
+Building C object CMakeFiles/cmTC_67c7d.dir/CheckIncludeFile.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=armv7-none-linux-androideabi --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-arm   -march=armv7-a -mthumb -mfpu=neon -mfloat-abi=softfp -fpic -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_67c7d.dir/CheckIncludeFile.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/antlr3c/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/antlr3c/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'sys/malloc.h' file not found
+#include <sys/malloc.h>
+         ^~~~~~~~~~~~~~
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_67c7d.dir/CheckIncludeFile.c.o] Error 1
+make[4]: *** [cmTC_67c7d/fast] Error 2
+
+

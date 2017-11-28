@@ -1,0 +1,105 @@
+Determining if the include file sys/shm.h exists failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/xml2/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_a1811/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_a1811.dir/build.make CMakeFiles/cmTC_a1811.dir/build
+Building C object CMakeFiles/cmTC_a1811.dir/CheckIncludeFile.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=i686-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-x86   -fPIC -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_a1811.dir/CheckIncludeFile.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/xml2/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/xml2/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'sys/shm.h' file not found
+#include <sys/shm.h>
+         ^~~~~~~~~~~
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_a1811.dir/CheckIncludeFile.c.o] Error 1
+make[4]: *** [cmTC_a1811/fast] Error 2
+
+
+Determining if the include file windows.h exists failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/xml2/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_47ec6/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_47ec6.dir/build.make CMakeFiles/cmTC_47ec6.dir/build
+Building C object CMakeFiles/cmTC_47ec6.dir/CheckIncludeFile.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=i686-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-x86   -fPIC -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_47ec6.dir/CheckIncludeFile.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/xml2/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/xml2/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'windows.h' file not found
+#include <windows.h>
+         ^~~~~~~~~~~
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_47ec6.dir/CheckIncludeFile.c.o] Error 1
+make[4]: *** [cmTC_47ec6/fast] Error 2
+
+
+Determining if the include file ansidecl.h exists failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/xml2/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_e6d3e/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_e6d3e.dir/build.make CMakeFiles/cmTC_e6d3e.dir/build
+Building C object CMakeFiles/cmTC_e6d3e.dir/CheckIncludeFile.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=i686-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-x86   -fPIC -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_e6d3e.dir/CheckIncludeFile.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/xml2/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/xml2/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'ansidecl.h' file not found
+#include <ansidecl.h>
+         ^~~~~~~~~~~~
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_e6d3e.dir/CheckIncludeFile.c.o] Error 1
+make[4]: *** [cmTC_e6d3e/fast] Error 2
+
+
+Determining if the include file ieeefp.h exists failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/xml2/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_9eb8d/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_9eb8d.dir/build.make CMakeFiles/cmTC_9eb8d.dir/build
+Building C object CMakeFiles/cmTC_9eb8d.dir/CheckIncludeFile.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=i686-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-x86   -fPIC -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_9eb8d.dir/CheckIncludeFile.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/xml2/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/xml2/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'ieeefp.h' file not found
+#include <ieeefp.h>
+         ^~~~~~~~~~
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_9eb8d.dir/CheckIncludeFile.c.o] Error 1
+make[4]: *** [cmTC_9eb8d/fast] Error 2
+
+
+Determining if the include file nan.h exists failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/xml2/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_6198b/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_6198b.dir/build.make CMakeFiles/cmTC_6198b.dir/build
+Building C object CMakeFiles/cmTC_6198b.dir/CheckIncludeFile.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=i686-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-x86   -fPIC -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_6198b.dir/CheckIncludeFile.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/xml2/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/xml2/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'nan.h' file not found
+#include <nan.h>
+         ^~~~~~~
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_6198b.dir/CheckIncludeFile.c.o] Error 1
+make[4]: *** [cmTC_6198b/fast] Error 2
+
+
+Determining if the include file fp_class.h exists failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/xml2/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_ff7df/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_ff7df.dir/build.make CMakeFiles/cmTC_ff7df.dir/build
+Building C object CMakeFiles/cmTC_ff7df.dir/CheckIncludeFile.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=i686-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-x86   -fPIC -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_ff7df.dir/CheckIncludeFile.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/xml2/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/xml2/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'fp_class.h' file not found
+#include <fp_class.h>
+         ^~~~~~~~~~~~
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_ff7df.dir/CheckIncludeFile.c.o] Error 1
+make[4]: *** [cmTC_ff7df/fast] Error 2
+
+
+Determining if the include file dl.h exists failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/xml2/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_231d5/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_231d5.dir/build.make CMakeFiles/cmTC_231d5.dir/build
+Building C object CMakeFiles/cmTC_231d5.dir/CheckIncludeFile.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=i686-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-x86   -fPIC -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_231d5.dir/CheckIncludeFile.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/xml2/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/xml2/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'dl.h' file not found
+#include <dl.h>
+         ^~~~~~
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_231d5.dir/CheckIncludeFile.c.o] Error 1
+make[4]: *** [cmTC_231d5/fast] Error 2
+
+

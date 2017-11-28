@@ -1,0 +1,43 @@
+{
+  "sources": [
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/cmake/CMakeFiles/EP_matroska2"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/cmake/CMakeFiles/EP_matroska2.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/cmake/CMakeFiles/EP_matroska2-complete.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_matroska2/EP_matroska2-install.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_matroska2/EP_matroska2-mkdir.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_matroska2/EP_matroska2-download.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_matroska2/EP_matroska2-update.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_matroska2/EP_matroska2-patch.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_matroska2/EP_matroska2-configure.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_matroska2/EP_matroska2-build.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_matroska2/EP_matroska2-force_build.rule"
+    }
+  ],
+  "target": {
+    "labels": [
+      "EP_matroska2"
+    ],
+    "name": "EP_matroska2"
+  }
+}

@@ -1,0 +1,21 @@
+Determining if files libudev.h exist failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/belr/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_c2a28/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_c2a28.dir/build.make CMakeFiles/cmTC_c2a28.dir/build
+Building C object CMakeFiles/cmTC_c2a28.dir/CheckIncludeFiles.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=armv7-none-linux-androideabi --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-arm   -march=armv7-a -mthumb -mfpu=neon -mfloat-abi=softfp -fpic -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_c2a28.dir/CheckIncludeFiles.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/belr/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/belr/CMakeFiles/CMakeTmp/CheckIncludeFiles.c:2:10: fatal error: 'libudev.h' file not found
+#include <libudev.h>
+         ^~~~~~~~~~~
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_c2a28.dir/CheckIncludeFiles.c.o] Error 1
+make[4]: *** [cmTC_c2a28/fast] Error 2
+
+Source:
+/* */
+#include <libudev.h>
+
+
+int main(void){return 0;}
+

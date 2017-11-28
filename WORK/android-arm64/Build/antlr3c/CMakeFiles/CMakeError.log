@@ -1,0 +1,55 @@
+Determining if the include file netinet/tcp.h exists failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Build/antlr3c/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_b4826/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_b4826.dir/build.make CMakeFiles/cmTC_b4826.dir/build
+Building C object CMakeFiles/cmTC_b4826.dir/CheckIncludeFile.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=aarch64-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/aarch64-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-21/arch-arm64   -fpic -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_b4826.dir/CheckIncludeFile.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Build/antlr3c/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+In file included from /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Build/antlr3c/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-21/arch-arm64/usr/include/netinet/tcp.h:34:1: error: unknown type name '__BEGIN_DECLS'
+__BEGIN_DECLS
+^
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-21/arch-arm64/usr/include/netinet/tcp.h:36:1: error: expected identifier or '('
+enum {
+^
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-21/arch-arm64/usr/include/netinet/tcp.h:65:1: error: unknown type name '__END_DECLS'
+__END_DECLS
+^
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Build/antlr3c/CMakeFiles/CMakeTmp/CheckIncludeFile.c:9:1: error: expected identifier or '('
+int main(void)
+^
+4 errors generated.
+make[5]: *** [CMakeFiles/cmTC_b4826.dir/CheckIncludeFile.c.o] Error 1
+make[4]: *** [cmTC_b4826/fast] Error 2
+
+
+Determining if the include file socket.h exists failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Build/antlr3c/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_a4627/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_a4627.dir/build.make CMakeFiles/cmTC_a4627.dir/build
+Building C object CMakeFiles/cmTC_a4627.dir/CheckIncludeFile.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=aarch64-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/aarch64-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-21/arch-arm64   -fpic -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_a4627.dir/CheckIncludeFile.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Build/antlr3c/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Build/antlr3c/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'socket.h' file not found
+#include <socket.h>
+         ^~~~~~~~~~
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_a4627.dir/CheckIncludeFile.c.o] Error 1
+make[4]: *** [cmTC_a4627/fast] Error 2
+
+
+Determining if the include file sys/malloc.h exists failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Build/antlr3c/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_8ea97/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_8ea97.dir/build.make CMakeFiles/cmTC_8ea97.dir/build
+Building C object CMakeFiles/cmTC_8ea97.dir/CheckIncludeFile.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=aarch64-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/aarch64-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-21/arch-arm64   -fpic -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_8ea97.dir/CheckIncludeFile.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Build/antlr3c/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Build/antlr3c/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'sys/malloc.h' file not found
+#include <sys/malloc.h>
+         ^~~~~~~~~~~~~~
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_8ea97.dir/CheckIncludeFile.c.o] Error 1
+make[4]: *** [cmTC_8ea97/fast] Error 2
+
+

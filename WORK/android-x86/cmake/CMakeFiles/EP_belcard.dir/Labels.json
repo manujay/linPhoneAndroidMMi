@@ -1,0 +1,43 @@
+{
+  "sources": [
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/cmake/CMakeFiles/EP_belcard"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/cmake/CMakeFiles/EP_belcard.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/cmake/CMakeFiles/EP_belcard-complete.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Stamp/EP_belcard/EP_belcard-install.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Stamp/EP_belcard/EP_belcard-mkdir.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Stamp/EP_belcard/EP_belcard-download.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Stamp/EP_belcard/EP_belcard-update.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Stamp/EP_belcard/EP_belcard-patch.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Stamp/EP_belcard/EP_belcard-configure.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Stamp/EP_belcard/EP_belcard-build.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Stamp/EP_belcard/EP_belcard-force_build.rule"
+    }
+  ],
+  "target": {
+    "labels": [
+      "EP_belcard"
+    ],
+    "name": "EP_belcard"
+  }
+}

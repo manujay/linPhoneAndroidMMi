@@ -1,0 +1,43 @@
+{
+  "sources": [
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/cmake/CMakeFiles/EP_bcunit"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/cmake/CMakeFiles/EP_bcunit.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/cmake/CMakeFiles/EP_bcunit-complete.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Stamp/EP_bcunit/EP_bcunit-install.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Stamp/EP_bcunit/EP_bcunit-mkdir.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Stamp/EP_bcunit/EP_bcunit-download.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Stamp/EP_bcunit/EP_bcunit-update.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Stamp/EP_bcunit/EP_bcunit-patch.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Stamp/EP_bcunit/EP_bcunit-configure.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Stamp/EP_bcunit/EP_bcunit-build.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Stamp/EP_bcunit/EP_bcunit-force_build.rule"
+    }
+  ],
+  "target": {
+    "labels": [
+      "EP_bcunit"
+    ],
+    "name": "EP_bcunit"
+  }
+}

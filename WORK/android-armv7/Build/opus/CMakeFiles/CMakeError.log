@@ -1,0 +1,54 @@
+Performing C SOURCE FILE Test OPUS_ARM_MAY_HAVE_AARCH64_NEON_INTR failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/opus/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_2d383/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_2d383.dir/build.make CMakeFiles/cmTC_2d383.dir/build
+Building C object CMakeFiles/cmTC_2d383.dir/src.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=armv7-none-linux-androideabi --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-arm   -march=armv7-a -mthumb -mfpu=neon -mfloat-abi=softfp -fpic -funwind-tables -no-canonical-prefixes -fexceptions -DOPUS_ARM_MAY_HAVE_AARCH64_NEON_INTR -g   -o CMakeFiles/cmTC_2d383.dir/src.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/opus/CMakeFiles/CMakeTmp/src.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/opus/CMakeFiles/CMakeTmp/src.c:6:8: warning: implicit declaration of function 'vqmovns_s32' is invalid in C99 [-Wimplicit-function-declaration]
+        OUT = vqmovns_s32(IN);
+              ^
+1 warning generated.
+Linking C executable cmTC_2d383
+/Applications/CMake.app/Contents/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2d383.dir/link.txt --verbose=1
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=armv7-none-linux-androideabi --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-arm -march=armv7-a -mthumb -mfpu=neon -mfloat-abi=softfp -fpic -funwind-tables -no-canonical-prefixes -fexceptions -DOPUS_ARM_MAY_HAVE_AARCH64_NEON_INTR -g  -Wl,--fix-cortex-a8  CMakeFiles/cmTC_2d383.dir/src.c.o  -o cmTC_2d383  
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/opus/CMakeFiles/CMakeTmp/src.c:6: error: undefined reference to 'vqmovns_s32'
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make[5]: *** [cmTC_2d383] Error 1
+make[4]: *** [cmTC_2d383/fast] Error 2
+
+Source file was:
+
+#include <arm_neon.h>
+int main(int argc, char *argv[]) {
+	static int32_t IN;
+	static int16_t OUT;
+	OUT = vqmovns_s32(IN);
+}
+Performing C SOURCE FILE Test OPUS_ARM_MAY_HAVE_AARCH64_NEON_INTR_FLAGS failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/opus/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_88771/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_88771.dir/build.make CMakeFiles/cmTC_88771.dir/build
+Building C object CMakeFiles/cmTC_88771.dir/src.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=armv7-none-linux-androideabi --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-arm   -march=armv7-a -mthumb -mfpu=neon -mfloat-abi=softfp -fpic -funwind-tables -no-canonical-prefixes -fexceptions -DOPUS_ARM_MAY_HAVE_AARCH64_NEON_INTR_FLAGS -mfpu=neon -g   -o CMakeFiles/cmTC_88771.dir/src.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/opus/CMakeFiles/CMakeTmp/src.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/opus/CMakeFiles/CMakeTmp/src.c:6:8: warning: implicit declaration of function 'vqmovns_s32' is invalid in C99 [-Wimplicit-function-declaration]
+        OUT = vqmovns_s32(IN);
+              ^
+1 warning generated.
+Linking C executable cmTC_88771
+/Applications/CMake.app/Contents/bin/cmake -E cmake_link_script CMakeFiles/cmTC_88771.dir/link.txt --verbose=1
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=armv7-none-linux-androideabi --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-arm -march=armv7-a -mthumb -mfpu=neon -mfloat-abi=softfp -fpic -funwind-tables -no-canonical-prefixes -fexceptions -DOPUS_ARM_MAY_HAVE_AARCH64_NEON_INTR_FLAGS -mfpu=neon -g  -Wl,--fix-cortex-a8  CMakeFiles/cmTC_88771.dir/src.c.o  -o cmTC_88771  
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Build/opus/CMakeFiles/CMakeTmp/src.c:6: error: undefined reference to 'vqmovns_s32'
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make[5]: *** [cmTC_88771] Error 1
+make[4]: *** [cmTC_88771/fast] Error 2
+
+Source file was:
+
+#include <arm_neon.h>
+int main(int argc, char *argv[]) {
+	static int32_t IN;
+	static int16_t OUT;
+	OUT = vqmovns_s32(IN);
+}

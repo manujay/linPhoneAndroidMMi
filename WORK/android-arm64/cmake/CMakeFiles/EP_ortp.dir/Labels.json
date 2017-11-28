@@ -1,0 +1,43 @@
+{
+  "sources": [
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/cmake/CMakeFiles/EP_ortp"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/cmake/CMakeFiles/EP_ortp.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/cmake/CMakeFiles/EP_ortp-complete.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_ortp/EP_ortp-install.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_ortp/EP_ortp-mkdir.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_ortp/EP_ortp-download.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_ortp/EP_ortp-update.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_ortp/EP_ortp-patch.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_ortp/EP_ortp-configure.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_ortp/EP_ortp-build.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_ortp/EP_ortp-force_build.rule"
+    }
+  ],
+  "target": {
+    "labels": [
+      "EP_ortp"
+    ],
+    "name": "EP_ortp"
+  }
+}

@@ -1,0 +1,15 @@
+Determining if the include file sys/audio.h exists failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Build/ortp/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_85a16/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_85a16.dir/build.make CMakeFiles/cmTC_85a16.dir/build
+Building C object CMakeFiles/cmTC_85a16.dir/CheckIncludeFile.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=aarch64-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/aarch64-linux-android-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-21/arch-arm64   -fpic -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_85a16.dir/CheckIncludeFile.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Build/ortp/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Build/ortp/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'sys/audio.h' file not found
+#include <sys/audio.h>
+         ^~~~~~~~~~~~~
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_85a16.dir/CheckIncludeFile.c.o] Error 1
+make[4]: *** [cmTC_85a16/fast] Error 2
+
+

@@ -1,0 +1,43 @@
+{
+  "sources": [
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/cmake/CMakeFiles/EP_mswebrtc"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/cmake/CMakeFiles/EP_mswebrtc.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/cmake/CMakeFiles/EP_mswebrtc-complete.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_mswebrtc/EP_mswebrtc-install.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_mswebrtc/EP_mswebrtc-mkdir.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_mswebrtc/EP_mswebrtc-download.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_mswebrtc/EP_mswebrtc-update.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_mswebrtc/EP_mswebrtc-patch.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_mswebrtc/EP_mswebrtc-configure.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_mswebrtc/EP_mswebrtc-build.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64/Stamp/EP_mswebrtc/EP_mswebrtc-force_build.rule"
+    }
+  ],
+  "target": {
+    "labels": [
+      "EP_mswebrtc"
+    ],
+    "name": "EP_mswebrtc"
+  }
+}

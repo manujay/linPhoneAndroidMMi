@@ -1,0 +1,2 @@
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-ar qc libbelr.a  CMakeFiles/belr-static.dir/abnf.cpp.o CMakeFiles/belr-static.dir/belr.cpp.o CMakeFiles/belr-static.dir/grammarbuilder.cpp.o CMakeFiles/belr-static.dir/parser.cpp.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-ranlib libbelr.a

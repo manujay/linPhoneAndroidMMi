@@ -1,0 +1,43 @@
+{
+  "sources": [
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/cmake/CMakeFiles/EP_bcg729"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/cmake/CMakeFiles/EP_bcg729.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/cmake/CMakeFiles/EP_bcg729-complete.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_bcg729/EP_bcg729-install.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_bcg729/EP_bcg729-mkdir.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_bcg729/EP_bcg729-download.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_bcg729/EP_bcg729-update.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_bcg729/EP_bcg729-patch.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_bcg729/EP_bcg729-configure.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_bcg729/EP_bcg729-build.rule"
+    },
+    {
+      "file": "/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_bcg729/EP_bcg729-force_build.rule"
+    }
+  ],
+  "target": {
+    "labels": [
+      "EP_bcg729"
+    ],
+    "name": "EP_bcg729"
+  }
+}

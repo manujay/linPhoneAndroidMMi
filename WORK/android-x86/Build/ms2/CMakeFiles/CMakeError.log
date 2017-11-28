@@ -1,0 +1,15 @@
+Determining if the include file sys/shm.h exists failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/ms2/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_57ded/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_57ded.dir/build.make CMakeFiles/cmTC_57ded.dir/build
+Building C object CMakeFiles/cmTC_57ded.dir/CheckIncludeFile.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=i686-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-x86   -fPIC -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_57ded.dir/CheckIncludeFile.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/ms2/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/ms2/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'sys/shm.h' file not found
+#include <sys/shm.h>
+         ^~~~~~~~~~~
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_57ded.dir/CheckIncludeFile.c.o] Error 1
+make[4]: *** [cmTC_57ded/fast] Error 2
+
+

@@ -1,0 +1,1 @@
+cmd='/Applications/CMake.app/Contents/bin/cmake;-DENABLE_STATIC=YES;-DENABLE_SHARED=NO;-C/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-arm64//tmp/EP_bcg729/EP_bcg729-cache-$<CONFIG>.cmake;-GUnix Makefiles;/Users/ceinfo/LinPhoneAndroidProject/linphone-android/submodules/bcg729'

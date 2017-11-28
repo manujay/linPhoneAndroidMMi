@@ -1,0 +1,45 @@
+Determining if the include file machine/types.h exists failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/srtp/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_7c4a5/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_7c4a5.dir/build.make CMakeFiles/cmTC_7c4a5.dir/build
+Building C object CMakeFiles/cmTC_7c4a5.dir/CheckIncludeFile.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=i686-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-x86   -fPIC -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_7c4a5.dir/CheckIncludeFile.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/srtp/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/srtp/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'machine/types.h' file not found
+#include <machine/types.h>
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_7c4a5.dir/CheckIncludeFile.c.o] Error 1
+make[4]: *** [cmTC_7c4a5/fast] Error 2
+
+
+Determining if the include file sys/int_types.h exists failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/srtp/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_eb109/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_eb109.dir/build.make CMakeFiles/cmTC_eb109.dir/build
+Building C object CMakeFiles/cmTC_eb109.dir/CheckIncludeFile.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=i686-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-x86   -fPIC -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_eb109.dir/CheckIncludeFile.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/srtp/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/srtp/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'sys/int_types.h' file not found
+#include <sys/int_types.h>
+         ^~~~~~~~~~~~~~~~~
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_eb109.dir/CheckIncludeFile.c.o] Error 1
+make[4]: *** [cmTC_eb109/fast] Error 2
+
+
+Determining if the include file windows.h exists failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/srtp/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_570b7/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_570b7.dir/build.make CMakeFiles/cmTC_570b7.dir/build
+Building C object CMakeFiles/cmTC_570b7.dir/CheckIncludeFile.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=i686-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-x86   -fPIC -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_570b7.dir/CheckIncludeFile.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/srtp/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/srtp/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'windows.h' file not found
+#include <windows.h>
+         ^~~~~~~~~~~
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_570b7.dir/CheckIncludeFile.c.o] Error 1
+make[4]: *** [cmTC_570b7/fast] Error 2
+
+

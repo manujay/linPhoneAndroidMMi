@@ -1,0 +1,30 @@
+Determining if the include file socket.h exists failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/antlr3c/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_2b41b/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_2b41b.dir/build.make CMakeFiles/cmTC_2b41b.dir/build
+Building C object CMakeFiles/cmTC_2b41b.dir/CheckIncludeFile.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=i686-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-x86   -fPIC -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_2b41b.dir/CheckIncludeFile.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/antlr3c/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/antlr3c/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'socket.h' file not found
+#include <socket.h>
+         ^~~~~~~~~~
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_2b41b.dir/CheckIncludeFile.c.o] Error 1
+make[4]: *** [cmTC_2b41b/fast] Error 2
+
+
+Determining if the include file sys/malloc.h exists failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/antlr3c/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_1a5e4/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_1a5e4.dir/build.make CMakeFiles/cmTC_1a5e4.dir/build
+Building C object CMakeFiles/cmTC_1a5e4.dir/CheckIncludeFile.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=i686-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-x86   -fPIC -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_1a5e4.dir/CheckIncludeFile.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/antlr3c/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/antlr3c/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'sys/malloc.h' file not found
+#include <sys/malloc.h>
+         ^~~~~~~~~~~~~~
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_1a5e4.dir/CheckIncludeFile.c.o] Error 1
+make[4]: *** [cmTC_1a5e4/fast] Error 2
+
+

@@ -1,0 +1,71 @@
+Determining if the function clock_gettime exists in the rt failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/bellesip/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_4dc3c/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_4dc3c.dir/build.make CMakeFiles/cmTC_4dc3c.dir/build
+Building C object CMakeFiles/cmTC_4dc3c.dir/CheckFunctionExists.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=i686-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-x86   -fPIC -funwind-tables -no-canonical-prefixes -fexceptions -DCHECK_FUNCTION_EXISTS=clock_gettime -g   -o CMakeFiles/cmTC_4dc3c.dir/CheckFunctionExists.c.o   -c /Applications/CMake.app/Contents/share/cmake-3.7/Modules/CheckFunctionExists.c
+Linking C executable cmTC_4dc3c
+/Applications/CMake.app/Contents/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4dc3c.dir/link.txt --verbose=1
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=i686-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-x86 -fPIC -funwind-tables -no-canonical-prefixes -fexceptions -DCHECK_FUNCTION_EXISTS=clock_gettime -g    CMakeFiles/cmTC_4dc3c.dir/CheckFunctionExists.c.o  -o cmTC_4dc3c  -lrt 
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64/lib/gcc/i686-linux-android/4.9.x/../../../../i686-linux-android/bin/ld: error: cannot find -lrt
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make[5]: *** [cmTC_4dc3c] Error 1
+make[4]: *** [cmTC_4dc3c/fast] Error 2
+
+
+Determining if the res_ndestroy exist failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/bellesip/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_3a01b/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_3a01b.dir/build.make CMakeFiles/cmTC_3a01b.dir/build
+Building C object CMakeFiles/cmTC_3a01b.dir/CheckSymbolExists.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=i686-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-x86   -fPIC -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_3a01b.dir/CheckSymbolExists.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/bellesip/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/bellesip/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8:19: error: use of undeclared identifier 'res_ndestroy'
+  return ((int*)(&res_ndestroy))[argc];
+                  ^
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_3a01b.dir/CheckSymbolExists.c.o] Error 1
+make[4]: *** [cmTC_3a01b/fast] Error 2
+
+File /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/bellesip/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <resolv.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef res_ndestroy
+  return ((int*)(&res_ndestroy))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Performing C SOURCE FILE Test HAVE_RES_GETSERVERS failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/bellesip/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_d3bba/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_d3bba.dir/build.make CMakeFiles/cmTC_d3bba.dir/build
+Building C object CMakeFiles/cmTC_d3bba.dir/src.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=i686-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-x86   -fPIC -funwind-tables -no-canonical-prefixes -fexceptions -DHAVE_RES_GETSERVERS -g   -o CMakeFiles/cmTC_d3bba.dir/src.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/bellesip/CMakeFiles/CMakeTmp/src.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/bellesip/CMakeFiles/CMakeTmp/src.c:3:1: warning: implicit declaration of function 'res_getservers' is invalid in C99 [-Wimplicit-function-declaration]
+res_getservers(NULL,NULL,0);
+^
+1 warning generated.
+Linking C executable cmTC_d3bba
+/Applications/CMake.app/Contents/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d3bba.dir/link.txt --verbose=1
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=i686-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-x86 -fPIC -funwind-tables -no-canonical-prefixes -fexceptions -DHAVE_RES_GETSERVERS -g    CMakeFiles/cmTC_d3bba.dir/src.c.o  -o cmTC_d3bba  -lresolv 
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64/lib/gcc/i686-linux-android/4.9.x/../../../../i686-linux-android/bin/ld: error: cannot find -lresolv
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/bellesip/CMakeFiles/CMakeTmp/src.c:3: error: undefined reference to 'res_getservers'
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make[5]: *** [cmTC_d3bba] Error 1
+make[4]: *** [cmTC_d3bba/fast] Error 2
+
+Source file was:
+#include <resolv.h>
+int main(int argc, char *argv[]) {
+res_getservers(NULL,NULL,0);
+return 0;
+}

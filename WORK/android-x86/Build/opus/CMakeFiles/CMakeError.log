@@ -1,0 +1,57 @@
+Performing C SOURCE FILE Test OPUS_X86_MAY_HAVE_SSE4_1 failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/opus/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_874fb/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_874fb.dir/build.make CMakeFiles/cmTC_874fb.dir/build
+Building C object CMakeFiles/cmTC_874fb.dir/src.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=i686-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-x86   -fPIC -funwind-tables -no-canonical-prefixes -fexceptions -DOPUS_X86_MAY_HAVE_SSE4_1 -g   -o CMakeFiles/cmTC_874fb.dir/src.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/opus/CMakeFiles/CMakeTmp/src.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/opus/CMakeFiles/CMakeTmp/src.c:7:10: error: always_inline function '_mm_mul_epi32' requires target feature 'sse4.1', but would be inlined into function 'main' that is compiled without support for 'sse4.1'
+        mtest = _mm_mul_epi32(mtest, mtest);
+                ^
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_874fb.dir/src.c.o] Error 1
+make[4]: *** [cmTC_874fb/fast] Error 2
+
+Source file was:
+
+#include <smmintrin.h>
+#include <time.h>
+int main(int argc, char *argv[]) {
+	__m128i mtest;
+	mtest = _mm_set1_epi32((int)time(NULL));
+	mtest = _mm_mul_epi32(mtest, mtest);
+	return _mm_cvtsi128_si32(mtest);
+}
+Performing C SOURCE FILE Test OPUS_X86_MAY_HAVE_AVX failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/opus/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_49e2d/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_49e2d.dir/build.make CMakeFiles/cmTC_49e2d.dir/build
+Building C object CMakeFiles/cmTC_49e2d.dir/src.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=i686-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-x86   -fPIC -funwind-tables -no-canonical-prefixes -fexceptions -DOPUS_X86_MAY_HAVE_AVX -g   -o CMakeFiles/cmTC_49e2d.dir/src.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/opus/CMakeFiles/CMakeTmp/src.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/opus/CMakeFiles/CMakeTmp/src.c:6:10: error: always_inline function '_mm256_set1_ps' requires target feature 'sse4.2', but would be inlined into function 'main' that is compiled without support for 'sse4.2'
+        mtest = _mm256_set1_ps((float)time(NULL));
+                ^
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/opus/CMakeFiles/CMakeTmp/src.c:7:10: error: always_inline function '_mm256_addsub_ps' requires target feature 'sse4.2', but would be inlined into function 'main' that is compiled without support for 'sse4.2'
+        mtest = _mm256_addsub_ps(mtest, mtest);
+                ^
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/opus/CMakeFiles/CMakeTmp/src.c:8:24: error: always_inline function '_mm256_undefined_ps' requires target feature 'sse4.2', but would be inlined into function 'main' that is compiled without support for 'sse4.2'
+        return _mm_cvtss_si32(_mm256_extractf128_ps(mtest, 0));
+                              ^
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/5.0.300080/include/avxintrin.h:4687:14: note: expanded from macro '_mm256_extractf128_ps'
+    (__v8sf)(_mm256_undefined_ps()), \
+             ^
+3 errors generated.
+make[5]: *** [CMakeFiles/cmTC_49e2d.dir/src.c.o] Error 1
+make[4]: *** [cmTC_49e2d/fast] Error 2
+
+Source file was:
+
+#include <immintrin.h>
+#include <time.h>
+int main(int argc, char *argv[]) {
+	__m256 mtest;
+	mtest = _mm256_set1_ps((float)time(NULL));
+	mtest = _mm256_addsub_ps(mtest, mtest);
+	return _mm_cvtss_si32(_mm256_extractf128_ps(mtest, 0));
+}

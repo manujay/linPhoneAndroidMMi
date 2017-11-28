@@ -1,0 +1,14 @@
+# Target labels
+ EP_androidcpufeatures
+# Source files and their labels
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/cmake/CMakeFiles/EP_androidcpufeatures
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/cmake/CMakeFiles/EP_androidcpufeatures.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/cmake/CMakeFiles/EP_androidcpufeatures-complete.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Stamp/EP_androidcpufeatures/EP_androidcpufeatures-install.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Stamp/EP_androidcpufeatures/EP_androidcpufeatures-mkdir.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Stamp/EP_androidcpufeatures/EP_androidcpufeatures-download.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Stamp/EP_androidcpufeatures/EP_androidcpufeatures-update.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Stamp/EP_androidcpufeatures/EP_androidcpufeatures-patch.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Stamp/EP_androidcpufeatures/EP_androidcpufeatures-configure.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Stamp/EP_androidcpufeatures/EP_androidcpufeatures-build.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Stamp/EP_androidcpufeatures/EP_androidcpufeatures-force_build.rule

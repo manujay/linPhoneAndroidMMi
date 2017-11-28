@@ -1,0 +1,14 @@
+# Target labels
+ EP_vpx
+# Source files and their labels
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/cmake/CMakeFiles/EP_vpx
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/cmake/CMakeFiles/EP_vpx.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/cmake/CMakeFiles/EP_vpx-complete.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_vpx/EP_vpx-install.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_vpx/EP_vpx-mkdir.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_vpx/EP_vpx-download.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_vpx/EP_vpx-update.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_vpx/EP_vpx-patch.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_vpx/EP_vpx-configure.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_vpx/EP_vpx-build.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_vpx/EP_vpx-force_build.rule

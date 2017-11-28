@@ -1,0 +1,60 @@
+Determining if the CU_curses_run_tests exist failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/bctoolbox/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_117e7/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_117e7.dir/build.make CMakeFiles/cmTC_117e7.dir/build
+Building C object CMakeFiles/cmTC_117e7.dir/CheckSymbolExists.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=i686-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-x86  -I/Users/ceinfo/LinPhoneAndroidProject/linphone-android/liblinphone-sdk/android-x86/include  -fPIC -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_117e7.dir/CheckSymbolExists.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/bctoolbox/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/bctoolbox/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8:19: error: use of undeclared identifier 'CU_curses_run_tests'
+  return ((int*)(&CU_curses_run_tests))[argc];
+                  ^
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_117e7.dir/CheckSymbolExists.c.o] Error 1
+make[4]: *** [cmTC_117e7/fast] Error 2
+
+File /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/bctoolbox/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <BCUnit/BCUnit.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef CU_curses_run_tests
+  return ((int*)(&CU_curses_run_tests))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function clock_gettime exists in the rt failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/bctoolbox/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_c7bbf/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_c7bbf.dir/build.make CMakeFiles/cmTC_c7bbf.dir/build
+Building C object CMakeFiles/cmTC_c7bbf.dir/CheckFunctionExists.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=i686-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-x86   -fPIC -funwind-tables -no-canonical-prefixes -fexceptions -DCHECK_FUNCTION_EXISTS=clock_gettime -g   -o CMakeFiles/cmTC_c7bbf.dir/CheckFunctionExists.c.o   -c /Applications/CMake.app/Contents/share/cmake-3.7/Modules/CheckFunctionExists.c
+Linking C executable cmTC_c7bbf
+/Applications/CMake.app/Contents/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c7bbf.dir/link.txt --verbose=1
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=i686-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-x86 -fPIC -funwind-tables -no-canonical-prefixes -fexceptions -DCHECK_FUNCTION_EXISTS=clock_gettime -g    CMakeFiles/cmTC_c7bbf.dir/CheckFunctionExists.c.o  -o cmTC_c7bbf  -lrt 
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64/lib/gcc/i686-linux-android/4.9.x/../../../../i686-linux-android/bin/ld: error: cannot find -lrt
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make[5]: *** [cmTC_c7bbf] Error 1
+make[4]: *** [cmTC_c7bbf/fast] Error 2
+
+
+Determining if the include file execinfo.h exists failed with the following output:
+Change Dir: /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/bctoolbox/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_99247/fast"
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -f CMakeFiles/cmTC_99247.dir/build.make CMakeFiles/cmTC_99247.dir/build
+Building C object CMakeFiles/cmTC_99247.dir/CheckIncludeFile.c.o
+/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang  --target=i686-none-linux-android --gcc-toolchain=/Users/ceinfo/Library/Android/sdk/ndk-bundle/toolchains/x86-4.9/prebuilt/darwin-x86_64 --sysroot=/Users/ceinfo/Library/Android/sdk/ndk-bundle/platforms/android-16/arch-x86   -fPIC -funwind-tables -no-canonical-prefixes -fexceptions  -g   -o CMakeFiles/cmTC_99247.dir/CheckIncludeFile.c.o   -c /Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/bctoolbox/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/bctoolbox/CMakeFiles/CMakeTmp/CheckIncludeFile.c:1:10: fatal error: 'execinfo.h' file not found
+#include <execinfo.h>
+         ^~~~~~~~~~~~
+1 error generated.
+make[5]: *** [CMakeFiles/cmTC_99247.dir/CheckIncludeFile.c.o] Error 1
+make[4]: *** [cmTC_99247/fast] Error 2
+
+

@@ -1,0 +1,14 @@
+# Target labels
+ EP_linphone
+# Source files and their labels
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/cmake/CMakeFiles/EP_linphone
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/cmake/CMakeFiles/EP_linphone.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/cmake/CMakeFiles/EP_linphone-complete.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_linphone/EP_linphone-install.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_linphone/EP_linphone-mkdir.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_linphone/EP_linphone-download.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_linphone/EP_linphone-update.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_linphone/EP_linphone-patch.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_linphone/EP_linphone-configure.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_linphone/EP_linphone-build.rule
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-armv7/Stamp/EP_linphone/EP_linphone-force_build.rule

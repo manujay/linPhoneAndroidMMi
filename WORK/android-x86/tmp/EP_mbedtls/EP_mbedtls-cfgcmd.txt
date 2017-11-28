@@ -1,0 +1,1 @@
+cmd='/Applications/CMake.app/Contents/bin/cmake;-DENABLE_PROGRAMS=NO;-DENABLE_TESTING=NO;-DUSE_STATIC_MBEDTLS_LIBRARY=YES;-DUSE_SHARED_MBEDTLS_LIBRARY=NO;-C/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86//tmp/EP_mbedtls/EP_mbedtls-cache-$<CONFIG>.cmake;-GUnix Makefiles;/Users/ceinfo/LinPhoneAndroidProject/linphone-android/submodules/externals/mbedtls'

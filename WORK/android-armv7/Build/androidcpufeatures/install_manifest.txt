@@ -1,0 +1,2 @@
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/liblinphone-sdk/android-armv7/lib/libcpufeatures.a
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/liblinphone-sdk/android-armv7/include/cpu-features.h

@@ -1,0 +1,2 @@
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/liblinphone-sdk/android-x86/lib/libturbojpeg.a
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/liblinphone-sdk/android-x86/include/turbojpeg.h

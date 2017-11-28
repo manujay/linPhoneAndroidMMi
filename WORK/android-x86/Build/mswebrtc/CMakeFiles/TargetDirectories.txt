@@ -1,0 +1,9 @@
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/mswebrtc/CMakeFiles/install/local.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/mswebrtc/CMakeFiles/install/strip.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/mswebrtc/CMakeFiles/install.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/mswebrtc/CMakeFiles/list_install_components.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/mswebrtc/CMakeFiles/package.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/mswebrtc/CMakeFiles/package_source.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/mswebrtc/CMakeFiles/rebuild_cache.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/mswebrtc/CMakeFiles/edit_cache.dir
+/Users/ceinfo/LinPhoneAndroidProject/linphone-android/WORK/android-x86/Build/mswebrtc/CMakeFiles/mswebrtc.dir
