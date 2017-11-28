@@ -2,7 +2,7 @@
 <resources>
 
     <!-- Custom -->
-    <string name="app_name">Linphone</string>
+    <string name="app_name">MmiLinPhone</string>
     <string name="service_name">Linphone Service</string>
     <string name="addressbook_label">Linphone</string>
     <string name="notification_title">Linphone</string>
@@ -10,7 +10,7 @@
     <string name="notification_registered">%s registered</string>
     <string name="notification_register_failure">%s failed to register</string>
     <string name="tunnel_host"></string>
-    <string name="about_version">Linphone Android %s</string>
+    <string name="about_version">MmiLinPhone Android %s</string>
     <string name="about_liblinphone_version">Linphone Core %s</string>
     <string name="about_text">GNU General Public License V2\n © 2010-2017 Belledonne Communications</string>
     <string name="about_link">www.linphone.org</string>
@@ -66,7 +66,7 @@
     <string name="assistant_validate_account_1">Your account is created. Please check your mails to validate your account:</string>
     <string name="assistant_validate_account_2">Once it is done, come back here and click on the button.</string>
     <string name="assistant_welcome_desc">This assistant will help you configure and use your SIP account.</string>
-    <string name="assistant_linphone_login_desc">Please enter your username and password of Linphone account</string>
+    <string name="assistant_MmiLinPhone_login_desc">Please enter your username and password of Linphone account</string>
     <string name="assistant_login_desc">Please enter your username and password with your SIP domain</string>
     <string name="assistant_remote_provisioning_desc">Please provide your provisioning URL</string>
     <string name="transport">Transport</string>
