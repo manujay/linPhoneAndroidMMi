@@ -70,11 +70,11 @@ public class DemoCallingActivity extends Activity {
         setContentView(R.layout.layout_demo_calling_activity);
 
         /*
-You can now use your linphone account with these parameters:
-Sip identity : sip:jayman1989@sip.linphone.org
-Username : jayman1989
-Domain / Proxy : sip.linphone.org
-* */
+            You can now use your linphone account with these parameters:
+            Sip identity : sip:jayman1989@sip.linphone.org
+            Username : jayman1989
+            Domain / Proxy : sip.linphone.org
+        * */
         startService(new Intent(Intent.ACTION_MAIN).setClass(this, LinphoneService.class));
 
         editText = findViewById(R.id.addresss_ca);

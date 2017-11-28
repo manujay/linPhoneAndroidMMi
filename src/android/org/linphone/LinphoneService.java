@@ -19,26 +19,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-
-import org.linphone.compatibility.Compatibility;
-import org.linphone.core.LinphoneAddress;
-import org.linphone.core.LinphoneCall;
-import org.linphone.core.LinphoneCall.State;
-import org.linphone.core.LinphoneCallLog.CallStatus;
-import org.linphone.core.LinphoneCore;
-import org.linphone.core.LinphoneCore.GlobalState;
-import org.linphone.core.LinphoneCore.RegistrationState;
-import org.linphone.core.LinphoneCoreException;
-import org.linphone.core.LinphoneCoreFactory;
-import org.linphone.core.LinphoneCoreListenerBase;
-import org.linphone.core.LinphoneProxyConfig;
-import org.linphone.mediastream.Log;
-import org.linphone.mediastream.Version;
-import org.linphone.ui.LinphoneOverlay;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -63,6 +43,26 @@ import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.view.WindowManager;
 
+import org.linphone.compatibility.Compatibility;
+import org.linphone.core.LinphoneAddress;
+import org.linphone.core.LinphoneCall;
+import org.linphone.core.LinphoneCall.State;
+import org.linphone.core.LinphoneCallLog.CallStatus;
+import org.linphone.core.LinphoneCore;
+import org.linphone.core.LinphoneCore.GlobalState;
+import org.linphone.core.LinphoneCore.RegistrationState;
+import org.linphone.core.LinphoneCoreException;
+import org.linphone.core.LinphoneCoreFactory;
+import org.linphone.core.LinphoneCoreListenerBase;
+import org.linphone.core.LinphoneProxyConfig;
+import org.linphone.mediastream.Log;
+import org.linphone.mediastream.Version;
+import org.linphone.ui.LinphoneOverlay;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+
 /**
  * Linphone service, reacting to Incoming calls, ...<br />
  *
@@ -81,35 +81,22 @@ public final class LinphoneService extends Service {
 	/*private static final int IC_LEVEL_GREEN=1;
 	private static final int IC_LEVEL_RED=2;*/
 	//public static final int IC_LEVEL_OFFLINE=3;
-
-	private static LinphoneService instance;
-
 	private final static int NOTIF_ID=1;
 	private final static int INCALL_NOTIF_ID=2;
 	private final static int MESSAGE_NOTIF_ID=3;
 	private final static int CUSTOM_NOTIF_ID=4;
 	private final static int MISSED_NOTIF_ID=5;
 	private final static int SAS_NOTIF_ID=6;
-
-	public static boolean isReady() {
-		return instance != null && instance.mTestDelayElapsed;
-	}
-
-	/**
-	 * @throws RuntimeException service not instantiated
-	 */
-	public static LinphoneService instance()  {
-		if (isReady()) return instance;
-
-		throw new RuntimeException("LinphoneService not instantiated yet");
-	}
-
-	public Handler mHandler = new Handler();
-
+    private static final Class<?>[] mSetFgSign = new Class[]{boolean.class};
+    private static final Class<?>[] mStartFgSign = new Class[]{
+            int.class, Notification.class};
+    private static final Class<?>[] mStopFgSign = new Class[]{boolean.class};
+    public static int notifcationsPriority = (Version.sdkAboveOrEqual(Version.API16_JELLY_BEAN_41) ? Notification.PRIORITY_MIN : 0);
+    private static LinphoneService instance;
+    public Handler mHandler = new Handler();
 //	private boolean mTestDelayElapsed; // add a timer for testing
-	private boolean mTestDelayElapsed = true; // no timer
-	private NotificationManager mNM;
-
+private boolean mTestDelayElapsed = false; // no timer
+    private NotificationManager mNM;
 	private Notification mNotif;
 	private Notification mIncallNotif;
 	private Notification mMsgNotif;
@@ -120,117 +107,31 @@ public final class LinphoneService extends Service {
 	private String mNotificationTitle;
 	private boolean mDisableRegistrationStatus;
 	private LinphoneCoreListenerBase mListener;
-	public static int notifcationsPriority = (Version.sdkAboveOrEqual(Version.API16_JELLY_BEAN_41) ? Notification.PRIORITY_MIN : 0);
 	private WindowManager mWindowManager;
 	private LinphoneOverlay mOverlay;
 	private Application.ActivityLifecycleCallbacks activityCallbacks;
+    private IncallIconState mCurrentIncallIconState = IncallIconState.IDLE;
+    private Method mSetForeground;
+    private Method mStartForeground;
+    private Method mStopForeground;
+    private Object[] mSetForegroundArgs = new Object[1];
+    private Object[] mStartForegroundArgs = new Object[2];
+    private Object[] mStopForegroundArgs = new Object[1];
+    private String incomingReceivedActivityName;
+    private Class<? extends Activity> incomingReceivedActivity = LinphoneActivity.class;
 
+    public static boolean isReady() {
+        return instance != null && instance.mTestDelayElapsed;
+    }
 
+    /**
+     * @throws RuntimeException service not instantiated
+     */
+    public static LinphoneService instance() {
+        if (isReady()) return instance;
 
-	/*Believe me or not, but knowing the application visibility state on Android is a nightmare.
-	After two days of hard work I ended with the following class, that does the job more or less reliabily.
-	*/
-	class ActivityMonitor implements Application.ActivityLifecycleCallbacks {
-		private ArrayList<Activity> activities = new ArrayList<Activity>();
-		private boolean mActive = false;
-		private int mRunningActivities = 0;
-
-		class InactivityChecker implements Runnable {
-			private boolean isCanceled;
-
-			public void cancel() {
-				isCanceled = true;
-			}
-
-			@Override
-			public void run() {
-				synchronized(LinphoneService.this) {
-					if (!isCanceled) {
-						if (ActivityMonitor.this.mRunningActivities == 0 && mActive) {
-							mActive = false;
-							LinphoneService.this.onBackgroundMode();
-						}
-					}
-				}
-			}
-		};
-
-		private InactivityChecker mLastChecker;
-
-		@Override
-		public synchronized void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-			Log.i("Activity created:" + activity);
-			if (!activities.contains(activity))
-				activities.add(activity);
-		}
-
-		@Override
-		public void onActivityStarted(Activity activity) {
-			Log.i("Activity started:" + activity);
-		}
-
-		@Override
-		public synchronized void onActivityResumed(Activity activity) {
-			Log.i("Activity resumed:" + activity);
-			if (activities.contains(activity)) {
-				mRunningActivities++;
-				Log.i("runningActivities=" + mRunningActivities);
-				checkActivity();
-			}
-
-		}
-
-		@Override
-		public synchronized void onActivityPaused(Activity activity) {
-			Log.i("Activity paused:" + activity);
-			if (activities.contains(activity)) {
-				mRunningActivities--;
-				Log.i("runningActivities=" + mRunningActivities);
-				checkActivity();
-			}
-
-		}
-
-		@Override
-		public void onActivityStopped(Activity activity) {
-			Log.i("Activity stopped:" + activity);
-		}
-
-		@Override
-		public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-
-		}
-
-		@Override
-		public synchronized void onActivityDestroyed(Activity activity) {
-			Log.i("Activity destroyed:" + activity);
-			if (activities.contains(activity)) {
-				activities.remove(activity);
-			}
-		}
-
-		void startInactivityChecker() {
-			if (mLastChecker != null) mLastChecker.cancel();
-			LinphoneService.this.mHandler.postDelayed(
-					(mLastChecker = new InactivityChecker()), 2000);
-		}
-
-		void checkActivity() {
-
-			if (mRunningActivities == 0) {
-				if (mActive) startInactivityChecker();
-			} else if (mRunningActivities > 0) {
-				if (!mActive) {
-					mActive = true;
-					LinphoneService.this.onForegroundMode();
-				}
-				if (mLastChecker != null) {
-					mLastChecker.cancel();
-					mLastChecker = null;
-				}
-			}
-		}
-	}
+        throw new RuntimeException("LinphoneService not instantiated yet");
+    }
 
 	protected void onBackgroundMode(){
 		Log.i("App has entered background mode");
@@ -482,8 +383,6 @@ public final class LinphoneService extends Service {
 		mOverlay = null;
 	}
 
-	private enum IncallIconState {INCALL, PAUSE, VIDEO, IDLE}
-	private IncallIconState mCurrentIncallIconState = IncallIconState.IDLE;
 	private synchronized void setIncallIcon(IncallIconState state) {
 		if (state == mCurrentIncallIconState) return;
 		mCurrentIncallIconState = state;
@@ -660,20 +559,6 @@ public final class LinphoneService extends Service {
 	public void removeSasNotification() {
 		mNM.cancel(SAS_NOTIF_ID);
 	}
-
-	private static final Class<?>[] mSetFgSign = new Class[] {boolean.class};
-	private static final Class<?>[] mStartFgSign = new Class[] {
-		int.class, Notification.class};
-	private static final Class<?>[] mStopFgSign = new Class[] {boolean.class};
-
-	private Method mSetForeground;
-	private Method mStartForeground;
-	private Method mStopForeground;
-	private Object[] mSetForegroundArgs = new Object[1];
-	private Object[] mStartForegroundArgs = new Object[2];
-	private Object[] mStopForegroundArgs = new Object[1];
-	private String incomingReceivedActivityName;
-	private Class<? extends Activity> incomingReceivedActivity = LinphoneActivity.class;
 
 	void invokeMethod(Method method, Object[] args) {
 		try {
@@ -865,7 +750,6 @@ public final class LinphoneService extends Service {
 				.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
 	}
 
-
 	public void tryingNewOutgoingCallButAlreadyInCall() {
 	}
 
@@ -876,7 +760,113 @@ public final class LinphoneService extends Service {
 	}
 
 	public void onCallEncryptionChanged(final LinphoneCall call, final boolean encrypted,
-			final String authenticationToken) {
-	}
+                                        final String authenticationToken) {
+    }
+
+    private enum IncallIconState {INCALL, PAUSE, VIDEO, IDLE}
+
+    /*Believe me or not, but knowing the application visibility state on Android is a nightmare.
+    After two days of hard work I ended with the following class, that does the job more or less reliabily.
+    */
+    class ActivityMonitor implements Application.ActivityLifecycleCallbacks {
+        private ArrayList<Activity> activities = new ArrayList<Activity>();
+        private boolean mActive = false;
+        private int mRunningActivities = 0;
+        private InactivityChecker mLastChecker;
+
+        @Override
+        public synchronized void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+            Log.i("Activity created:" + activity);
+            if (!activities.contains(activity))
+                activities.add(activity);
+        }
+
+        @Override
+        public void onActivityStarted(Activity activity) {
+            Log.i("Activity started:" + activity);
+        }
+
+        @Override
+        public synchronized void onActivityResumed(Activity activity) {
+            Log.i("Activity resumed:" + activity);
+            if (activities.contains(activity)) {
+                mRunningActivities++;
+                Log.i("runningActivities=" + mRunningActivities);
+                checkActivity();
+            }
+
+        }
+
+        @Override
+        public synchronized void onActivityPaused(Activity activity) {
+            Log.i("Activity paused:" + activity);
+            if (activities.contains(activity)) {
+                mRunningActivities--;
+                Log.i("runningActivities=" + mRunningActivities);
+                checkActivity();
+            }
+
+        }
+
+        @Override
+        public void onActivityStopped(Activity activity) {
+            Log.i("Activity stopped:" + activity);
+        }
+
+        @Override
+        public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+
+        }
+
+        @Override
+        public synchronized void onActivityDestroyed(Activity activity) {
+            Log.i("Activity destroyed:" + activity);
+            if (activities.contains(activity)) {
+                activities.remove(activity);
+            }
+        }
+
+        void startInactivityChecker() {
+            if (mLastChecker != null) mLastChecker.cancel();
+            LinphoneService.this.mHandler.postDelayed(
+                    (mLastChecker = new InactivityChecker()), 2000);
+        }
+
+        void checkActivity() {
+
+            if (mRunningActivities == 0) {
+                if (mActive) startInactivityChecker();
+            } else if (mRunningActivities > 0) {
+                if (!mActive) {
+                    mActive = true;
+                    LinphoneService.this.onForegroundMode();
+                }
+                if (mLastChecker != null) {
+                    mLastChecker.cancel();
+                    mLastChecker = null;
+                }
+            }
+        }
+
+        class InactivityChecker implements Runnable {
+            private boolean isCanceled;
+
+            public void cancel() {
+                isCanceled = true;
+            }
+
+            @Override
+            public void run() {
+                synchronized (LinphoneService.this) {
+                    if (!isCanceled) {
+                        if (ActivityMonitor.this.mRunningActivities == 0 && mActive) {
+                            mActive = false;
+                            LinphoneService.this.onBackgroundMode();
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 

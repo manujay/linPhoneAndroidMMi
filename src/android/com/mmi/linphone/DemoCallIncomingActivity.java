@@ -4,13 +4,19 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import org.linphone.LinphoneActivity;
 import org.linphone.LinphoneManager;
 import org.linphone.LinphonePreferences;
+import org.linphone.LinphoneService;
 import org.linphone.LinphoneUtils;
 import org.linphone.R;
 import org.linphone.core.LinphoneCall;
+import org.linphone.core.LinphoneCallParams;
 import org.linphone.core.LinphoneCore;
 import org.linphone.core.LinphoneCoreListenerBase;
 import org.linphone.mediastream.Log;
@@ -28,12 +34,13 @@ public class DemoCallIncomingActivity extends MmiLinPhoneGenericActivity {
     LinphoneCoreListenerBase mListener;
     ImageView accept, Decline;
     private LinphoneCall mCall;
+    private boolean alreadyAcceptedOrDeniedCall;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.democallincoming_activity);
-
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         initUi();
 
@@ -73,6 +80,59 @@ public class DemoCallIncomingActivity extends MmiLinPhoneGenericActivity {
     private void initUi() {
         accept = findViewById(R.id.accept);
         Decline = findViewById(R.id.decline);
+
+        accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                answer();
+            }
+        });
+
+        Decline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                decline();
+            }
+        });
+    }
+
+    private void decline() {
+        if (alreadyAcceptedOrDeniedCall) {
+            return;
+        }
+        alreadyAcceptedOrDeniedCall = true;
+
+        LinphoneManager.getLc().terminateCall(mCall);
+        finish();
+    }
+
+    private void answer() {
+        if (alreadyAcceptedOrDeniedCall) {
+            return;
+        }
+        alreadyAcceptedOrDeniedCall = true;
+
+        LinphoneCallParams params = LinphoneManager.getLc().createCallParams(mCall);
+
+        boolean isLowBandwidthConnection = !LinphoneUtils.isHighBandwidthConnection(LinphoneService.instance().getApplicationContext());
+
+        if (params != null) {
+            params.enableLowBandwidth(isLowBandwidthConnection);
+        } else {
+            Log.e("Could not create call params for call");
+        }
+
+        if (params == null || !LinphoneManager.getInstance().acceptCallWithParams(mCall, params)) {
+            // the above method takes care of Samsung Galaxy S
+            Toast.makeText(this, R.string.couldnt_accept_call, Toast.LENGTH_LONG).show();
+        } else {
+            if (!LinphoneActivity.isInstanciated()) {
+                return;
+            }
+            LinphoneManager.getInstance().routeAudioToReceiver();
+            LinphoneActivity.instance().startIncallActivity(mCall);
+        }
     }
 
 
@@ -86,6 +146,18 @@ public class DemoCallIncomingActivity extends MmiLinPhoneGenericActivity {
 
         if (null != lpc) {
             lpc.addListener(mListener);
+        }
+
+        alreadyAcceptedOrDeniedCall = false;
+        mCall = null;
+
+        // Only one call ringing at a time is allowed
+        lookupCurrentCall();
+        if (mCall == null) {
+            //The incoming call no longer exists.
+            Log.d("Couldn't find incoming call");
+            finish();
+            return;
         }
     }
 
