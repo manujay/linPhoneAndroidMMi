@@ -1,4 +1,4 @@
-package com.mmi.linphone;
+package org.linphone;
 
 import android.Manifest;
 import android.app.Activity;
@@ -33,20 +33,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.linphone.BluetoothManager;
-import org.linphone.CallActivity;
-import org.linphone.CallAudioFragment;
-import org.linphone.CallVideoFragment;
-import org.linphone.ContactsManager;
-import org.linphone.LinphoneActivity;
-import org.linphone.LinphoneContact;
-import org.linphone.LinphoneManager;
-import org.linphone.LinphonePreferences;
-import org.linphone.LinphoneService;
-import org.linphone.LinphoneUtils;
-import org.linphone.R;
-import org.linphone.StatusFragment;
-import org.linphone.UIThreadDispatcher;
 import org.linphone.core.LinphoneAddress;
 import org.linphone.core.LinphoneCall;
 import org.linphone.core.LinphoneCallParams;
@@ -121,7 +107,7 @@ public class DemoCallActivity extends MmiLinPhoneGenericActivity implements Acti
         return instance;
     }
 
-    public boolean isInstanciated() {
+    public static boolean isInstanciated() {
         return null != instance;
     }
 

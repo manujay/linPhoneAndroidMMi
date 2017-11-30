@@ -95,8 +95,8 @@ public final class LinphoneService extends Service {
     private static LinphoneService instance;
     public Handler mHandler = new Handler();
 //	private boolean mTestDelayElapsed; // add a timer for testing
-private boolean mTestDelayElapsed = false; // no timer
-    private NotificationManager mNM;
+private boolean mTestDelayElapsed = true; // no timer
+	private NotificationManager mNM;
 	private Notification mNotif;
 	private Notification mIncallNotif;
 	private Notification mMsgNotif;

@@ -1,68 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-    <org.linphone.ui.AddressText
-        android:id="@+id/addresss_ca"
+    <fragment
+        android:id="@+id/status"
+        android:name="org.linphone.StatusFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:hint="sip:jayman1989@sip.linphone.org" />
+        android:layout_height="40dp"
+        tools:layout="@layout/status" />
 
-    <TextView
-        android:id="@+id/textViewWrapper"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
+        android:layout_below="@id/status">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/container_calling_buttons"
-        android:layout_centerHorizontal="true"
-        android:orientation="horizontal"
-        android:visibility="gone">
-
-        <ImageButton
-            android:layout_width="0dp"
+        <org.linphone.ui.AddressText
+            android:id="@+id/addresss_ca"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:src="@drawable/speaker_default" />
+            android:layout_centerHorizontal="true"
+            android:hint="sip:jayman1989@sip.linphone.org" />
 
-        <ImageButton
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/textViewWrapper"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:src="@drawable/micro_default" />
+            android:layout_centerInParent="true" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/container_calling_buttons"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
-
-        <Button
-            android:id="@+id/callButton_ca"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:enabled="false"
-            android:text="Call  " />
+            android:layout_above="@+id/container_calling_buttons"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
+            android:visibility="gone">
 
-        <Button
-            android:id="@+id/hangButton_ca"
-            android:layout_width="0dp"
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:src="@drawable/speaker_default" />
+
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:src="@drawable/micro_default" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_calling_buttons"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:enabled="false"
-            android:text="HangUp  " />
+            android:layout_alignParentBottom="true">
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/callButton_ca"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:text="Call  " />
+
+            <Button
+                android:id="@+id/hangButton_ca"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:text="HangUp  " />
+
+        </LinearLayout>
+    </RelativeLayout>
 </RelativeLayout>

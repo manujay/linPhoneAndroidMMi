@@ -1,10 +1,8 @@
-package com.mmi.linphone;
+package org.linphone;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-
-import org.linphone.LinphoneService;
 
 /**
  * Created by ceinfo on 11/28/17.

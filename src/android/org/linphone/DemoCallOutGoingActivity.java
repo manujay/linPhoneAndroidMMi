@@ -1,10 +1,8 @@
-package com.mmi.linphone;
+package org.linphone;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import org.linphone.LinphoneActivity;
-import org.linphone.R;
 import org.linphone.core.LinphoneCall;
 import org.linphone.core.LinphoneCore;
 import org.linphone.core.LinphoneCoreListenerBase;

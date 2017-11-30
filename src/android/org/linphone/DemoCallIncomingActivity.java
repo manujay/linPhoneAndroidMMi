@@ -1,4 +1,4 @@
-package com.mmi.linphone;
+package org.linphone;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -9,12 +9,6 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import org.linphone.LinphoneActivity;
-import org.linphone.LinphoneManager;
-import org.linphone.LinphonePreferences;
-import org.linphone.LinphoneService;
-import org.linphone.LinphoneUtils;
-import org.linphone.R;
 import org.linphone.core.LinphoneCall;
 import org.linphone.core.LinphoneCallParams;
 import org.linphone.core.LinphoneCore;
