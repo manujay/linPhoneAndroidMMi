@@ -2,10 +2,8 @@ package org.linphone;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -30,6 +28,7 @@ import org.linphone.core.LinphoneCoreException;
 import org.linphone.core.LinphoneCoreListenerBase;
 import org.linphone.core.LinphoneProxyConfig;
 import org.linphone.core.Reason;
+import org.linphone.mediastream.Log;
 import org.linphone.ui.AddressText;
 
 import java.util.ArrayList;
@@ -49,12 +48,11 @@ public class DemoCallingActivity extends Activity {
     private LinphoneCall mCall;
     private Button mCallingButton;
     private Button mHangUpButton;
-    private AudioManager mAudioManager;
     private LinphoneCoreListenerBase mListener;
     private TextView textView;
     private Handler mHandler = new Handler();
     private ServiceWaitThread mServiceThread;
-    private boolean mAudioFocused;
+
 
     static final boolean isInstanciated() {
         return instance != null;
@@ -69,9 +67,7 @@ public class DemoCallingActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.layout_demo_calling_activity);
-        mAudioManager = ((AudioManager) this.getSystemService(Context.AUDIO_SERVICE));
         /*
             You can now use your linphone account with these parameters:
             Sip identity : sip:jayman1989@sip.linphone.org
@@ -94,6 +90,7 @@ public class DemoCallingActivity extends Activity {
         initUI();
 
         instance = this;
+
     }
 
     private void decline() {
@@ -137,23 +134,8 @@ public class DemoCallingActivity extends Activity {
                     mCall = call;
                     break;
                 }
-                if (LinphoneCall.State.StreamsRunning == cstate) {
-//                    if (!LinphoneActivity.isInstanciated()) {
-//                        return;
-//                    }
-//                    LinphoneActivity.instance().startIncallActivity(mCall);
-//                    finish();
-                    return;
-                }
             }
         }
-
-        if (mCall == null) {
-//            Log.e("Couldn't find outgoing call");
-//            finish();
-            return;
-        }
-
     }
 
     public void updateStatusFragment(StatusFragment fragment) {
@@ -188,6 +170,7 @@ public class DemoCallingActivity extends Activity {
         try {
             if (!LinphoneManager.getInstance().acceptCallIfIncomingPending()) {
                 if (s.getText().length() > 0) {
+                    LinphoneManager.getInstance().routeAudioToReceiver();
                     LinphoneManager.getInstance().setAudioManagerInCallMode();
                     LinphoneManager.getInstance().newOutgoingCall(s);
                 } else {
@@ -252,20 +235,20 @@ public class DemoCallingActivity extends Activity {
         ArrayList<String> permissionsList = new ArrayList<String>();
 
         int recordAudio = getPackageManager().checkPermission(Manifest.permission.RECORD_AUDIO, getPackageName());
-//        Log.i("[Permission] Record audio permission is " + (recordAudio == PackageManager.PERMISSION_GRANTED ? "granted" : "denied"));
+        Log.i("[Permission] Record audio permission is " + (recordAudio == PackageManager.PERMISSION_GRANTED ? "granted" : "denied"));
         int camera = getPackageManager().checkPermission(Manifest.permission.CAMERA, getPackageName());
-//        Log.i("[Permission] Camera permission is " + (camera == PackageManager.PERMISSION_GRANTED ? "granted" : "denied"));
+        Log.i("[Permission] Camera permission is " + (camera == PackageManager.PERMISSION_GRANTED ? "granted" : "denied"));
 
         if (recordAudio != PackageManager.PERMISSION_GRANTED) {
             if (LinphonePreferences.instance().firstTimeAskingForPermission(Manifest.permission.RECORD_AUDIO) || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.RECORD_AUDIO)) {
-//                Log.i("[Permission] Asking for record audio");
+                Log.i("[Permission] Asking for record audio");
                 permissionsList.add(Manifest.permission.RECORD_AUDIO);
             }
         }
         if (LinphonePreferences.instance().shouldInitiateVideoCall() || LinphonePreferences.instance().shouldAutomaticallyAcceptVideoRequests()) {
             if (camera != PackageManager.PERMISSION_GRANTED) {
                 if (LinphonePreferences.instance().firstTimeAskingForPermission(Manifest.permission.CAMERA) || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
-//                    Log.i("[Permission] Asking for camera");
+                    Log.i("[Permission] Asking for camera");
                     permissionsList.add(Manifest.permission.CAMERA);
                 }
             }
@@ -281,7 +264,7 @@ public class DemoCallingActivity extends Activity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         for (int i = 0; i < permissions.length; i++) {
-//            Log.i("[Permission] " + permissions[i] + " is " + (grantResults[i] == PackageManager.PERMISSION_GRANTED ? "granted" : "denied"));
+            Log.i("[Permission] " + permissions[i] + " is " + (grantResults[i] == PackageManager.PERMISSION_GRANTED ? "granted" : "denied"));
         }
     }
 
@@ -356,6 +339,13 @@ public class DemoCallingActivity extends Activity {
                         return;
                     }
 
+                    LinphoneManager.getInstance().setAudioManagerInCallMode();
+
+                    if (!mCallingButton.isEnabled()) {
+                        textView.setText(setText(true, editText));
+                    }
+
+
                     return;
                 } else if (state == LinphoneCall.State.Error) {
                     // Convert LinphoneCore message for internalization
@@ -411,6 +401,7 @@ public class DemoCallingActivity extends Activity {
             mCallingButton.setEnabled(true);
             mHangUpButton.setEnabled(false);
         }
+        textView.setText("");
     }
 
     private class ServiceWaitThread extends Thread {

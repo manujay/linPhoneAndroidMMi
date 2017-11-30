@@ -77,7 +77,11 @@
             android:launchMode="singleTask"
 
             android:windowSoftInputMode="adjustPan|stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
                 <action android:name="android.intent.action.CALL_PRIVILEGED" />
@@ -340,11 +344,7 @@
         <activity
             android:name="org.linphone.DemoCallingActivity"
             android:label="@string/demo">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 </manifest>
