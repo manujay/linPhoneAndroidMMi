@@ -24,21 +24,15 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.os.PowerManager;
 import android.os.SystemClock;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -94,9 +88,9 @@ public class CallActivity extends LinphoneGenericActivity implements OnClickList
 	private static final int PERMISSIONS_ENABLED_MIC = 204;
 
 	private static CallActivity instance;
-
-	private Handler mControlsHandler = new Handler();
-	private Runnable mControls;
+    private static long TimeRemind = 0;
+    private Handler mControlsHandler = new Handler();
+    private Runnable mControls;
 	private ImageView switchCamera;
 	private TextView missedChats;
 	private RelativeLayout mActiveCallHeader, sideMenuContent, avatar_layout;
@@ -114,8 +108,6 @@ public class CallActivity extends LinphoneGenericActivity implements OnClickList
 	private CountDownTimer timer;
 	private boolean isVideoCallPaused = false;
 	private Dialog dialog = null;
-	private static long TimeRemind = 0;
-
 	private LinearLayout callsList, conferenceList;
 	private LayoutInflater inflater;
 	private ViewGroup container;
@@ -332,88 +324,88 @@ public class CallActivity extends LinphoneGenericActivity implements OnClickList
 
 	private void initUI() {
 		inflater = LayoutInflater.from(this);
-		container = (ViewGroup) findViewById(R.id.topLayout);
-		callsList = (LinearLayout) findViewById(R.id.calls_list);
-		conferenceList = (LinearLayout) findViewById(R.id.conference_list);
+        container = findViewById(R.id.topLayout);
+        callsList = findViewById(R.id.calls_list);
+        conferenceList = findViewById(R.id.conference_list);
 
 		//TopBar
-		video = (ImageView) findViewById(R.id.video);
-		video.setOnClickListener(this);
-		enabledVideoButton(false);
+        video = findViewById(R.id.video);
+        video.setOnClickListener(this);
+        enabledVideoButton(false);
 
-		videoProgress =  (ProgressBar) findViewById(R.id.video_in_progress);
-		videoProgress.setVisibility(View.GONE);
+        videoProgress = findViewById(R.id.video_in_progress);
+        videoProgress.setVisibility(View.GONE);
 
-		micro = (ImageView) findViewById(R.id.micro);
-		micro.setOnClickListener(this);
+        micro = findViewById(R.id.micro);
+        micro.setOnClickListener(this);
 
-		speaker = (ImageView) findViewById(R.id.speaker);
-		speaker.setOnClickListener(this);
+        speaker = findViewById(R.id.speaker);
+        speaker.setOnClickListener(this);
 
-		options = (ImageView) findViewById(R.id.options);
-		options.setOnClickListener(this);
-		options.setEnabled(false);
+        options = findViewById(R.id.options);
+        options.setOnClickListener(this);
+        options.setEnabled(false);
 
 		//BottonBar
-		hangUp = (ImageView) findViewById(R.id.hang_up);
-		hangUp.setOnClickListener(this);
+        hangUp = findViewById(R.id.hang_up);
+        hangUp.setOnClickListener(this);
 
-		dialer = (ImageView) findViewById(R.id.dialer);
-		dialer.setOnClickListener(this);
+        dialer = findViewById(R.id.dialer);
+        dialer.setOnClickListener(this);
 
-		numpad = (Numpad) findViewById(R.id.numpad);
-		numpad.getBackground().setAlpha(240);
+        numpad = findViewById(R.id.numpad);
+        numpad.getBackground().setAlpha(240);
 
-		chat = (ImageView) findViewById(R.id.chat);
-		chat.setOnClickListener(this);
-		missedChats = (TextView) findViewById(R.id.missed_chats);
+        chat = findViewById(R.id.chat);
+        chat.setOnClickListener(this);
+        missedChats = findViewById(R.id.missed_chats);
 
 		//Others
 
 		//Active Call
-		callInfo = (LinearLayout) findViewById(R.id.active_call_info);
+        callInfo = findViewById(R.id.active_call_info);
 
-		pause = (ImageView) findViewById(R.id.pause);
-		pause.setOnClickListener(this);
-		enabledPauseButton(false);
+        pause = findViewById(R.id.pause);
+        pause.setOnClickListener(this);
+        enabledPauseButton(false);
 
-		mActiveCallHeader = (RelativeLayout) findViewById(R.id.active_call);
-		mNoCurrentCall = (LinearLayout) findViewById(R.id.no_current_call);
-		mCallPaused = (LinearLayout) findViewById(R.id.remote_pause);
+        mActiveCallHeader = findViewById(R.id.active_call);
+        mNoCurrentCall = findViewById(R.id.no_current_call);
+        mCallPaused = findViewById(R.id.remote_pause);
 
-		contactPicture = (ImageView) findViewById(R.id.contact_picture);
-		avatar_layout = (RelativeLayout) findViewById(R.id.avatar_layout);
+        contactPicture = findViewById(R.id.contact_picture);
+        avatar_layout = findViewById(R.id.avatar_layout);
 
 		//Options
-		addCall = (ImageView) findViewById(R.id.add_call);
-		addCall.setOnClickListener(this);
-		addCall.setEnabled(false);
+        addCall = findViewById(R.id.add_call);
+        addCall.setOnClickListener(this);
+        addCall.setEnabled(false);
 
-		transfer = (ImageView) findViewById(R.id.transfer);
-		transfer.setOnClickListener(this);
-		transfer.setEnabled(false);
+        transfer = findViewById(R.id.transfer);
+        transfer.setOnClickListener(this);
+        transfer.setEnabled(false);
 
-		conference = (ImageView) findViewById(R.id.conference);
-		conference.setEnabled(false);
-		conference.setOnClickListener(this);
+        conference = findViewById(R.id.conference);
+        conference.setEnabled(false);
+        conference.setOnClickListener(this);
 
 		try {
-			audioRoute = (ImageView) findViewById(R.id.audio_route);
-			audioRoute.setOnClickListener(this);
-			routeSpeaker = (ImageView) findViewById(R.id.route_speaker);
-			routeSpeaker.setOnClickListener(this);
-			routeEarpiece = (ImageView) findViewById(R.id.route_earpiece);
-			routeEarpiece.setOnClickListener(this);
-			routeBluetooth = (ImageView) findViewById(R.id.route_bluetooth);
-			routeBluetooth.setOnClickListener(this);
-		} catch (NullPointerException npe) {
+            audioRoute = findViewById(R.id.audio_route);
+            audioRoute.setOnClickListener(this);
+            routeSpeaker = findViewById(R.id.route_speaker);
+            routeSpeaker.setOnClickListener(this);
+            routeEarpiece = findViewById(R.id.route_earpiece);
+            routeEarpiece.setOnClickListener(this);
+            routeBluetooth = findViewById(R.id.route_bluetooth);
+            routeBluetooth.setOnClickListener(this);
+        } catch (NullPointerException npe) {
 			Log.e("Bluetooth: Audio routes menu disabled on tablets for now (1)");
 		}
 
-		switchCamera = (ImageView) findViewById(R.id.switchCamera);
-		switchCamera.setOnClickListener(this);
+        switchCamera = findViewById(R.id.switchCamera);
+        switchCamera.setOnClickListener(this);
 
-		mControlsLayout = (LinearLayout) findViewById(R.id.menu);
+        mControlsLayout = findViewById(R.id.menu);
 
 		if (!isTransferAllowed) {
 			addCall.setBackgroundResource(R.drawable.options_add_call);
@@ -484,10 +476,10 @@ public class CallActivity extends LinphoneGenericActivity implements OnClickList
 	}
 
 	public void createInCallStats() {
-		sideMenu = (DrawerLayout) findViewById(R.id.side_menu);
-		menu = (ImageView) findViewById(R.id.call_quality);
+        sideMenu = findViewById(R.id.side_menu);
+        menu = findViewById(R.id.call_quality);
 
-		sideMenuContent = (RelativeLayout) findViewById(R.id.side_menu_content);
+        sideMenuContent = findViewById(R.id.side_menu_content);
 
 		menu.setOnClickListener(new OnClickListener() {
 			@Override
@@ -772,8 +764,8 @@ public class CallActivity extends LinphoneGenericActivity implements OnClickList
 		LayoutInflater inflater = getLayoutInflater();
 		View layout = inflater.inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toastRoot));
 
-		TextView toastText = (TextView) layout.findViewById(R.id.toastMessage);
-		toastText.setText(message);
+        TextView toastText = layout.findViewById(R.id.toastMessage);
+        toastText.setText(message);
 
 		final Toast toast = new Toast(getApplicationContext());
 		toast.setGravity(Gravity.CENTER, 0, 0);
@@ -1098,8 +1090,8 @@ public class CallActivity extends LinphoneGenericActivity implements OnClickList
 	}
 
 	public void startIncomingCallActivity() {
-		startActivity(new Intent(this, CallIncomingActivity.class));
-	}
+        startActivity(new Intent(this, DemoCallIncomingActivity.class));
+    }
 
 	public void hideStatusBar() {
 		if (isTablet()) {
@@ -1134,12 +1126,12 @@ public class CallActivity extends LinphoneGenericActivity implements OnClickList
 		dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.MATCH_PARENT);
 		dialog.getWindow().setBackgroundDrawable(d);
 
-		TextView customText = (TextView) dialog.findViewById(R.id.customText);
-		customText.setText(getResources().getString(R.string.add_video_dialog));
-		Button delete = (Button) dialog.findViewById(R.id.delete_button);
-		delete.setText(R.string.accept);
-		Button cancel = (Button) dialog.findViewById(R.id.cancel);
-		cancel.setText(R.string.decline);
+        TextView customText = dialog.findViewById(R.id.customText);
+        customText.setText(getResources().getString(R.string.add_video_dialog));
+        Button delete = dialog.findViewById(R.id.delete_button);
+        delete.setText(R.string.accept);
+        Button cancel = dialog.findViewById(R.id.cancel);
+        cancel.setText(R.string.decline);
         isVideoAsk = true;
 
 		delete.setOnClickListener(new OnClickListener() {
@@ -1305,9 +1297,9 @@ public class CallActivity extends LinphoneGenericActivity implements OnClickList
 	//CALL INFORMATION
 	private void displayCurrentCall(LinphoneCall call){
 		LinphoneAddress lAddress = call.getRemoteAddress();
-		TextView contactName = (TextView) findViewById(R.id.current_contact_name);
-		setContactInformation(contactName, contactPicture, lAddress);
-		registerCallDurationTimer(null, call);
+        TextView contactName = findViewById(R.id.current_contact_name);
+        setContactInformation(contactName, contactPicture, lAddress);
+        registerCallDurationTimer(null, call);
 	}
 
 	private void displayPausedCalls(Resources resources, final LinphoneCall call, int index) {
@@ -1327,8 +1319,8 @@ public class CallActivity extends LinphoneGenericActivity implements OnClickList
 			callView = (LinearLayout) inflater.inflate(R.layout.call_inactive_row, container, false);
 			callView.setId(index+1);
 
-			TextView contactName = (TextView) callView.findViewById(R.id.contact_name);
-			ImageView contactImage = (ImageView) callView.findViewById(R.id.contact_picture);
+            TextView contactName = callView.findViewById(R.id.contact_name);
+            ImageView contactImage = callView.findViewById(R.id.contact_picture);
 
 			LinphoneAddress lAddress = call.getRemoteAddress();
 			setContactInformation(contactName, contactImage, lAddress);
@@ -1351,9 +1343,9 @@ public class CallActivity extends LinphoneGenericActivity implements OnClickList
 
 	private boolean displayCallStatusIconAndReturnCallPaused(LinearLayout callView, LinphoneCall call) {
 		boolean isCallPaused, isInConference;
-		ImageView callState = (ImageView) callView.findViewById(R.id.call_pause);
-		callState.setTag(call);
-		callState.setOnClickListener(this);
+        ImageView callState = callView.findViewById(R.id.call_pause);
+        callState.setTag(call);
+        callState.setOnClickListener(this);
 
 		if (call.getState() == State.Paused || call.getState() == State.PausedByRemote || call.getState() == State.Pausing) {
 			callState.setImageResource(R.drawable.pause);
@@ -1378,10 +1370,10 @@ public class CallActivity extends LinphoneGenericActivity implements OnClickList
 
 		Chronometer timer;
 		if(v == null){
-			timer = (Chronometer) findViewById(R.id.current_call_timer);
-		} else {
-			timer = (Chronometer) v.findViewById(R.id.call_timer);
-		}
+            timer = findViewById(R.id.current_call_timer);
+        } else {
+            timer = v.findViewById(R.id.call_timer);
+        }
 
 		if (timer == null) {
 			throw new IllegalArgumentException("no callee_duration view found");
@@ -1484,9 +1476,9 @@ public class CallActivity extends LinphoneGenericActivity implements OnClickList
 
 	public void pauseOrResumeConference() {
 		LinphoneCore lc = LinphoneManager.getLc();
-		conferenceStatus = (ImageView) findViewById(R.id.conference_pause);
-		if(conferenceStatus != null) {
-			if (lc.isInConference()) {
+        conferenceStatus = findViewById(R.id.conference_pause);
+        if (conferenceStatus != null) {
+            if (lc.isInConference()) {
 				conferenceStatus.setImageResource(R.drawable.pause_big_over_selected);
 				lc.leaveConference();
 			} else {
@@ -1500,7 +1492,7 @@ public class CallActivity extends LinphoneGenericActivity implements OnClickList
 	private void displayConferenceParticipant(int index, final LinphoneCall call){
 		LinearLayout confView = (LinearLayout) inflater.inflate(R.layout.conf_call_control_row, container, false);
 		conferenceList.setId(index + 1);
-		TextView contact = (TextView) confView.findViewById(R.id.contactNameOrNumber);
+        TextView contact = confView.findViewById(R.id.contactNameOrNumber);
 
 		LinphoneContact lContact  = ContactsManager.getInstance().findContactFromAddress(call.getRemoteAddress());
 		if (lContact == null) {
@@ -1511,9 +1503,9 @@ public class CallActivity extends LinphoneGenericActivity implements OnClickList
 
 		registerCallDurationTimer(confView, call);
 
-		ImageView quitConference = (ImageView) confView.findViewById(R.id.quitConference);
-		quitConference.setOnClickListener(new OnClickListener() {
-			@Override
+        ImageView quitConference = confView.findViewById(R.id.quitConference);
+        quitConference.setOnClickListener(new OnClickListener() {
+            @Override
 			public void onClick(View view) {
 				exitConference(call);
 			}
@@ -1525,9 +1517,9 @@ public class CallActivity extends LinphoneGenericActivity implements OnClickList
 	private void displayConferenceHeader(){
 		conferenceList.setVisibility(View.VISIBLE);
 		RelativeLayout headerConference = (RelativeLayout) inflater.inflate(R.layout.conference_header, container, false);
-		conferenceStatus = (ImageView) headerConference.findViewById(R.id.conference_pause);
-		conferenceStatus.setOnClickListener(this);
-		conferenceList.addView(headerConference);
+        conferenceStatus = headerConference.findViewById(R.id.conference_pause);
+        conferenceStatus.setOnClickListener(this);
+        conferenceList.addView(headerConference);
 
 	}
 
@@ -1661,34 +1653,34 @@ public class CallActivity extends LinphoneGenericActivity implements OnClickList
 			return;
 		}
 
-		final TextView titleAudio = (TextView) view.findViewById(R.id.call_stats_audio);
-		final TextView titleVideo = (TextView) view.findViewById(R.id.call_stats_video);
-		final TextView codecAudio = (TextView) view.findViewById(R.id.codec_audio);
-		final TextView codecVideo = (TextView) view.findViewById(R.id.codec_video);
-		final TextView encoderAudio = (TextView) view.findViewById(R.id.encoder_audio);
-		final TextView decoderAudio = (TextView) view.findViewById(R.id.decoder_audio);
-		final TextView encoderVideo = (TextView) view.findViewById(R.id.encoder_video);
-		final TextView decoderVideo = (TextView) view.findViewById(R.id.decoder_video);
-		final TextView dlAudio = (TextView) view.findViewById(R.id.downloadBandwith_audio);
-		final TextView ulAudio = (TextView) view.findViewById(R.id.uploadBandwith_audio);
-		final TextView dlVideo = (TextView) view.findViewById(R.id.downloadBandwith_video);
-		final TextView ulVideo = (TextView) view.findViewById(R.id.uploadBandwith_video);
-		final TextView edlVideo = (TextView) view.findViewById(R.id.estimatedDownloadBandwidth_video);
-		final TextView iceAudio = (TextView) view.findViewById(R.id.ice_audio);
-		final TextView iceVideo = (TextView) view.findViewById(R.id.ice_video);
-		final TextView videoResolutionSent = (TextView) view.findViewById(R.id.video_resolution_sent);
-		final TextView videoResolutionReceived = (TextView) view.findViewById(R.id.video_resolution_received);
-		final TextView videoFpsSent = (TextView) view.findViewById(R.id.video_fps_sent);
-		final TextView videoFpsReceived = (TextView) view.findViewById(R.id.video_fps_received);
-		final TextView senderLossRateAudio = (TextView) view.findViewById(R.id.senderLossRateAudio);
-		final TextView receiverLossRateAudio = (TextView) view.findViewById(R.id.receiverLossRateAudio);
-		final TextView senderLossRateVideo = (TextView) view.findViewById(R.id.senderLossRateVideo);
-		final TextView receiverLossRateVideo = (TextView) view.findViewById(R.id.receiverLossRateVideo);
-		final TextView ipAudio = (TextView) view.findViewById(R.id.ip_audio);
-		final TextView ipVideo = (TextView) view.findViewById(R.id.ip_video);
-		final TextView jitterBufferAudio = (TextView) view.findViewById(R.id.jitterBufferAudio);
-		final View videoLayout = view.findViewById(R.id.callStatsVideo);
-		final View audioLayout = view.findViewById(R.id.callStatsAudio);
+        final TextView titleAudio = view.findViewById(R.id.call_stats_audio);
+        final TextView titleVideo = view.findViewById(R.id.call_stats_video);
+        final TextView codecAudio = view.findViewById(R.id.codec_audio);
+        final TextView codecVideo = view.findViewById(R.id.codec_video);
+        final TextView encoderAudio = view.findViewById(R.id.encoder_audio);
+        final TextView decoderAudio = view.findViewById(R.id.decoder_audio);
+        final TextView encoderVideo = view.findViewById(R.id.encoder_video);
+        final TextView decoderVideo = view.findViewById(R.id.decoder_video);
+        final TextView dlAudio = view.findViewById(R.id.downloadBandwith_audio);
+        final TextView ulAudio = view.findViewById(R.id.uploadBandwith_audio);
+        final TextView dlVideo = view.findViewById(R.id.downloadBandwith_video);
+        final TextView ulVideo = view.findViewById(R.id.uploadBandwith_video);
+        final TextView edlVideo = view.findViewById(R.id.estimatedDownloadBandwidth_video);
+        final TextView iceAudio = view.findViewById(R.id.ice_audio);
+        final TextView iceVideo = view.findViewById(R.id.ice_video);
+        final TextView videoResolutionSent = view.findViewById(R.id.video_resolution_sent);
+        final TextView videoResolutionReceived = view.findViewById(R.id.video_resolution_received);
+        final TextView videoFpsSent = view.findViewById(R.id.video_fps_sent);
+        final TextView videoFpsReceived = view.findViewById(R.id.video_fps_received);
+        final TextView senderLossRateAudio = view.findViewById(R.id.senderLossRateAudio);
+        final TextView receiverLossRateAudio = view.findViewById(R.id.receiverLossRateAudio);
+        final TextView senderLossRateVideo = view.findViewById(R.id.senderLossRateVideo);
+        final TextView receiverLossRateVideo = view.findViewById(R.id.receiverLossRateVideo);
+        final TextView ipAudio = view.findViewById(R.id.ip_audio);
+        final TextView ipVideo = view.findViewById(R.id.ip_video);
+        final TextView jitterBufferAudio = view.findViewById(R.id.jitterBufferAudio);
+        final View videoLayout = view.findViewById(R.id.callStatsVideo);
+        final View audioLayout = view.findViewById(R.id.callStatsAudio);
 
 
 	 	mTimer = new Timer();

@@ -255,9 +255,9 @@ public class LinphoneActivity extends LinphoneGenericActivity implements OnClick
 			@Override
 			public void callState(LinphoneCore lc, LinphoneCall call, LinphoneCall.State state, String message) {
 				if (state == State.IncomingReceived) {
-					startActivity(new Intent(LinphoneActivity.instance(), CallIncomingActivity.class));
+					startActivity(new Intent(LinphoneActivity.instance(), DemoCallIncomingActivity.class));
 				} else if (state == State.OutgoingInit || state == State.OutgoingProgress) {
-					startActivity(new Intent(LinphoneActivity.instance(), CallOutgoingActivity.class));
+					startActivity(new Intent(LinphoneActivity.instance(), DemoCallOutGoingActivity.class));
 				} else if (state == State.CallEnd || state == State.Error || state == State.CallReleased) {
 					resetClassicMenuLayoutAndGoBackToCallIfStillRunning();
 				}

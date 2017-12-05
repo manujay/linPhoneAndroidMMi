@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorA">#ff5e00</color>
-    <color name="colorB">#000000</color>
-    <color name="colorC">#444444</color>
-    <color name="colorD">#808080</color>
-    <color name="colorE">#c4c4c4</color>
-    <color name="colorF">#e1e1e1</color>
-    <color name="colorG">#f3f3f3</color>
-    <color name="colorH">#ffffff</color>
-    <color name="colorI">#ff0000</color>
-    <color name="colorJ">#ffa645</color>
-    <color name="colorK">#3eb5c0</color>
-    <color name="colorL">#96c11f</color>
-    <color name="notification_color_led">#FF8000</color>
+    <color name="colorA">@color/mmi_colorA</color>
+    <color name="colorB">@color/mmi_colorB</color>
+    <color name="colorC">@color/mmi_colorC</color>
+    <color name="colorD">@color/mmi_colorD</color>
+    <color name="colorE">@color/mmi_colorE</color>
+    <color name="colorF">@color/mmi_colorF</color>
+    <color name="colorG">@color/mmi_colorG</color>
+    <color name="colorH">@color/mmi_colorH</color>
+    <color name="colorI">@color/mmi_colorI</color>
+    <color name="colorJ">@color/mmi_colorJ</color>
+    <color name="colorK">@color/mmi_colorK</color>
+    <color name="colorL">@color/mmi_colorL</color>
+    <color name="notification_color_led">@color/mmi_notification_color_led</color>
 
     <color name="transparent">#00000000</color>
 </resources>

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.text.Editable;
@@ -95,7 +96,7 @@ public class DemoCallingActivity extends Activity {
 
     private void decline() {
         LinphoneManager.getLc().terminateCall(mCall);
-        finish();
+//        finish();
     }
 
     public void displayCustomToast(final String message, final int duration) {
@@ -145,7 +146,7 @@ public class DemoCallingActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-//        checkAndRequestCallPermissions();
+        checkAndRequestCallPermissions();
     }
 
     @Override
@@ -240,19 +241,19 @@ public class DemoCallingActivity extends Activity {
         Log.i("[Permission] Camera permission is " + (camera == PackageManager.PERMISSION_GRANTED ? "granted" : "denied"));
 
         if (recordAudio != PackageManager.PERMISSION_GRANTED) {
-            if (LinphonePreferences.instance().firstTimeAskingForPermission(Manifest.permission.RECORD_AUDIO) || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.RECORD_AUDIO)) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.RECORD_AUDIO)) {
                 Log.i("[Permission] Asking for record audio");
                 permissionsList.add(Manifest.permission.RECORD_AUDIO);
             }
         }
-        if (LinphonePreferences.instance().shouldInitiateVideoCall() || LinphonePreferences.instance().shouldAutomaticallyAcceptVideoRequests()) {
-            if (camera != PackageManager.PERMISSION_GRANTED) {
-                if (LinphonePreferences.instance().firstTimeAskingForPermission(Manifest.permission.CAMERA) || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
-                    Log.i("[Permission] Asking for camera");
-                    permissionsList.add(Manifest.permission.CAMERA);
-                }
+//        if (LinphonePreferences.instance().shouldInitiateVideoCall() || LinphonePreferences.instance().shouldAutomaticallyAcceptVideoRequests()) {
+        if (camera != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
+                Log.i("[Permission] Asking for camera");
+                permissionsList.add(Manifest.permission.CAMERA);
             }
         }
+//        }
 
         if (permissionsList.size() > 0) {
             String[] permissions = new String[permissionsList.size()];
@@ -262,7 +263,7 @@ public class DemoCallingActivity extends Activity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         for (int i = 0; i < permissions.length; i++) {
             Log.i("[Permission] " + permissions[i] + " is " + (grantResults[i] == PackageManager.PERMISSION_GRANTED ? "granted" : "denied"));
         }
@@ -378,10 +379,10 @@ public class DemoCallingActivity extends Activity {
                     resetUI();
                 }
 
-                if (LinphoneManager.getLc().getCallsNb() == 0) {
-                    finish();
-                    return;
-                }
+//                if (LinphoneManager.getLc().getCallsNb() == 0) {
+//                    finish();
+//                    return;
+//                }
             }
 
             @Override

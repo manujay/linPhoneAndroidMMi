@@ -50,6 +50,7 @@ dependencies {
         compile fileTree(include: 'gcm.jar', dir: 'libs')
         compile 'com.android.support:support-v4:+'
     }
+    compile 'com.android.support:appcompat-v7:27.0.2'
 }
 
 if (firebaseEnable()) {

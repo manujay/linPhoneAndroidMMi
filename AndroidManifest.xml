@@ -346,5 +346,15 @@
             android:label="@string/demo">
 
         </activity>
+        <activity android:name=".DemoCallIncomingActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".DemoCallOutGoingActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>

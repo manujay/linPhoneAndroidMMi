@@ -3,12 +3,16 @@ package org.linphone;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.widget.AppCompatButton;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import org.linphone.core.LinphoneAddress;
 import org.linphone.core.LinphoneCall;
 import org.linphone.core.LinphoneCallParams;
 import org.linphone.core.LinphoneCore;
@@ -25,16 +29,30 @@ import java.util.List;
 public class DemoCallIncomingActivity extends MmiLinPhoneGenericActivity {
 
 
+    private static DemoCallIncomingActivity instance;
     LinphoneCoreListenerBase mListener;
-    ImageView accept, Decline;
+    AppCompatButton accept, Decline;
     private LinphoneCall mCall;
     private boolean alreadyAcceptedOrDeniedCall;
+    private TextView name;
+    private TextView number;
+
+    public static DemoCallIncomingActivity instance() {
+        return instance;
+    }
+
+    public static boolean isInstanciated() {
+        return instance != null;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.democallincoming_activity);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+                | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+                WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
 
         initUi();
 
@@ -72,6 +90,10 @@ public class DemoCallIncomingActivity extends MmiLinPhoneGenericActivity {
     }
 
     private void initUi() {
+
+        name = findViewById(R.id.contact_name);
+        number = findViewById(R.id.contact_number);
+
         accept = findViewById(R.id.accept);
         Decline = findViewById(R.id.decline);
 
@@ -153,6 +175,16 @@ public class DemoCallIncomingActivity extends MmiLinPhoneGenericActivity {
             finish();
             return;
         }
+
+        LinphoneAddress address = mCall.getRemoteAddress();
+        LinphoneContact contact = ContactsManager.getInstance().findContactFromAddress(address);
+        if (contact != null) {
+//            LinphoneUtils.setImagePictureFromUri(this, contactPicture, contact.getPhotoUri(), contact.getThumbnailUri());
+            name.setText(contact.getFullName());
+        } else {
+            name.setText(LinphoneUtils.getAddressDisplayName(address));
+        }
+        number.setText(address.asStringUriOnly());
     }
 
     @Override
@@ -164,6 +196,15 @@ public class DemoCallIncomingActivity extends MmiLinPhoneGenericActivity {
             lpc.removeListener(mListener);
         }
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (LinphoneManager.isInstanciated() && (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_HOME)) {
+            LinphoneManager.getLc().terminateCall(mCall);
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     private void checkAndRequestCallPermissions() {
@@ -197,7 +238,7 @@ public class DemoCallIncomingActivity extends MmiLinPhoneGenericActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         for (int i = 0; i < permissions.length; i++) {
             Log.i("[Permission] " + permissions[i] + " is " + (grantResults[i] == PackageManager.PERMISSION_GRANTED ? "granted" : "denied"));
         }
