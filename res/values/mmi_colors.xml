@@ -13,4 +13,13 @@
     <color name="mmi_colorK">#3eb5c0</color>
     <color name="mmi_colorL">#96c11f</color>
     <color name="mmi_notification_color_led">#ff8000</color>
+
+    <color name="primaryColor">#ef6c00</color>
+    <color name="primaryLightColor">#ff9d3f</color>
+    <color name="primaryDarkColor">#b53d00</color>
+    <color name="secondaryColor">#ff9800</color>
+    <color name="secondaryLightColor">#ffc947</color>
+    <color name="secondaryDarkColor">#c66900</color>
+    <color name="primaryTextColor">#424242</color>
+    <color name="secondaryTextColor">#212121</color>
 </resources>

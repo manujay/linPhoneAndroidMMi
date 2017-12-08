@@ -62,6 +62,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mmi.DemoCallActivity;
+import com.mmi.DemoCallIncomingActivity;
+import com.mmi.DemoCallOutGoingActivity;
+
 import org.linphone.assistant.AssistantActivity;
 import org.linphone.assistant.RemoteProvisioningLoginActivity;
 import org.linphone.compatibility.Compatibility;
@@ -145,8 +149,8 @@ public class LinphoneActivity extends LinphoneGenericActivity implements OnClick
 	private boolean isOnBackground = false;
 	private int mAlwaysChangingPhoneAngle = -1;
 
-	static final boolean isInstanciated() {
-		return instance != null;
+    public static final boolean isInstanciated() {
+        return instance != null;
 	}
 
 	public static final LinphoneActivity instance() {
@@ -984,8 +988,8 @@ public class LinphoneActivity extends LinphoneGenericActivity implements OnClick
 	}
 
 	public void startIncallActivity(LinphoneCall currentCall) {
-		Intent intent = new Intent(this, CallActivity.class);
-		startOrientationSensor();
+        Intent intent = new Intent(this, DemoCallActivity.class);
+        startOrientationSensor();
 		startActivityForResult(intent, CALL_ACTIVITY);
 	}
 

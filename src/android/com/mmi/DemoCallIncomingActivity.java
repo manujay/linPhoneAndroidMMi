@@ -1,4 +1,4 @@
-package org.linphone;
+package com.mmi;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -12,6 +12,15 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.linphone.ContactsManager;
+import org.linphone.LinphoneActivity;
+import org.linphone.LinphoneContact;
+import org.linphone.LinphoneManager;
+import org.linphone.LinphonePreferences;
+import org.linphone.LinphoneService;
+import org.linphone.LinphoneUtils;
+import org.linphone.MmiLinPhoneGenericActivity;
+import org.linphone.R;
 import org.linphone.core.LinphoneAddress;
 import org.linphone.core.LinphoneCall;
 import org.linphone.core.LinphoneCallParams;

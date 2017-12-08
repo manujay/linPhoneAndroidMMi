@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/container_primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/contact_iv"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="@dimen/small"
+                android:layout_marginStart="@dimen/Medium"
+                android:layout_marginTop="@dimen/small"
+                android:src="@drawable/avatar" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/contact_header_main"
+                style="@style/AppTheme.TextAppearance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@+id/contact_iv"
+                android:layout_marginStart="@dimen/Medium"
+                android:layout_toEndOf="@id/contact_iv"
+                android:text="@string/app_name"
+                android:textSize="@dimen/fontsizeSecondary" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/contact_header_bottom"
+                style="@style/AppTheme.TextAppearance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/contact_header_main"
+                android:layout_marginStart="@dimen/Medium"
+                android:layout_toEndOf="@id/contact_iv"
+                android:text="@string/app_name" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/linphoneContact_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@id/contact_iv"
+                android:layout_marginEnd="@dimen/small"
+                android:contentDescription="@string/string_linphone_contentdescription"
+                android:src="@drawable/linphone_user" />
+        </RelativeLayout>
+    </android.support.constraint.ConstraintLayout>
+</layout>

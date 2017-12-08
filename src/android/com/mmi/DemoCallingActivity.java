@@ -1,4 +1,4 @@
-package org.linphone;
+package com.mmi;
 
 import android.Manifest;
 import android.app.Activity;
@@ -12,15 +12,19 @@ import android.support.v4.app.ActivityCompat;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.linphone.AddressType;
+import org.linphone.LinphoneManager;
+import org.linphone.LinphonePreferences;
+import org.linphone.LinphoneService;
+import org.linphone.LinphoneUtils;
+import org.linphone.R;
+import org.linphone.StatusFragment;
 import org.linphone.core.CallDirection;
 import org.linphone.core.LinphoneCall;
 import org.linphone.core.LinphoneCallLog;
@@ -100,17 +104,7 @@ public class DemoCallingActivity extends Activity {
     }
 
     public void displayCustomToast(final String message, final int duration) {
-        LayoutInflater inflater = getLayoutInflater();
-        View layout = inflater.inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toastRoot));
-
-        TextView toastText = layout.findViewById(R.id.toastMessage);
-        toastText.setText(message);
-
-        final Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(duration);
-        toast.setView(layout);
-        toast.show();
+        ToastUtils.displayCustomToast(this, message, duration);
     }
 
     @Override

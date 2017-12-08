@@ -53,29 +53,16 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-interface ContactsUpdatedListener {
-	void onContactsUpdated();
-}
-
 public class ContactsManager extends ContentObserver {
 	private static ContactsManager instance;
-
-	private List<LinphoneContact> contacts, sipContacts;
+    private static ArrayList<ContactsUpdatedListener> contactsUpdatedListeners;
+    private List<LinphoneContact> contacts, sipContacts;
 	private boolean preferLinphoneContacts = false, isContactPresenceDisabled = true;
 	private ContentResolver contentResolver;
 	private Context context;
 	private HashMap<String, LinphoneContact> androidContactsCache;
 	private Bitmap defaultAvatar;
 	private Handler handler;
-
-	private static ArrayList<ContactsUpdatedListener> contactsUpdatedListeners;
-	public static void addContactsListener(ContactsUpdatedListener listener) {
-		contactsUpdatedListeners.add(listener);
-	}
-	public static void removeContactsListener(ContactsUpdatedListener listener) {
-		contactsUpdatedListeners.remove(listener);
-	}
-
 	private ContactsManager(Handler handler) {
 		super(handler);
 		this.handler = handler;
@@ -85,6 +72,47 @@ public class ContactsManager extends ContentObserver {
 		contacts = new ArrayList<LinphoneContact>();
 		sipContacts = new ArrayList<LinphoneContact>();
 	}
+
+    public static void addContactsListener(ContactsUpdatedListener listener) {
+        contactsUpdatedListeners.add(listener);
+    }
+
+    public static void removeContactsListener(ContactsUpdatedListener listener) {
+        contactsUpdatedListeners.remove(listener);
+    }
+
+    public static final ContactsManager getInstance() {
+        if (instance == null) instance = new ContactsManager(LinphoneService.instance().mHandler);
+        return instance;
+    }
+
+    public static String getAddressOrNumberForAndroidContact(ContentResolver resolver, Uri contactUri) {
+        // Phone Numbers
+        String[] projection = new String[]{ContactsContract.CommonDataKinds.Phone.NUMBER};
+        Cursor c = resolver.query(contactUri, projection, null, null, null);
+        if (c != null) {
+            while (c.moveToNext()) {
+                int numberIndex = c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+                String number = c.getString(numberIndex);
+                c.close();
+                return number;
+            }
+        }
+
+        // SIP addresses
+        projection = new String[]{ContactsContract.CommonDataKinds.SipAddress.SIP_ADDRESS};
+        c = resolver.query(contactUri, projection, null, null, null);
+        if (c != null) {
+            while (c.moveToNext()) {
+                int numberIndex = c.getColumnIndex(ContactsContract.CommonDataKinds.SipAddress.SIP_ADDRESS);
+                String address = c.getString(numberIndex);
+                c.close();
+                return address;
+            }
+            c.close();
+        }
+        return null;
+    }
 
 	public void destroy() {
 		defaultAvatar.recycle();
@@ -113,11 +141,6 @@ public class ContactsManager extends ContentObserver {
 		return contentResolver;
 	}
 
-	public static final ContactsManager getInstance() {
-		if (instance == null) instance = new ContactsManager(LinphoneService.instance().mHandler);
-		return instance;
-	}
-
 	public synchronized boolean hasContacts() {
 		return contacts.size() > 0;
 	}
@@ -125,6 +148,10 @@ public class ContactsManager extends ContentObserver {
 	public synchronized List<LinphoneContact> getContacts() {
 		return contacts;
 	}
+
+    public synchronized void setContacts(List<LinphoneContact> c) {
+        contacts = c;
+    }
 
 	public synchronized List<LinphoneContact> getSIPContacts() {
 		return sipContacts;
@@ -177,13 +204,13 @@ public class ContactsManager extends ContentObserver {
 		return contactsR && !context.getResources().getBoolean(R.bool.force_use_of_linphone_friends);
 	}
 
-	public void setLinphoneContactsPrefered(boolean isPrefered) {
-		preferLinphoneContacts = isPrefered;
-	}
-
 	public boolean isLinphoneContactsPrefered() {
 		return preferLinphoneContacts;
 	}
+
+    public void setLinphoneContactsPrefered(boolean isPrefered) {
+        preferLinphoneContacts = isPrefered;
+    }
 
 	public boolean isContactPresenceDisabled() {
 		return isContactPresenceDisabled;
@@ -238,10 +265,6 @@ public class ContactsManager extends ContentObserver {
 			return contact;
 		}
 		return null;
-	}
-
-	public synchronized void setContacts(List<LinphoneContact> c) {
-		contacts = c;
 	}
 
 	public synchronized void setSipContacts(List<LinphoneContact> c) {
@@ -434,34 +457,6 @@ public class ContactsManager extends ContentObserver {
 		for (ContactsUpdatedListener listener : contactsUpdatedListeners) {
 			listener.onContactsUpdated();
 		}
-	}
-
-	public static String getAddressOrNumberForAndroidContact(ContentResolver resolver, Uri contactUri) {
-		// Phone Numbers
-		String[] projection = new String[] { ContactsContract.CommonDataKinds.Phone.NUMBER };
-		Cursor c = resolver.query(contactUri, projection, null, null, null);
-		if (c != null) {
-			while (c.moveToNext()) {
-				int numberIndex = c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
-				String number = c.getString(numberIndex);
-				c.close();
-				return number;
-			}
-		}
-
-		// SIP addresses
-		projection = new String[] { ContactsContract.CommonDataKinds.SipAddress.SIP_ADDRESS };
-		c = resolver.query(contactUri, projection, null, null, null);
-		if (c != null) {
-			while (c.moveToNext()) {
-				int numberIndex = c.getColumnIndex(ContactsContract.CommonDataKinds.SipAddress.SIP_ADDRESS);
-				String address = c.getString(numberIndex);
-				c.close();
-				return address;
-			}
-			c.close();
-		}
-		return null;
 	}
 
 	public void delete(String id) {

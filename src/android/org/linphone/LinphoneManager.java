@@ -72,6 +72,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.mmi.DemoCallIncomingActivity;
+
 import org.linphone.assistant.AssistantActivity;
 import org.linphone.core.CallDirection;
 import org.linphone.core.LinphoneAccountCreator;
