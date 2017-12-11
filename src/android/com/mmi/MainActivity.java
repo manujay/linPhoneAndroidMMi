@@ -21,11 +21,23 @@ import android.view.View;
 import com.mmi.adapter.CustomViewPagerAdapter;
 import com.mmi.listener.onSearchQuerylistener;
 
+import org.linphone.AddressType;
+import org.linphone.CallActivity;
 import org.linphone.ContactsManager;
+import org.linphone.LinphoneActivity;
+import org.linphone.LinphoneContact;
+import org.linphone.LinphoneManager;
+import org.linphone.LinphoneNumberOrAddress;
 import org.linphone.LinphoneService;
+import org.linphone.LinphoneUtils;
 import org.linphone.R;
+import org.linphone.core.LinphoneCall;
+import org.linphone.core.LinphoneCore;
+import org.linphone.core.LinphoneCoreListenerBase;
+import org.linphone.core.LinphoneProxyConfig;
 import org.linphone.databinding.MainActivityBinding;
 import org.linphone.mediastream.Log;
+import org.linphone.ui.AddressText;
 
 import static android.content.Intent.ACTION_MAIN;
 
@@ -41,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements onSearchQuerylist
     private MainActivityBinding mMainActivtityBinding;
     private Handler mHandler = new Handler();
     private ServiceWaitThread mServiceThread;
+    private LinphoneCoreListenerBase mListener;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,6 +71,20 @@ public class MainActivity extends AppCompatActivity implements onSearchQuerylist
             mServiceThread = new ServiceWaitThread();
             mServiceThread.start();
         }
+
+
+        mListener = new LinphoneCoreListenerBase() {
+            @Override
+            public void callState(LinphoneCore lc, LinphoneCall call, LinphoneCall.State state, String message) {
+                if (state == LinphoneCall.State.IncomingReceived) {
+                    startActivity(new Intent(MainActivity.this, DemoCallIncomingActivity.class));
+                } else if (state == LinphoneCall.State.OutgoingInit || state == LinphoneCall.State.OutgoingProgress) {
+                    startActivity(new Intent(MainActivity.this, DemoCallOutGoingActivity.class));
+                } else if (state == LinphoneCall.State.CallEnd || state == LinphoneCall.State.Error || state == LinphoneCall.State.CallReleased) {
+                    //
+                }
+            }
+        };
     }
 
     private void checkSyncPermission() {
@@ -134,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements onSearchQuerylist
         mMainActivtityBinding.fabCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, DemoCallingActivity.class));
+                startActivity(new Intent(MainActivity.this, LinphoneActivity.class));
             }
         });
     }
@@ -142,6 +169,47 @@ public class MainActivity extends AppCompatActivity implements onSearchQuerylist
     @Override
     protected void onResume() {
         super.onResume();
+
+        LinphoneCore lc = LinphoneManager.getLcIfManagerNotDestroyedOrNull();
+        if (lc != null) {
+            lc.addListener(mListener);
+            if (!LinphoneService.instance().displayServiceNotification()) {
+                lc.refreshRegisters();
+            }
+        }
+
+        if (LinphoneManager.getLc().getCalls().length > 0) {
+            LinphoneCall call = LinphoneManager.getLc().getCalls()[0];
+            LinphoneCall.State callState = call.getState();
+
+            if (callState == LinphoneCall.State.IncomingReceived) {
+                startActivity(new Intent(this, DemoCallIncomingActivity.class));
+            } else if (callState == LinphoneCall.State.OutgoingInit || callState == LinphoneCall.State.OutgoingProgress || callState == LinphoneCall.State.OutgoingRinging) {
+                startActivity(new Intent(this, DemoCallOutGoingActivity.class));
+            } else {
+                startIncallActivity(call);
+            }
+        }
+    }
+
+    private void startIncallActivity(LinphoneCall call) {
+        startActivity(new Intent(MainActivity.this, CallActivity.class));
+    }
+
+    @Override
+    protected void onPause() {
+
+        LinphoneCore lc = LinphoneManager.getLcIfManagerNotDestroyedOrNull();
+        if (lc != null) {
+            lc.removeListener(mListener);
+        }
+
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     @Override
@@ -210,6 +278,32 @@ public class MainActivity extends AppCompatActivity implements onSearchQuerylist
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void startInCallOutGoingActivity(LinphoneContact contact) {
+        AddressType address = new AddressText(this, null);
+
+        for (LinphoneNumberOrAddress noa : contact.getNumbersOrAddresses()) {
+
+            String value = noa.getValue();
+            String displayednumberOrAddress = LinphoneUtils.getDisplayableUsernameFromAddress(value);
+
+            LinphoneProxyConfig lpc = LinphoneManager.getLc().getDefaultProxyConfig();
+            if (lpc != null) {
+                String username = lpc.normalizePhoneNumber(displayednumberOrAddress);
+                value = LinphoneUtils.getFullAddressFromUsername(username);
+                address.setDisplayedName(value);
+                address.setText(username);
+                LinphoneManager.getInstance().newOutgoingCall(address);
+            }
+
+//            String contactAddress = contact.getPresenceModelForUri(noa.getValue());
+//            if (contactAddress != null) {
+//                address.setDisplayedName(contact.getFirstName());
+//                address.setText(contactAddress);
+//                LinphoneManager.getInstance().newOutgoingCall(address);
+//            }
+        }
     }
 
 

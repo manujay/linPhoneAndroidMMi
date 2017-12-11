@@ -77,11 +77,11 @@
             android:launchMode="singleTask"
 
             android:windowSoftInputMode="adjustPan|stateHidden">
-            <!--<intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.CALL" />
                 <action android:name="android.intent.action.CALL_PRIVILEGED" />
@@ -360,10 +360,10 @@
             android:name="com.mmi.MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme">
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
         <activity android:name="com.mmi.DemoCallActivity">
             <intent-filter>

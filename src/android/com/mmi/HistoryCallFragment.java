@@ -15,6 +15,7 @@ import com.mmi.listener.onSearchQuerylistener;
 
 import org.linphone.ContactsManager;
 import org.linphone.ContactsUpdatedListener;
+import org.linphone.LinphoneContact;
 import org.linphone.databinding.LayoutFragmentHistoryBinding;
 
 /**
@@ -88,6 +89,14 @@ public class HistoryCallFragment extends Fragment implements ContactsUpdatedList
         mLayoutHistoryBinding.callersRcv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         mLayoutHistoryBinding.callersRcv.setAdapter(new ContactRecyclerAdapter(ContactsManager.getInstance().getSIPContacts()));
         mLayoutHistoryBinding.callersRcv.setHasFixedSize(true);
+        ((ContactRecyclerAdapter) mLayoutHistoryBinding.callersRcv.getAdapter()).setOnLinphonContactClickListener(new ContactRecyclerAdapter.OnLinphonContactClickListener() {
+            @Override
+            public void onLinphoneContactClicked(LinphoneContact contact) {
+                if (null != getActivity()) {
+                    ((MainActivity) getActivity()).startInCallOutGoingActivity(contact);
+                }
+            }
+        });
         showHideProgress(true);
     }
 

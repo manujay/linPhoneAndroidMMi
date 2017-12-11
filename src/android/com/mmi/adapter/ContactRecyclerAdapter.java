@@ -23,6 +23,7 @@ import java.util.Locale;
  */
 public class ContactRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements SectionIndexer, Filterable {
 
+    public OnLinphonContactClickListener onLinphonContactClickListener;
     private String[] sections;
     private ArrayList<String> sectionsList;
     private LinkedHashMap<String, Integer> map;
@@ -30,6 +31,10 @@ public class ContactRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 
     public ContactRecyclerAdapter(List<LinphoneContact> contactList) {
         updateContactSet(contactList);
+    }
+
+    public void setOnLinphonContactClickListener(OnLinphonContactClickListener onLinphonContactClickListener) {
+        this.onLinphonContactClickListener = onLinphonContactClickListener;
     }
 
     public void updateContactSet(List<LinphoneContact> contactList) {
@@ -65,7 +70,7 @@ public class ContactRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
-        LinphoneContact contact = contacts.get(position);
+        final LinphoneContact contact = contacts.get(position);
 
         if (contact.isInLinphoneFriendList()) {
             ((ContactViewHolder) holder).mBinding.linphoneContactIv.setVisibility(View.VISIBLE);
@@ -77,6 +82,15 @@ public class ContactRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         ((ContactViewHolder) holder).mBinding.contactHeaderMain.setText(contact.getFullName());
         ((ContactViewHolder) holder).mBinding.contactIv.setImageURI(contact.getThumbnailUri());
         ((ContactViewHolder) holder).mBinding.executePendingBindings();
+
+        ((ContactViewHolder) holder).mBinding.linphoneContactIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (null != onLinphonContactClickListener) {
+                    onLinphonContactClickListener.onLinphoneContactClicked(contact);
+                }
+            }
+        });
 
     }
 
@@ -136,6 +150,10 @@ public class ContactRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 updateContactSet((ArrayList<LinphoneContact>) results.values);
             }
         };
+    }
+
+    public interface OnLinphonContactClickListener {
+        void onLinphoneContactClicked(LinphoneContact contact);
     }
 
     private class ContactViewHolder extends RecyclerView.ViewHolder {

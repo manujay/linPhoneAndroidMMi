@@ -15,6 +15,7 @@ import com.mmi.listener.onSearchQuerylistener;
 
 import org.linphone.ContactsManager;
 import org.linphone.ContactsUpdatedListener;
+import org.linphone.LinphoneContact;
 import org.linphone.databinding.FragmentLayoutCallersBinding;
 
 /**
@@ -93,6 +94,14 @@ public class CallerListFragment extends Fragment implements ContactsUpdatedListe
         mFragmentCallersBindind.contactsRcv.setAdapter(new ContactRecyclerAdapter(ContactsManager.getInstance().getContacts()));
         mFragmentCallersBindind.contactsRcv.setHasFixedSize(true);
         mFragmentCallersBindind.executePendingBindings();
+        ((ContactRecyclerAdapter) mFragmentCallersBindind.contactsRcv.getAdapter()).setOnLinphonContactClickListener(new ContactRecyclerAdapter.OnLinphonContactClickListener() {
+            @Override
+            public void onLinphoneContactClicked(LinphoneContact contact) {
+                if (getActivity() != null) {
+                    ((MainActivity) getActivity()).startInCallOutGoingActivity(contact);
+                }
+            }
+        });
         showHideProgress(true);
     }
 

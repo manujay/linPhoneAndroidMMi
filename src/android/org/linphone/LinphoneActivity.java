@@ -62,7 +62,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mmi.DemoCallActivity;
 import com.mmi.DemoCallIncomingActivity;
 import com.mmi.DemoCallOutGoingActivity;
 
@@ -988,8 +987,8 @@ public class LinphoneActivity extends LinphoneGenericActivity implements OnClick
 	}
 
 	public void startIncallActivity(LinphoneCall currentCall) {
-        Intent intent = new Intent(this, DemoCallActivity.class);
-        startOrientationSensor();
+		Intent intent = new Intent(this, CallActivity.class);
+		startOrientationSensor();
 		startActivityForResult(intent, CALL_ACTIVITY);
 	}
 
@@ -1358,9 +1357,9 @@ public class LinphoneActivity extends LinphoneGenericActivity implements OnClick
 				LinphoneCall.State callState = call.getState();
 
 				if (callState == State.IncomingReceived) {
-					startActivity(new Intent(this, CallIncomingActivity.class));
+					startActivity(new Intent(this, DemoCallIncomingActivity.class));
 				} else if (callState == State.OutgoingInit || callState == State.OutgoingProgress || callState == State.OutgoingRinging) {
-					startActivity(new Intent(this, CallOutgoingActivity.class));
+					startActivity(new Intent(this, DemoCallOutGoingActivity.class));
 				} else {
 					startIncallActivity(call);
 				}
