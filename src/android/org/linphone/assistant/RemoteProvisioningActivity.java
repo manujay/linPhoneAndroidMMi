@@ -19,19 +19,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-
-import org.linphone.LinphoneLauncherActivity;
-import org.linphone.LinphoneManager;
-import org.linphone.LinphonePreferences;
-import org.linphone.LinphoneService;
-import org.linphone.R;
-import org.linphone.core.LinphoneCore;
-import org.linphone.core.LinphoneCore.RemoteProvisioningState;
-import org.linphone.core.LinphoneCoreListenerBase;
-import org.linphone.mediastream.Log;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -43,6 +30,19 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import org.linphone.R;
+import org.linphone.core.LinphoneCore;
+import org.linphone.core.LinphoneCore.RemoteProvisioningState;
+import org.linphone.core.LinphoneCoreListenerBase;
+import org.linphone.mediastream.Log;
+import org.linphone.mmi.LinphoneLauncherActivity;
+import org.linphone.mmi.LinphoneManager;
+import org.linphone.mmi.LinphonePreferences;
+import org.linphone.mmi.LinphoneService;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 public class RemoteProvisioningActivity extends Activity {
 	private Handler mHandler = new Handler();
 	private String configUriParam = null;
@@ -53,7 +53,7 @@ public class RemoteProvisioningActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.remote_provisioning);
-		spinner = (ProgressBar) findViewById(R.id.spinner);
+        spinner = findViewById(R.id.spinner);
 
 		mListener = new LinphoneCoreListenerBase(){
 			@Override
@@ -189,8 +189,8 @@ public class RemoteProvisioningActivity extends Activity {
 
 	private void goToLinphoneActivity() {
 		if (LinphoneService.isReady()) {
-			LinphoneService.instance().setActivityToLaunchOnIncomingReceived("org.linphone.LinphoneLauncherActivity");
-			//finish(); // To prevent the user to come back to this page using back button
+            LinphoneService.instance().setActivityToLaunchOnIncomingReceived("org.linphone.mmi.LinphoneLauncherActivity");
+            //finish(); // To prevent the user to come back to this page using back button
 			startActivity(new Intent().setClass(this, LinphoneLauncherActivity.class));
 		} else {
 			finish();

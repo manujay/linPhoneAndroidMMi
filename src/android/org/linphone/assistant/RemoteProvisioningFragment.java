@@ -19,10 +19,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 
-import org.linphone.LinphoneManager;
-import org.linphone.LinphonePreferences;
-import org.linphone.R;
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.text.Editable;
@@ -34,6 +30,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.linphone.R;
+import org.linphone.mmi.LinphoneManager;
+import org.linphone.mmi.LinphonePreferences;
+
 public class RemoteProvisioningFragment extends Fragment implements OnClickListener, TextWatcher{
 	private EditText remoteProvisioningUrl;
 	private Button apply;
@@ -43,10 +43,10 @@ public class RemoteProvisioningFragment extends Fragment implements OnClickListe
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.assistant_remote_provisioning, container, false);
 
-		remoteProvisioningUrl = (EditText) view.findViewById(R.id.assistant_remote_provisioning_url);
-		remoteProvisioningUrl.addTextChangedListener(this);
-		apply = (Button) view.findViewById(R.id.assistant_apply);
-		apply.setEnabled(false);
+        remoteProvisioningUrl = view.findViewById(R.id.assistant_remote_provisioning_url);
+        remoteProvisioningUrl.addTextChangedListener(this);
+        apply = view.findViewById(R.id.assistant_apply);
+        apply.setEnabled(false);
 		apply.setOnClickListener(this);
 
 		return view;

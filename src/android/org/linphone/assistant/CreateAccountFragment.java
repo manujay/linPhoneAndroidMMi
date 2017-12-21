@@ -18,22 +18,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.linphone.LinphoneActivity;
-import org.linphone.LinphoneManager;
-import org.linphone.LinphonePreferences;
-import org.linphone.LinphoneUtils;
-import org.linphone.R;
-import org.linphone.core.DialPlan;
-import org.linphone.core.LinphoneAccountCreator;
-import org.linphone.core.LinphoneAccountCreator.LinphoneAccountCreatorListener;
-import org.linphone.core.LinphoneAccountCreator.RequestStatus;
-import org.linphone.core.LinphoneCoreFactory;
-import org.linphone.core.LinphoneProxyConfig;
-
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.AlertDialog;
@@ -58,14 +42,30 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.linphone.R;
+import org.linphone.core.DialPlan;
+import org.linphone.core.LinphoneAccountCreator;
+import org.linphone.core.LinphoneAccountCreator.LinphoneAccountCreatorListener;
+import org.linphone.core.LinphoneAccountCreator.RequestStatus;
+import org.linphone.core.LinphoneCoreFactory;
+import org.linphone.core.LinphoneProxyConfig;
+import org.linphone.mmi.LinphoneActivity;
+import org.linphone.mmi.LinphoneManager;
+import org.linphone.mmi.LinphonePreferences;
+import org.linphone.mmi.LinphoneUtils;
+
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class CreateAccountFragment extends Fragment implements CompoundButton.OnCheckedChangeListener
 		, OnClickListener, LinphoneAccountCreatorListener {
-	private EditText phoneNumberEdit, usernameEdit, passwordEdit, passwordConfirmEdit
+    private final Pattern UPPER_CASE_REGEX = Pattern.compile("[A-Z]");
+    private EditText phoneNumberEdit, usernameEdit, passwordEdit, passwordConfirmEdit
 			, emailEdit, dialCode;
 	private TextView phoneNumberError, passwordError, passwordConfirmError
 			, emailError, assisstantTitle, sipUri, skip, instruction;
 	private ImageView phoneNumberInfo;
-
 	private boolean passwordOk = false;
 	private boolean emailOk = false;
 	private boolean confirmPasswordOk = false;
@@ -75,7 +75,6 @@ public class CreateAccountFragment extends Fragment implements CompoundButton.On
 	private String addressSip = "";
 	private int countryCode;
 	private LinearLayout phoneNumberLayout, usernameLayout, emailLayout, passwordLayout, passwordConfirmLayout;
-	private final Pattern UPPER_CASE_REGEX = Pattern.compile("[A-Z]");
 	private LinphoneAccountCreator accountCreator;
 
 	@Override
@@ -87,41 +86,41 @@ public class CreateAccountFragment extends Fragment implements CompoundButton.On
 				, LinphonePreferences.instance().getXmlrpcUrl());
 		accountCreator.setListener(this);
 
-		instruction = (TextView) view.findViewById(R.id.message_create_account);
+        instruction = view.findViewById(R.id.message_create_account);
 
-		createAccount = (Button) view.findViewById(R.id.assistant_create);
+        createAccount = view.findViewById(R.id.assistant_create);
 
-		phoneNumberLayout = (LinearLayout) view.findViewById(R.id.phone_number_layout);
-		usernameLayout = (LinearLayout) view.findViewById(R.id.username_layout);
-		emailLayout = (LinearLayout) view.findViewById(R.id.email_layout);
-		passwordLayout = (LinearLayout) view.findViewById(R.id.password_layout);
-		passwordConfirmLayout = (LinearLayout) view.findViewById(R.id.password_confirm_layout);
+        phoneNumberLayout = view.findViewById(R.id.phone_number_layout);
+        usernameLayout = view.findViewById(R.id.username_layout);
+        emailLayout = view.findViewById(R.id.email_layout);
+        passwordLayout = view.findViewById(R.id.password_layout);
+        passwordConfirmLayout = view.findViewById(R.id.password_confirm_layout);
 
-		useUsername = (CheckBox) view.findViewById(R.id.use_username);
-		useEmail = (CheckBox) view.findViewById(R.id.use_email);
+        useUsername = view.findViewById(R.id.use_username);
+        useEmail = view.findViewById(R.id.use_email);
 
-		usernameEdit = (EditText) view.findViewById(R.id.username);
+        usernameEdit = view.findViewById(R.id.username);
 
-		phoneNumberError = (TextView) view.findViewById(R.id.phone_number_error);
-		phoneNumberEdit = (EditText) view.findViewById(R.id.phone_number);
-		sipUri = (TextView) view.findViewById(R.id.sip_uri);
+        phoneNumberError = view.findViewById(R.id.phone_number_error);
+        phoneNumberEdit = view.findViewById(R.id.phone_number);
+        sipUri = view.findViewById(R.id.sip_uri);
 
-		phoneNumberInfo = (ImageView) view.findViewById(R.id.info_phone_number);
+        phoneNumberInfo = view.findViewById(R.id.info_phone_number);
 
-		selectCountry = (Button) view.findViewById(R.id.select_country);
-		dialCode = (EditText) view.findViewById(R.id.dial_code);
-		assisstantTitle = (TextView) view.findViewById(R.id.assistant_title);
+        selectCountry = view.findViewById(R.id.select_country);
+        dialCode = view.findViewById(R.id.dial_code);
+        assisstantTitle = view.findViewById(R.id.assistant_title);
 
-		passwordError = (TextView) view.findViewById(R.id.password_error);
-		passwordEdit = (EditText) view.findViewById(R.id.password);
+        passwordError = view.findViewById(R.id.password_error);
+        passwordEdit = view.findViewById(R.id.password);
 
-		passwordConfirmError = (TextView) view.findViewById(R.id.confirm_password_error);
-		passwordConfirmEdit = (EditText) view.findViewById(R.id.confirm_password);
+        passwordConfirmError = view.findViewById(R.id.confirm_password_error);
+        passwordConfirmEdit = view.findViewById(R.id.confirm_password);
 
-		emailError = (TextView) view.findViewById(R.id.email_error);
-		emailEdit = (EditText) view.findViewById(R.id.email);
+        emailError = view.findViewById(R.id.email_error);
+        emailEdit = view.findViewById(R.id.email);
 
-		skip = (TextView) view.findViewById(R.id.assistant_skip);
+        skip = view.findViewById(R.id.assistant_skip);
 
 		//Phone number
 		if (getResources().getBoolean(R.bool.use_phone_number_validation)) {

@@ -19,21 +19,18 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-import junit.framework.Assert;
-
-import org.linphone.LinphoneActivity;
-import org.linphone.core.LinphoneChatMessage;
-import org.linphone.core.LinphoneChatMessage.State;
-import org.linphone.core.LinphoneChatRoom;
-import org.linphone.mediastream.Log;
-
-import com.robotium.solo.Solo;
-
 import android.test.suitebuilder.annotation.LargeTest;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.widget.EditText;
-import android.widget.AutoCompleteTextView;
+
+import com.robotium.solo.Solo;
+
+import junit.framework.Assert;
+
+import org.linphone.core.LinphoneChatMessage;
+import org.linphone.core.LinphoneChatRoom;
+import org.linphone.mmi.LinphoneActivity;
 
 public class Chat extends SampleTest {
 
@@ -43,8 +40,8 @@ public class Chat extends SampleTest {
 	public void testAEmptyChatHistory() {
 		goToChat();
 
-		LinphoneChatRoom[] chats = LinphoneTestManager.getInstance().getLc().getChatRooms();
-		for (LinphoneChatRoom chatroom : chats) {
+        LinphoneChatRoom[] chats = LinphoneTestManager.getLc().getChatRooms();
+        for (LinphoneChatRoom chatroom : chats) {
 			chatroom.markAsRead();
 			chatroom.deleteHistory();
 		}

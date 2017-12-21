@@ -19,17 +19,17 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-import junit.framework.Assert;
-
-import org.linphone.CallActivity;
-import org.linphone.LinphoneActivity;
-import org.linphone.LinphoneManager;
-import org.linphone.core.LinphoneCall;
-import org.linphone.mediastream.Log;
-
 import android.test.suitebuilder.annotation.LargeTest;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.test.suitebuilder.annotation.SmallTest;
+
+import junit.framework.Assert;
+
+import org.linphone.core.LinphoneCall;
+import org.linphone.mediastream.Log;
+import org.linphone.mmi.CallActivity;
+import org.linphone.mmi.LinphoneActivity;
+import org.linphone.mmi.LinphoneManager;
 
 public class Transfer extends SampleTest {
 	@SmallTest

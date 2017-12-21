@@ -19,12 +19,15 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-import java.nio.ByteBuffer;
-import java.util.Timer;
-import java.util.TimerTask;
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import org.linphone.R;
-import org.linphone.UIThreadDispatcher;
 import org.linphone.core.LinphoneAddress;
 import org.linphone.core.LinphoneAuthInfo;
 import org.linphone.core.LinphoneCall;
@@ -52,14 +55,11 @@ import org.linphone.core.LinphoneProxyConfig;
 import org.linphone.core.PublishState;
 import org.linphone.core.SubscriptionState;
 import org.linphone.mediastream.Log;
+import org.linphone.mmi.UIThreadDispatcher;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+import java.nio.ByteBuffer;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class TutorialCardDavSync extends Activity implements OnClickListener, LinphoneCoreListener, LinphoneFriendListListener {
 	private EditText username, password, ha1, server;
@@ -76,14 +76,14 @@ public class TutorialCardDavSync extends Activity implements OnClickListener, Li
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tuto_carddav);
 
-		username = (EditText) findViewById(R.id.carddav_username);
-		password = (EditText) findViewById(R.id.carddav_pwd);
-		ha1 = (EditText) findViewById(R.id.carddav_ha1);
-		server = (EditText) findViewById(R.id.carddav_server);
-		logs = (TextView) findViewById(R.id.carddav_events);
+        username = findViewById(R.id.carddav_username);
+        password = findViewById(R.id.carddav_pwd);
+        ha1 = findViewById(R.id.carddav_ha1);
+        server = findViewById(R.id.carddav_server);
+        logs = findViewById(R.id.carddav_events);
 
-		synchronize = (Button) findViewById(R.id.carddav_synchronize);
-		synchronize.setOnClickListener(this);
+        synchronize = findViewById(R.id.carddav_synchronize);
+        synchronize.setOnClickListener(this);
 
 		LinphoneCoreFactory.instance().setDebugMode(true, "CardDAV sync tutorial");
 		try {

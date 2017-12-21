@@ -69,13 +69,12 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:theme="@style/AppTheme.NoTitle">
+        android:theme="@style/AppTheme">
         <activity
-            android:name=".LinphoneLauncherActivity"
+            android:name=".mmi.LinphoneLauncherActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:launchMode="singleTask"
-
             android:windowSoftInputMode="adjustPan|stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -120,32 +119,33 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="org.linphone.intent.action.CallLaunched" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".LinphoneActivity"
+            android:name=".mmi.LinphoneActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".CallIncomingActivity"
+            android:name=".mmi.CallIncomingActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".CallOutgoingActivity"
+            android:name=".mmi.CallOutgoingActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".CallActivity"
+            android:name=".mmi.CallActivity"
             android:launchMode="singleTop"
             android:theme="@style/FullScreen">
             <intent-filter>
@@ -197,7 +197,7 @@
         </activity>
 
         <service
-            android:name=".LinphoneService"
+            android:name=".mmi.LinphoneService"
             android:label="@string/service_name"
             android:stopWithTask="false" />
         <service
@@ -224,15 +224,15 @@
                 android:resource="@xml/authenticator" />
         </service>
 
-        <receiver android:name=".NetworkManager">
+        <receiver android:name=".mmi.NetworkManager">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".BluetoothManager"
-            android:enabled="false"></receiver>
-        <receiver android:name=".BootReceiver">
+            android:name=".mmi.BluetoothManager"
+            android:enabled="false" />
+        <receiver android:name=".mmi.BootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
@@ -240,23 +240,21 @@
                 <action android:name="android.intent.action.ACTION_SHUTDOWN" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".PhoneStateChangedReceiver">
+        <receiver android:name=".mmi.PhoneStateChangedReceiver">
             <intent-filter android:priority="999">
                 <action android:name="android.intent.action.PHONE_STATE" />
             </intent-filter>
         </receiver>
 
         <!-- This one needs to be registered from application -->
-        <receiver android:name=".KeepAliveReceiver" />
-
-        <receiver android:name=".HookReceiver">
+        <receiver android:name=".mmi.KeepAliveReceiver" />
+        <receiver android:name=".mmi.HookReceiver">
             <intent-filter>
                 <action android:name="com.base.module.phone.HOOKEVENT" />
             </intent-filter>
         </receiver>
-
         <receiver
-            android:name=".OutgoingCallReceiver"
+            android:name=".mmi.OutgoingCallReceiver"
             android:permission="android.permission.PROCESS_OUTGOING_CALLS">
             <intent-filter>
                 <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
@@ -282,7 +280,7 @@
         -->
 
         <receiver
-            android:name=".AccountEnableReceiver"
+            android:name=".mmi.AccountEnableReceiver"
             android:permission="android.permission.USE_SIP">
             <intent-filter>
                 <action android:name="org.linphone.intent.ACCOUNTACTIVATE" />
@@ -340,35 +338,52 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".LinphoneGenericActivity"></activity>
+        <activity android:name=".mmi.LinphoneGenericActivity" />
         <activity
-            android:name="com.mmi.DemoCallingActivity"
-            android:label="@string/demo">
-
-        </activity>
-        <activity android:name="com.mmi.DemoCallIncomingActivity">
+            android:name="org.linphone.mmi.DemoCallingActivity"
+            android:label="@string/demo"></activity>
+        <activity android:name="org.linphone.mmi.DemoCallIncomingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name="com.mmi.DemoCallOutGoingActivity">
+        <activity android:name="org.linphone.mmi.DemoCallOutGoingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.mmi.MainActivity"
+            android:name="org.linphone.mmi.MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+        <activity android:name="org.linphone.mmi.DemoCallActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="org.linphone.mmi.DialerActivity"
+            android:label="@string/title_activity_dialar"
+            android:parentActivityName="org.linphone.mmi.MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.linphone.mmi.MainActivity" />
+
             <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>-->
         </activity>
-        <activity android:name="com.mmi.DemoCallActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
     </application>
+
 </manifest>

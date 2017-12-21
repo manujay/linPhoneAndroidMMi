@@ -19,17 +19,20 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-import junit.framework.Assert;
-
-
-import org.linphone.core.LinphoneCall;
-import org.linphone.core.LinphoneCoreException;
-import org.linphone.mediastream.Log;
-
 import android.test.suitebuilder.annotation.LargeTest;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.view.Gravity;
+
+import junit.framework.Assert;
+
+import org.linphone.core.LinphoneCall;
+import org.linphone.core.LinphoneCoreException;
+import org.linphone.mediastream.Log;
+import org.linphone.mmi.CallActivity;
+import org.linphone.mmi.CallIncomingActivity;
+import org.linphone.mmi.LinphoneActivity;
+import org.linphone.mmi.LinphoneManager;
 
 import static android.test.TouchUtils.dragViewToX;
 

@@ -19,15 +19,15 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+import android.test.suitebuilder.annotation.LargeTest;
+
 import junit.framework.Assert;
 
-import org.linphone.FragmentsAvailable;
-import org.linphone.LinphoneActivity;
-import org.linphone.LinphoneManager;
-import org.linphone.LinphonePreferences;
 import org.linphone.core.LinphoneProxyConfig;
-
-import android.test.suitebuilder.annotation.LargeTest;
+import org.linphone.mmi.FragmentsAvailable;
+import org.linphone.mmi.LinphoneActivity;
+import org.linphone.mmi.LinphoneManager;
+import org.linphone.mmi.LinphonePreferences;
 
 public class AccountManagement extends SampleTest {
 

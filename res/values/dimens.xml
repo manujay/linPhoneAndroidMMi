@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="small">15sp</dimen>
-    <dimen name="Medium">18sp</dimen>
-    <dimen name="fontsizePrimary">@dimen/small</dimen>
-    <dimen name="fontsizeSecondary">@dimen/Medium</dimen>
+    <dimen name="font_small_text">15sp</dimen>
+    <dimen name="font_medium_text">18sp</dimen>
+    <dimen name="fontsizePrimary_text">@dimen/font_small</dimen>
+    <dimen name="fontsizeSecondary_text">@dimen/font_medium</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

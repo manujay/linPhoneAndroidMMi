@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- customize-->
 
         <item name="android:colorPrimary">@color/primaryColor</item>
@@ -10,15 +10,19 @@
 
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar">
         <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="android:actionMenuTextColor">@android:color/black</item>
+        <item name="android:textColorSecondary">@color/primaryTextColor</item>
+        <item name="android:background">@color/primaryDarkColor</item>
+        <item name="android:actionMenuTextColor">@color/secondaryLightColor</item>
         <item name="android:listChoiceBackgroundIndicator">?selectableItemBackground</item>
     </style>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.ActionBar">
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:textColorPrimary">@android:color/white</item>
-        <item name="android:actionMenuTextColor">@android:color/black</item>
+        <item name="android:background">@color/primaryDarkColor</item>
+        <item name="android:textColorSecondary">@color/primaryTextColor</item>
+        <item name="android:actionMenuTextColor">@color/secondaryLightColor</item>
         <item name="android:listChoiceBackgroundIndicator">?selectableItemBackground</item>
     </style>
 
@@ -183,7 +187,7 @@
     <style name="AppTheme.TextAppearance" parent="TextAppearance.AppCompat.Small">
         <item name="android:textColorPrimary">@color/primaryTextColor</item>
         <item name="android:textColorHighlight">@color/secondaryLightColor</item>
-        <item name="android:textSize">@dimen/fontsizePrimary</item>
+        <item name="android:textSize">@dimen/fontsizePrimary_text</item>
         <item name="android:textColorSecondary">@color/secondaryTextColor</item>
     </style>
 

@@ -18,15 +18,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.linphone.LinphonePreferences;
-import org.linphone.R;
-import org.linphone.mediastream.Log;
-import org.linphone.xmlrpc.XmlRpcHelper;
-import org.linphone.xmlrpc.XmlRpcListenerBase;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -39,6 +30,15 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import org.linphone.R;
+import org.linphone.mediastream.Log;
+import org.linphone.mmi.LinphonePreferences;
+import org.linphone.xmlrpc.XmlRpcHelper;
+import org.linphone.xmlrpc.XmlRpcListenerBase;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class InAppPurchaseActivity extends Activity implements InAppPurchaseListener, OnClickListener {
 	private static InAppPurchaseActivity instance;
 	private InAppPurchaseHelper inAppPurchaseHelper;
@@ -49,6 +49,10 @@ public class InAppPurchaseActivity extends Activity implements InAppPurchaseList
 	private Fragment fragment;
 	private Handler mHandler = new Handler();
 
+    public static InAppPurchaseActivity instance() {
+        return instance;
+    }
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,14 +60,14 @@ public class InAppPurchaseActivity extends Activity implements InAppPurchaseList
 		inAppPurchaseHelper = new InAppPurchaseHelper(this, this);
 		setContentView(R.layout.in_app);
 
-		inProgress = (ProgressBar) findViewById(R.id.purchaseItemsFetchInProgress);
-		inProgress.setVisibility(View.VISIBLE);
+        inProgress = findViewById(R.id.purchaseItemsFetchInProgress);
+        inProgress.setVisibility(View.VISIBLE);
 
-		back = (ImageView) findViewById(R.id.back);
-		back.setOnClickListener(this);
+        back = findViewById(R.id.back);
+        back.setOnClickListener(this);
 		back.setVisibility(View.INVISIBLE);
-		cancel = (ImageView) findViewById(R.id.cancel);
-		cancel.setOnClickListener(this);
+        cancel = findViewById(R.id.cancel);
+        cancel.setOnClickListener(this);
 
 		instance = this;
 	}
@@ -92,11 +96,9 @@ public class InAppPurchaseActivity extends Activity implements InAppPurchaseList
 		inAppPurchaseHelper.purchaseItemAsync(item.getId(), username);
 	}
 
-
 	public String getGmailAccount() {
 		return inAppPurchaseHelper.getGmailAccount();
 	}
-
 
 	@Override
 	protected void onDestroy() {
@@ -120,10 +122,6 @@ public class InAppPurchaseActivity extends Activity implements InAppPurchaseList
 			}
 		}
 		return null;
-	}
-
-	public static InAppPurchaseActivity instance() {
-		return instance;
 	}
 
 	@Override

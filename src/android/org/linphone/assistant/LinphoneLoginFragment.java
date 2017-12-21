@@ -17,17 +17,6 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
-import java.util.Locale;
-
-import org.linphone.LinphoneManager;
-import org.linphone.LinphonePreferences;
-import org.linphone.LinphoneUtils;
-import org.linphone.R;
-import org.linphone.compatibility.Compatibility;
-import org.linphone.core.DialPlan;
-import org.linphone.core.LinphoneAccountCreator;
-import org.linphone.core.LinphoneCoreFactory;
-import org.linphone.core.LinphoneProxyConfig;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -49,6 +38,18 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import org.linphone.R;
+import org.linphone.compatibility.Compatibility;
+import org.linphone.core.DialPlan;
+import org.linphone.core.LinphoneAccountCreator;
+import org.linphone.core.LinphoneCoreFactory;
+import org.linphone.core.LinphoneProxyConfig;
+import org.linphone.mmi.LinphoneManager;
+import org.linphone.mmi.LinphonePreferences;
+import org.linphone.mmi.LinphoneUtils;
+
+import java.util.Locale;
 
 public class LinphoneLoginFragment extends Fragment implements CompoundButton.OnCheckedChangeListener, OnClickListener, TextWatcher, LinphoneAccountCreator.LinphoneAccountCreatorListener {
 	private EditText login, password, phoneNumberEdit, dialCode;
@@ -72,30 +73,30 @@ public class LinphoneLoginFragment extends Fragment implements CompoundButton.On
 
 		String url = "http://linphone.org/free-sip-service.html&action=recover";
 
-		login = (EditText) view.findViewById(R.id.assistant_username);
-		login.addTextChangedListener(this);
+        login = view.findViewById(R.id.assistant_username);
+        login.addTextChangedListener(this);
 
 		recoverAccount = true;
 
-		dialCode = (EditText) view.findViewById(R.id.dial_code);
+        dialCode = view.findViewById(R.id.dial_code);
 
-		phoneNumberEdit = (EditText) view.findViewById(R.id.phone_number);
-		phoneNumberLayout = (LinearLayout) view.findViewById(R.id.phone_number_layout);
-		phoneNumberError = (TextView) view.findViewById(R.id.phone_number_error_2);
+        phoneNumberEdit = view.findViewById(R.id.phone_number);
+        phoneNumberLayout = view.findViewById(R.id.phone_number_layout);
+        phoneNumberError = view.findViewById(R.id.phone_number_error_2);
 
-		phoneNumberInfo = (ImageView) view.findViewById(R.id.info_phone_number);
+        phoneNumberInfo = view.findViewById(R.id.info_phone_number);
 
-		useUsername = (CheckBox) view.findViewById(R.id.use_username);
-		usernameLayout = (LinearLayout) view.findViewById(R.id.username_layout);
-		passwordLayout = (LinearLayout) view.findViewById(R.id.password_layout);
-		password = (EditText) view.findViewById(R.id.assistant_password);
-		messagePhoneNumber = (TextView) view.findViewById(R.id.message_phone_number);
+        useUsername = view.findViewById(R.id.use_username);
+        usernameLayout = view.findViewById(R.id.username_layout);
+        passwordLayout = view.findViewById(R.id.password_layout);
+        password = view.findViewById(R.id.assistant_password);
+        messagePhoneNumber = view.findViewById(R.id.message_phone_number);
 
-		forgotPassword = (TextView) view.findViewById(R.id.forgot_password);
-		selectCountry = (Button) view.findViewById(R.id.select_country);
+        forgotPassword = view.findViewById(R.id.forgot_password);
+        selectCountry = view.findViewById(R.id.select_country);
 
-		apply = (Button) view.findViewById(R.id.assistant_apply);
-		apply.setEnabled(true);
+        apply = view.findViewById(R.id.assistant_apply);
+        apply.setEnabled(true);
 		apply.setOnClickListener(this);
 
 		//Phone number
@@ -228,11 +229,8 @@ public class LinphoneLoginFragment extends Fragment implements CompoundButton.On
 	@Override
 	public void onResume() {
 		super.onResume();
-		if (useUsername != null && useUsername.isChecked())
-			recoverAccount = false;
-		else
-			recoverAccount = true;
-	}
+        recoverAccount = !(useUsername != null && useUsername.isChecked());
+    }
 
 	@Override
 	public void onClick(View v) {

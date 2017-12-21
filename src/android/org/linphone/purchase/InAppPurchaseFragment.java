@@ -18,13 +18,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-import java.util.Locale;
-
-import org.linphone.LinphoneManager;
-import org.linphone.LinphonePreferences;
-import org.linphone.R;
-import org.linphone.core.LinphoneProxyConfig;
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.text.Editable;
@@ -36,6 +29,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import org.linphone.R;
+import org.linphone.core.LinphoneProxyConfig;
+import org.linphone.mmi.LinphoneManager;
+import org.linphone.mmi.LinphonePreferences;
+
+import java.util.Locale;
 
 
 public class InAppPurchaseFragment extends Fragment implements View.OnClickListener {
@@ -57,16 +57,16 @@ public class InAppPurchaseFragment extends Fragment implements View.OnClickListe
 
 		String id = getArguments().getString("item_id");
 		Purchasable item = InAppPurchaseActivity.instance().getPurchasedItem(id);
-		buyItemButton = (Button) view.findViewById(R.id.inapp_button);
+        buyItemButton = view.findViewById(R.id.inapp_button);
 
 		displayBuySubscriptionButton(item);
 
 		defaultEmail = InAppPurchaseActivity.instance().getGmailAccount();
 		defaultUsername = LinphonePreferences.instance().getAccountUsername(LinphonePreferences.instance().getDefaultAccountIndex());
 
-		usernameLayout = (LinearLayout) view.findViewById(R.id.username_layout);
-		username = (EditText) view.findViewById(R.id.username);
-		if(!getResources().getBoolean(R.bool.hide_username_in_inapp)){
+        usernameLayout = view.findViewById(R.id.username_layout);
+        username = view.findViewById(R.id.username);
+        if(!getResources().getBoolean(R.bool.hide_username_in_inapp)){
 			usernameLayout.setVisibility(View.VISIBLE);
 			username.setText(LinphonePreferences.instance().getAccountUsername(LinphonePreferences.instance().getDefaultAccountIndex()));
 
@@ -78,14 +78,14 @@ public class InAppPurchaseFragment extends Fragment implements View.OnClickListe
 			}
 		}
 
-		email = (EditText) view.findViewById(R.id.email);
-		if(defaultEmail != null){
+        email = view.findViewById(R.id.email);
+        if(defaultEmail != null){
 			email.setText(defaultEmail);
 			emailOk = true;
 		}
 
 		buyItemButton.setEnabled(emailOk && usernameOk);
-		errorMessage = (TextView) view.findViewById(R.id.username_error);
+        errorMessage = view.findViewById(R.id.username_error);
 
 		return view;
 	}

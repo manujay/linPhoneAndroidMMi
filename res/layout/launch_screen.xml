@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorC">
+    android:background="@color/primaryDarkColor">
 
 	<LinearLayout
 		android:layout_width="wrap_content"
@@ -30,7 +30,7 @@
 			android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/app_description"
-            android:textColor="@color/colorA"
+            android:textColor="@color/primaryDarkColor"
             android:textSize="28sp"
             android:visibility="gone" />
 
@@ -46,6 +46,6 @@
 		android:layout_width="100dp"
         android:layout_height="10dp"
         android:layout_gravity="center_horizontal|bottom"
-        android:background="@color/colorA" />
+        android:background="@color/primaryDarkColor" />
 
 </FrameLayout>

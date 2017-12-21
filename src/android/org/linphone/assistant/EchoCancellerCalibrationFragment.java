@@ -19,8 +19,14 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-import org.linphone.LinphoneManager;
-import org.linphone.LinphonePreferences;
+import android.app.Fragment;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import org.linphone.R;
 import org.linphone.core.LinphoneCore;
 import org.linphone.core.LinphoneCore.EcCalibratorStatus;
@@ -32,14 +38,8 @@ import org.linphone.core.LinphoneXmlRpcRequestImpl;
 import org.linphone.core.LinphoneXmlRpcSession;
 import org.linphone.core.LinphoneXmlRpcSessionImpl;
 import org.linphone.mediastream.Log;
-
-import android.app.Fragment;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import org.linphone.mmi.LinphoneManager;
+import org.linphone.mmi.LinphonePreferences;
 
 public class EchoCancellerCalibrationFragment extends Fragment implements LinphoneXmlRpcRequestListener {
 	private Handler mHandler = new Handler();

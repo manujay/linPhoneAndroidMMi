@@ -19,19 +19,22 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+import android.test.suitebuilder.annotation.LargeTest;
+import android.test.suitebuilder.annotation.MediumTest;
+import android.test.suitebuilder.annotation.SmallTest;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
 import junit.framework.Assert;
 
 import org.linphone.assistant.AssistantActivity;
 import org.linphone.core.LinphoneNatPolicy;
 import org.linphone.core.LinphoneProxyConfig;
 import org.linphone.mediastream.video.capture.hwconf.Hacks;
-
-import android.test.suitebuilder.annotation.LargeTest;
-import android.test.suitebuilder.annotation.MediumTest;
-import android.test.suitebuilder.annotation.SmallTest;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Button;
+import org.linphone.mmi.LinphoneActivity;
+import org.linphone.mmi.LinphoneManager;
+import org.linphone.mmi.LinphonePreferences;
 
 public class AccountAssistant extends SampleTest {
 

@@ -19,18 +19,20 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-import org.linphone.core.LinphoneCall;
-import org.linphone.core.LinphoneCall.State;
-import org.linphone.core.LinphoneCore;
-import org.linphone.core.LinphoneProxyConfig;
-import org.linphone.core.LinphoneCore.RegistrationState;
-
 import android.content.Context;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.ListView;
 
 import com.robotium.solo.Condition;
 import com.robotium.solo.Solo;
+
+import org.linphone.core.LinphoneCall;
+import org.linphone.core.LinphoneCall.State;
+import org.linphone.core.LinphoneCore;
+import org.linphone.core.LinphoneCore.RegistrationState;
+import org.linphone.core.LinphoneProxyConfig;
+import org.linphone.mmi.LinphoneLauncherActivity;
+import org.linphone.mmi.LinphoneManager;
 
 public abstract class SampleTest extends ActivityInstrumentationTestCase2<LinphoneLauncherActivity>{
 

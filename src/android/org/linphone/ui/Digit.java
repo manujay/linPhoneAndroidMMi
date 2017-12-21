@@ -19,15 +19,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-import org.linphone.CallActivity;
-import org.linphone.LinphoneManager;
-import org.linphone.LinphonePreferences;
-import org.linphone.LinphoneService;
-import org.linphone.R;
-import org.linphone.core.LinphoneCore;
-import org.linphone.core.LinphoneCoreFactory;
-import org.linphone.mediastream.Log;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -37,14 +28,39 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import org.linphone.R;
+import org.linphone.core.LinphoneCore;
+import org.linphone.core.LinphoneCoreFactory;
+import org.linphone.mediastream.Log;
+import org.linphone.mmi.CallActivity;
+import org.linphone.mmi.LinphoneManager;
+import org.linphone.mmi.LinphonePreferences;
+import org.linphone.mmi.LinphoneService;
+
 public class Digit extends Button implements AddressAware {
 
 	private AddressText mAddress;
+    private boolean mPlayDtmf;
+
+    public Digit(Context context, AttributeSet attrs, int style) {
+        super(context, attrs, style);
+        setLongClickable(true);
+    }
+
+    public Digit(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        setLongClickable(true);
+    }
+
+    public Digit(Context context) {
+        super(context);
+        setLongClickable(true);
+    }
+
 	public void setAddressWidget(AddressText address) {
 		mAddress = address;
 	}
 
-	private boolean mPlayDtmf;
 	public void setPlayDtmf(boolean play) {
 		mPlayDtmf = play;
 	}
@@ -69,21 +85,6 @@ public class Digit extends Button implements AddressAware {
 		if ("1".equals(text)) {
 			setOnLongClickListener(lListener);
 		}
-	}
-
-	public Digit(Context context, AttributeSet attrs, int style) {
-		super(context, attrs, style);
-		setLongClickable(true);
-	}
-
-	public Digit(Context context, AttributeSet attrs) {
-		super(context, attrs);
-		setLongClickable(true);
-	}
-
-	public Digit(Context context) {
-		super(context);
-		setLongClickable(true);
 	}
 
 	private class DialKeyListener implements OnClickListener, OnTouchListener, OnLongClickListener {

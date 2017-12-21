@@ -19,13 +19,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-import org.linphone.LinphoneActivity;
-import org.linphone.LinphoneManager;
-import org.linphone.LinphoneService;
-import org.linphone.core.LinphoneCall;
-import org.linphone.core.LinphoneCallParams;
-import org.linphone.mediastream.video.AndroidVideoWindowImpl;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
@@ -36,6 +29,13 @@ import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
+
+import org.linphone.core.LinphoneCall;
+import org.linphone.core.LinphoneCallParams;
+import org.linphone.mediastream.video.AndroidVideoWindowImpl;
+import org.linphone.mmi.LinphoneActivity;
+import org.linphone.mmi.LinphoneManager;
+import org.linphone.mmi.LinphoneService;
 
 public class LinphoneOverlay extends org.linphone.mediastream.video.display.GL2JNIView {
 	private WindowManager wm;

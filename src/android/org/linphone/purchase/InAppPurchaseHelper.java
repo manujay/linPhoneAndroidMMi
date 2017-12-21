@@ -18,16 +18,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-import java.util.ArrayList;
-import java.util.regex.Pattern;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.linphone.LinphonePreferences;
-import org.linphone.mediastream.Log;
-import org.linphone.xmlrpc.XmlRpcHelper;
-import org.linphone.xmlrpc.XmlRpcListenerBase;
-
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
@@ -44,6 +34,16 @@ import android.os.RemoteException;
 import android.util.Patterns;
 
 import com.android.vending.billing.IInAppBillingService;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.linphone.mediastream.Log;
+import org.linphone.mmi.LinphonePreferences;
+import org.linphone.xmlrpc.XmlRpcHelper;
+import org.linphone.xmlrpc.XmlRpcListenerBase;
+
+import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class InAppPurchaseHelper {
 	public static final int API_VERSION = 3;
@@ -97,28 +97,6 @@ public class InAppPurchaseHelper {
 	private Handler mHandler = new Handler();
 	private String mGmailAccount;
 
-	private String responseCodeToErrorMessage(int responseCode) {
-		switch (responseCode) {
-		case RESULT_USER_CANCELED:
-			return "BILLING_RESPONSE_RESULT_USER_CANCELED";
-		case RESULT_SERVICE_UNAVAILABLE:
-			return "BILLING_RESPONSE_RESULT_SERVICE_UNAVAILABLE";
-		case RESULT_BILLING_UNAVAILABLE:
-			return "BILLING_RESPONSE_RESULT_BILLING_UNAVAILABLE";
-		case RESULT_ITEM_UNAVAILABLE:
-			return "BILLING_RESPONSE_RESULT_ITEM_UNAVAILABLE";
-		case RESULT_DEVELOPER_ERROR:
-			return "BILLING_RESPONSE_RESULT_DEVELOPER_ERROR";
-		case RESULT_ERROR:
-			return "BILLING_RESPONSE_RESULT_ERROR";
-		case RESULT_ITEM_ALREADY_OWNED:
-			return "BILLING_RESPONSE_RESULT_ITEM_ALREADY_OWNED";
-		case RESULT_ITEM_NOT_OWNED:
-			return "BILLING_RESPONSE_RESULT_ITEM_NOT_OWNED";
-		}
-		return "UNKNOWN_RESPONSE_CODE";
-	}
-
 	public InAppPurchaseHelper(Activity context, InAppPurchaseListener listener) {
 		mContext = context;
 		mListener = listener;
@@ -166,6 +144,28 @@ public class InAppPurchaseHelper {
     		mListener.onError(CLIENT_ERROR_BILLING_SERVICE_UNAVAILABLE);
         }
 	}
+
+    private String responseCodeToErrorMessage(int responseCode) {
+        switch (responseCode) {
+            case RESULT_USER_CANCELED:
+                return "BILLING_RESPONSE_RESULT_USER_CANCELED";
+            case RESULT_SERVICE_UNAVAILABLE:
+                return "BILLING_RESPONSE_RESULT_SERVICE_UNAVAILABLE";
+            case RESULT_BILLING_UNAVAILABLE:
+                return "BILLING_RESPONSE_RESULT_BILLING_UNAVAILABLE";
+            case RESULT_ITEM_UNAVAILABLE:
+                return "BILLING_RESPONSE_RESULT_ITEM_UNAVAILABLE";
+            case RESULT_DEVELOPER_ERROR:
+                return "BILLING_RESPONSE_RESULT_DEVELOPER_ERROR";
+            case RESULT_ERROR:
+                return "BILLING_RESPONSE_RESULT_ERROR";
+            case RESULT_ITEM_ALREADY_OWNED:
+                return "BILLING_RESPONSE_RESULT_ITEM_ALREADY_OWNED";
+            case RESULT_ITEM_NOT_OWNED:
+                return "BILLING_RESPONSE_RESULT_ITEM_NOT_OWNED";
+        }
+        return "UNKNOWN_RESPONSE_CODE";
+    }
 
 	private ArrayList<Purchasable> getAvailableItemsForPurchase() {
 		ArrayList<Purchasable> products = new ArrayList<Purchasable>();

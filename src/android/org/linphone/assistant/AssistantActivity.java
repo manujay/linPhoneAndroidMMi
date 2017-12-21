@@ -18,35 +18,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.linphone.ContactsManager;
-import org.linphone.LinphoneActivity;
-import org.linphone.LinphoneLauncherActivity;
-import org.linphone.LinphoneManager;
-import org.linphone.LinphonePreferences;
-import org.linphone.LinphonePreferences.AccountBuilder;
-import org.linphone.LinphoneService;
-import org.linphone.LinphoneUtils;
-import org.linphone.R;
-import org.linphone.StatusFragment;
-import org.linphone.core.DialPlan;
-import org.linphone.core.LinphoneAccountCreator;
-import org.linphone.core.LinphoneAddress;
-import org.linphone.core.LinphoneAddress.TransportType;
-import org.linphone.core.LinphoneAuthInfo;
-import org.linphone.core.LinphoneCore;
-import org.linphone.core.LinphoneCore.RegistrationState;
-import org.linphone.core.LinphoneCoreException;
-import org.linphone.core.LinphoneCoreFactory;
-import org.linphone.core.LinphoneCoreListenerBase;
-import org.linphone.core.LinphoneProxyConfig;
-import org.linphone.mediastream.Log;
-import org.linphone.mediastream.Version;
-import org.linphone.tools.OpenH264DownloadHelper;
-
 import android.Manifest;
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -81,9 +52,42 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.linphone.R;
+import org.linphone.core.DialPlan;
+import org.linphone.core.LinphoneAccountCreator;
+import org.linphone.core.LinphoneAddress;
+import org.linphone.core.LinphoneAddress.TransportType;
+import org.linphone.core.LinphoneAuthInfo;
+import org.linphone.core.LinphoneCore;
+import org.linphone.core.LinphoneCore.RegistrationState;
+import org.linphone.core.LinphoneCoreException;
+import org.linphone.core.LinphoneCoreFactory;
+import org.linphone.core.LinphoneCoreListenerBase;
+import org.linphone.core.LinphoneProxyConfig;
+import org.linphone.mediastream.Log;
+import org.linphone.mediastream.Version;
+import org.linphone.mmi.ContactsManager;
+import org.linphone.mmi.LinphoneActivity;
+import org.linphone.mmi.LinphoneLauncherActivity;
+import org.linphone.mmi.LinphoneManager;
+import org.linphone.mmi.LinphonePreferences;
+import org.linphone.mmi.LinphonePreferences.AccountBuilder;
+import org.linphone.mmi.LinphoneService;
+import org.linphone.mmi.LinphoneUtils;
+import org.linphone.mmi.StatusFragment;
+import org.linphone.tools.OpenH264DownloadHelper;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class AssistantActivity extends Activity implements OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback, LinphoneAccountCreator.LinphoneAccountCreatorListener {
+    private static final int PERMISSIONS_REQUEST_RECORD_AUDIO = 201;
 private static AssistantActivity instance;
-	private ImageView back, cancel;
+    public DialPlan country;
+    public String phone_number;
+    public String email;
+    private ImageView back, cancel;
 	private AssistantFragmentsEnum currentFragment;
 	private AssistantFragmentsEnum lastFragment;
 	private AssistantFragmentsEnum firstFragment;
@@ -97,13 +101,12 @@ private static AssistantActivity instance;
 	private Dialog dialog;
 	private boolean remoteProvisioningInProgress;
 	private boolean echoCancellerAlreadyDone;
-	private static final int PERMISSIONS_REQUEST_RECORD_AUDIO = 201;
 	private LinphoneAccountCreator accountCreator;
 	private CountryListAdapter countryListAdapter;
 
-	public DialPlan country;
-	public String phone_number;
-	public String email;
+    public static AssistantActivity instance() {
+        return instance;
+    }
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -219,10 +222,6 @@ private static AssistantActivity instance;
 		super.onSaveInstanceState(outState);
 	}
 
-	public static AssistantActivity instance() {
-		return instance;
-	}
-
 	public void updateStatusFragment(StatusFragment fragment) {
 		status = fragment;
 	}
@@ -249,10 +248,10 @@ private static AssistantActivity instance;
 	}
 
 	private void initUI() {
-		back = (ImageView) findViewById(R.id.back);
-		back.setOnClickListener(this);
-		cancel = (ImageView) findViewById(R.id.assistant_cancel);
-		cancel.setOnClickListener(this);
+        back = findViewById(R.id.back);
+        back.setOnClickListener(this);
+        cancel = findViewById(R.id.assistant_cancel);
+        cancel.setOnClickListener(this);
 	}
 
 	private void changeFragment(Fragment newFragment) {
@@ -833,11 +832,11 @@ private static AssistantActivity instance;
 
 			DialPlan c = filteredCountries.get(position);
 
-			TextView name = (TextView) view.findViewById(R.id.country_name);
-			name.setText(c.getCountryName());
+            TextView name = view.findViewById(R.id.country_name);
+            name.setText(c.getCountryName());
 
-			TextView dial_code = (TextView) view.findViewById(R.id.country_prefix);
-			if (context != null)
+            TextView dial_code = view.findViewById(R.id.country_prefix);
+            if (context != null)
 				dial_code.setText(String.format(context.getString(R.string.country_code),c.getCountryCallingCode()));
 
 			view.setTag(c);

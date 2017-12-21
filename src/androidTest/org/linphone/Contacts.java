@@ -19,12 +19,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-import junit.framework.Assert;
-
-
 import android.test.suitebuilder.annotation.LargeTest;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.test.suitebuilder.annotation.SmallTest;
+
+import junit.framework.Assert;
+
+import org.linphone.mmi.LinphoneActivity;
 
 public class Contacts extends SampleTest {
 

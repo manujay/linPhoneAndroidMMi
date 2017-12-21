@@ -19,13 +19,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-import org.linphone.LinphoneManager;
-import org.linphone.R;
-import org.linphone.core.LinphoneCoreException;
-import org.linphone.core.OpenH264DownloadHelperListener;
-import org.linphone.core.PayloadType;
-import org.linphone.tools.OpenH264DownloadHelper;
-
 import android.app.Fragment;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,6 +29,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import org.linphone.R;
+import org.linphone.core.LinphoneCoreException;
+import org.linphone.core.OpenH264DownloadHelperListener;
+import org.linphone.core.PayloadType;
+import org.linphone.mmi.LinphoneManager;
+import org.linphone.tools.OpenH264DownloadHelper;
 
 public class CodecDownloaderFragment extends Fragment {
 	private Handler mHandler = new Handler();
@@ -53,14 +53,14 @@ public class CodecDownloaderFragment extends Fragment {
 							 Bundle savedInstanceState) {
 		final View view = inflater.inflate(R.layout.assistant_codec_downloader, container, false);
 
-		question = (TextView) view.findViewById(R.id.question);
-		downloading = (TextView) view.findViewById(R.id.downloading);
-		downloaded = (TextView) view.findViewById(R.id.downloaded);
-		yes = (Button) view.findViewById(R.id.answerYes);
-		no = (Button) view.findViewById(R.id.answerNo);
-		ok = (Button) view.findViewById(R.id.answerOk);
-		bar = (ProgressBar) view.findViewById(R.id.progressBar);
-		downloadingInfo = (TextView) view.findViewById(R.id.downloadingInfo);
+        question = view.findViewById(R.id.question);
+        downloading = view.findViewById(R.id.downloading);
+        downloaded = view.findViewById(R.id.downloaded);
+        yes = view.findViewById(R.id.answerYes);
+        no = view.findViewById(R.id.answerNo);
+        ok = view.findViewById(R.id.answerOk);
+        bar = view.findViewById(R.id.progressBar);
+        downloadingInfo = view.findViewById(R.id.downloadingInfo);
 
 		final OpenH264DownloadHelper codecDownloader = LinphoneManager.getInstance().getOpenH264DownloadHelper();
 		final OpenH264DownloadHelperListener codecListener = new OpenH264DownloadHelperListener() {

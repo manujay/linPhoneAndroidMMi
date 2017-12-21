@@ -42,9 +42,11 @@
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
+            android:layout_margin="@dimen/fab_margin"
+            android:padding="@dimen/font_small"
             android:src="@drawable/ic_phone_plus"
             app:backgroundTint="@color/primaryDarkColor"
+            app:elevation="@dimen/font_medium"
             app:fabSize="auto" />
 
     </android.support.design.widget.CoordinatorLayout>

@@ -19,10 +19,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import org.linphone.DialerFragment;
-import org.linphone.AddressType;
-import org.linphone.R;
-
 import android.content.Context;
 import android.graphics.Paint;
 import android.net.Uri;
@@ -30,120 +26,134 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.widget.EditText;
 
+import org.linphone.R;
+import org.linphone.mmi.DialerFragment;
+import org.linphone.mmi.listener.AddressType;
+import org.linphone.mmi.listener.onAttachDialerListener;
+
 public class AddressText extends EditText implements AddressType {
 
-	private String displayedName;
-	private Uri pictureUri;
-	private Paint mTestPaint;
-	private DialerFragment dialer;
+    private String displayedName;
+    private Uri pictureUri;
+    private Paint mTestPaint;
+    private DialerFragment dialer;
+    private org.linphone.mmi.listener.onAttachDialerListener onAttachDialerListener;
 
-	public void setPictureUri(Uri uri) {
-		pictureUri = uri;
-	}
+    public AddressText(Context context, AttributeSet attrs) {
+        super(context, attrs);
 
-	public Uri getPictureUri() {
-		return pictureUri;
-	}
+        mTestPaint = new Paint();
+        mTestPaint.set(this.getPaint());
+    }
 
-	public AddressText(Context context, AttributeSet attrs) {
-		super(context, attrs);
+    public Uri getPictureUri() {
+        return pictureUri;
+    }
 
-		mTestPaint = new Paint();
-		mTestPaint.set(this.getPaint());
-	}
+    public void setPictureUri(Uri uri) {
+        pictureUri = uri;
+    }
 
-	public void clearDisplayedName() {
-		displayedName = null;
-	}
+    public void clearDisplayedName() {
+        displayedName = null;
+    }
 
-	public String getDisplayedName() {
-		return displayedName;
-	}
+    public String getDisplayedName() {
+        return displayedName;
+    }
 
-	public void setContactAddress(String uri, String displayedName) {
-		setText(uri);
-		this.displayedName = displayedName;
-	}
+    public void setDisplayedName(String displayedName) {
+        this.displayedName = displayedName;
+    }
 
-	public void setDisplayedName(String displayedName) {
-		this.displayedName = displayedName;
-	}
+    public void setContactAddress(String uri, String displayedName) {
+        setText(uri);
+        this.displayedName = displayedName;
+    }
 
-	private String getHintText() {
-		String resizedText = getContext().getString(R.string.address_bar_hint);
-		if (getHint() != null) {
-			resizedText = getHint().toString();
-		}
-		return resizedText;
-	}
+    private String getHintText() {
+        String resizedText = getContext().getString(R.string.address_bar_hint);
+        if (getHint() != null) {
+            resizedText = getHint().toString();
+        }
+        return resizedText;
+    }
 
-	@Override
-	protected void onTextChanged(CharSequence text, int start, int before,
-			int after) {
-		clearDisplayedName();
-		pictureUri = null;
+    @Override
+    protected void onTextChanged(CharSequence text, int start, int before,
+                                 int after) {
+        clearDisplayedName();
+        pictureUri = null;
 
-		refitText(getWidth(), getHeight());
+        refitText(getWidth(), getHeight());
 
-		if (dialer != null) {
-			dialer.enableDisableAddContact();
-		}
+        if (onAttachDialerListener != null) {
+            onAttachDialerListener.onAttachedDialer();
+        }
 
-		super.onTextChanged(text, start, before, after);
-	}
+        if (dialer != null) {
+            dialer.enableDisableAddContact();
+        }
 
-	@Override
-	protected void onSizeChanged(int width, int height, int oldWidth, int oldHeight) {
-		if (width != oldWidth) {
-			refitText(getWidth(), getHeight());
-		}
-	}
+        super.onTextChanged(text, start, before, after);
+    }
 
-	private float getOptimizedTextSize(String text, int textWidth, int textHeight) {
-		int targetWidth = textWidth - getPaddingLeft() - getPaddingRight();
-		int targetHeight = textHeight - getPaddingTop() - getPaddingBottom();
-		float hi = 90;
-		float lo = 2;
-		final float threshold = 0.5f;
+    @Override
+    protected void onSizeChanged(int width, int height, int oldWidth, int oldHeight) {
+        if (width != oldWidth) {
+            refitText(getWidth(), getHeight());
+        }
+    }
 
-		mTestPaint.set(getPaint());
+    private float getOptimizedTextSize(String text, int textWidth, int textHeight) {
+        int targetWidth = textWidth - getPaddingLeft() - getPaddingRight();
+        int targetHeight = textHeight - getPaddingTop() - getPaddingBottom();
+        float hi = 90;
+        float lo = 2;
+        final float threshold = 0.5f;
 
-		while ((hi - lo) > threshold) {
-			float size = (hi + lo) / 2;
-			mTestPaint.setTextSize(size);
-			if (mTestPaint.measureText(text) >= targetWidth || size >= targetHeight) {
-				hi = size;
-			}
-			else {
-				lo = size;
-			}
-		}
+        mTestPaint.set(getPaint());
 
-		return lo;
-	}
+        while ((hi - lo) > threshold) {
+            float size = (hi + lo) / 2;
+            mTestPaint.setTextSize(size);
+            if (mTestPaint.measureText(text) >= targetWidth || size >= targetHeight) {
+                hi = size;
+            } else {
+                lo = size;
+            }
+        }
 
-	private void refitText(int textWidth, int textHeight) {
-		if (textWidth <= 0) {
-			return;
-		}
+        return lo;
+    }
 
-		float size = getOptimizedTextSize(getHintText(), textWidth, textHeight);
-		float entrySize = getOptimizedTextSize(getText().toString(), textWidth, textHeight);
-		if (entrySize < size)
-			size = entrySize;
-		setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
-	}
+    private void refitText(int textWidth, int textHeight) {
+        if (textWidth <= 0) {
+            return;
+        }
 
-	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-		int parentWidth = MeasureSpec.getSize(widthMeasureSpec);
-		int height = getMeasuredHeight();
+        float size = getOptimizedTextSize(getHintText(), textWidth, textHeight);
+        float entrySize = getOptimizedTextSize(getText().toString(), textWidth, textHeight);
+        if (entrySize < size)
+            size = entrySize;
+        setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
+    }
 
-		refitText(parentWidth, height);
-		setMeasuredDimension(parentWidth, height);
-	}
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int parentWidth = MeasureSpec.getSize(widthMeasureSpec);
+        int height = getMeasuredHeight();
 
-	public void setDialerFragment(DialerFragment dialerFragment) {
-		dialer = dialerFragment;
-	}
+        refitText(parentWidth, height);
+        setMeasuredDimension(parentWidth, height);
+    }
+
+
+    public void setDialerFragment(DialerFragment dialerFragment) {
+        dialer = dialerFragment;
+    }
+
+    public void setOnAttachDialerListener(onAttachDialerListener listener) {
+        this.onAttachDialerListener = listener;
+    }
 }

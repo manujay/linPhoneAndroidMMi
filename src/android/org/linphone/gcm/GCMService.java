@@ -18,20 +18,20 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-import static android.content.Intent.ACTION_MAIN;
-
-import org.linphone.LinphoneManager;
-import org.linphone.LinphonePreferences;
-import org.linphone.LinphoneService;
-import org.linphone.R;
-import org.linphone.UIThreadDispatcher;
-import org.linphone.core.LinphoneCoreFactory;
-import org.linphone.mediastream.Log;
-
 import android.content.Context;
 import android.content.Intent;
 
 import com.google.android.gcm.GCMBaseIntentService;
+
+import org.linphone.R;
+import org.linphone.core.LinphoneCoreFactory;
+import org.linphone.mediastream.Log;
+import org.linphone.mmi.LinphoneManager;
+import org.linphone.mmi.LinphonePreferences;
+import org.linphone.mmi.LinphoneService;
+import org.linphone.mmi.UIThreadDispatcher;
+
+import static android.content.Intent.ACTION_MAIN;
 
 // Warning ! Do not rename the service !
 public class GCMService extends GCMBaseIntentService {

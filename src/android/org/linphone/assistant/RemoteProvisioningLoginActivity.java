@@ -18,14 +18,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-import org.linphone.LinphoneManager;
-import org.linphone.LinphonePreferences;
-import org.linphone.R;
-import org.linphone.core.LinphoneCore;
-import org.linphone.core.LinphoneCoreListenerBase;
-import org.linphone.xmlrpc.XmlRpcHelper;
-import org.linphone.xmlrpc.XmlRpcListenerBase;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +25,14 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import org.linphone.R;
+import org.linphone.core.LinphoneCore;
+import org.linphone.core.LinphoneCoreListenerBase;
+import org.linphone.mmi.LinphoneManager;
+import org.linphone.mmi.LinphonePreferences;
+import org.linphone.xmlrpc.XmlRpcHelper;
+import org.linphone.xmlrpc.XmlRpcListenerBase;
 
 public class RemoteProvisioningLoginActivity extends Activity implements OnClickListener {
 	private EditText login, password, domain;
@@ -44,12 +44,12 @@ public class RemoteProvisioningLoginActivity extends Activity implements OnClick
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.assistant_remote_provisioning_login);
 
-		login = (EditText) findViewById(R.id.assistant_username);
-		password = (EditText) findViewById(R.id.assistant_password);
-		domain = (EditText) findViewById(R.id.assistant_domain);
+        login = findViewById(R.id.assistant_username);
+        password = findViewById(R.id.assistant_password);
+        domain = findViewById(R.id.assistant_domain);
 
-		connect = (Button) findViewById(R.id.assistant_connect);
-		connect.setOnClickListener(this);
+        connect = findViewById(R.id.assistant_connect);
+        connect.setOnClickListener(this);
 
 		String defaultDomain = getIntent().getStringExtra("Domain");
 		if (defaultDomain != null) {

@@ -18,13 +18,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
-import org.linphone.LinphoneManager;
-import org.linphone.LinphonePreferences;
-import org.linphone.R;
-import org.linphone.core.LinphoneAccountCreator;
-import org.linphone.core.LinphoneAccountCreator.LinphoneAccountCreatorListener;
-import org.linphone.core.LinphoneCoreFactory;
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.text.Editable;
@@ -38,6 +31,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.linphone.R;
+import org.linphone.core.LinphoneAccountCreator;
+import org.linphone.core.LinphoneAccountCreator.LinphoneAccountCreatorListener;
+import org.linphone.core.LinphoneCoreFactory;
+import org.linphone.mmi.LinphoneManager;
+import org.linphone.mmi.LinphonePreferences;
 
 public class CreateAccountCodeActivationFragment extends Fragment implements LinphoneAccountCreatorListener {
 	private String username, phone, dialcode;
@@ -67,22 +67,22 @@ public class CreateAccountCodeActivationFragment extends Fragment implements Lin
 		accountCreator.setUsername(username);
 		accountCreator.setPhoneNumber(phone, dialcode);
 
-		back = (ImageView) view.findViewById(R.id.back);
-		if (back != null)
+        back = view.findViewById(R.id.back);
+        if (back != null)
 			back.setVisibility(Button.INVISIBLE);
 
-		title = (TextView) view.findViewById(R.id.title_account_activation);
-		if (linkAccount) {
+        title = view.findViewById(R.id.title_account_activation);
+        if (linkAccount) {
 			title.setText(getString(R.string.assistant_link_account));
 		} else if (recoverAccount) {
 			title.setText(getString(R.string.assistant_linphone_account));
 		}
 
-		phonenumber = (TextView) view.findViewById(R.id.send_phone_number);
-		phonenumber.setText(accountCreator.getPhoneNumber());
+        phonenumber = view.findViewById(R.id.send_phone_number);
+        phonenumber.setText(accountCreator.getPhoneNumber());
 
-		code = (EditText) view.findViewById(R.id.assistant_code);
-		code.addTextChangedListener(new TextWatcher() {
+        code = view.findViewById(R.id.assistant_code);
+        code.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
@@ -99,8 +99,8 @@ public class CreateAccountCodeActivationFragment extends Fragment implements Lin
 			}
 		});
 
-		checkAccount = (Button) view.findViewById(R.id.assistant_check);
-		checkAccount.setEnabled(false);
+        checkAccount = view.findViewById(R.id.assistant_check);
+        checkAccount.setEnabled(false);
 		checkAccount.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {

@@ -19,14 +19,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-import java.nio.ByteBuffer;
-import java.util.Timer;
-import java.util.TimerTask;
+import android.content.Context;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.telephony.TelephonyManager;
 
-import org.linphone.LinphoneException;
-import org.linphone.LinphoneManager;
-import org.linphone.LinphoneManager.LinphoneConfigException;
-import org.linphone.LinphoneService;
 import org.linphone.core.LinphoneAddress;
 import org.linphone.core.LinphoneAddress.TransportType;
 import org.linphone.core.LinphoneAuthInfo;
@@ -59,27 +55,30 @@ import org.linphone.core.SubscriptionState;
 import org.linphone.mediastream.Log;
 import org.linphone.mediastream.video.capture.hwconf.AndroidCameraConfiguration;
 import org.linphone.mediastream.video.capture.hwconf.AndroidCameraConfiguration.AndroidCamera;
+import org.linphone.mmi.LinphoneException;
+import org.linphone.mmi.LinphoneManager;
+import org.linphone.mmi.LinphoneManager.LinphoneConfigException;
+import org.linphone.mmi.LinphoneService;
 
-import android.content.Context;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.telephony.TelephonyManager;
+import java.nio.ByteBuffer;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class LinphoneTestManager implements LinphoneCoreListener{
 
 	private static LinphoneTestManager instance;
-	private Context mIContext;
-	private LinphoneCore mLc1, mLc2;
-
-	public String lastMessageReceived;
+    private final String linphoneRootCaFile;
+    public String lastMessageReceived;
 	public boolean isDTMFReceived = false;
 	public boolean autoAnswer = true;
 	public boolean declineCall = false;
-
-	private final String linphoneRootCaFile;
-	private LinphoneCoreListenerBase mListener;
+    private Context mIContext;
+    private LinphoneCore mLc1, mLc2;
+    private LinphoneCoreListenerBase mListener;
 
 	private Timer mTimer1 = new Timer("Linphone scheduler 1");
 	private Timer mTimer2 = new Timer("Linphone scheduler 2");
+    private int savedMaxCallWhileGsmIncall;
 
 	private LinphoneTestManager(Context ac, Context ic) {
 		mIContext = ic;
@@ -97,6 +96,35 @@ public class LinphoneTestManager implements LinphoneCoreListener{
 
 		return instance;
 	}
+
+    public static synchronized final LinphoneTestManager getInstance() {
+        return instance;
+    }
+
+    public static synchronized final LinphoneCore getLc(int i) {
+        if (i == 2)
+            return getInstance().mLc2;
+        return getInstance().mLc1;
+    }
+
+    public static synchronized final LinphoneCore getLc() {
+        return getLc(1);
+    }
+
+    public static void setGsmIdle(boolean gsmIdle, int id) {
+        LinphoneTestManager mThis = instance;
+        if (mThis == null) return;
+        if (gsmIdle) {
+            mThis.allowSIPCalls(LinphoneTestManager.getLc(id));
+        } else {
+            mThis.preventSIPCalls(LinphoneTestManager.getLc(id));
+        }
+    }
+
+    public static synchronized void destroy() {
+        if (instance == null) return;
+        instance.doDestroy();
+    }
 
 	private synchronized void startLibLinphone(Context c, int id) {
 		try {
@@ -238,21 +266,6 @@ public class LinphoneTestManager implements LinphoneCoreListener{
 		}
 	}
 
-	public static synchronized final LinphoneTestManager getInstance() {
-		return instance;
-	}
-
-	public static synchronized final LinphoneCore getLc(int i) {
-		if (i == 2)
-			return getInstance().mLc2;
-		return getInstance().mLc1;
-	}
-
-	public static synchronized final LinphoneCore getLc() {
-		return getLc(1);
-	}
-
-	private int savedMaxCallWhileGsmIncall;
 	private synchronized void preventSIPCalls(LinphoneCore mLc) {
 		if (savedMaxCallWhileGsmIncall != 0) {
 			Log.w("SIP calls are already blocked due to GSM call running");
@@ -261,22 +274,14 @@ public class LinphoneTestManager implements LinphoneCoreListener{
 		savedMaxCallWhileGsmIncall = mLc.getMaxCalls();
 		mLc.setMaxCalls(0);
 	}
-	private synchronized void allowSIPCalls(LinphoneCore mLc) {
+
+    private synchronized void allowSIPCalls(LinphoneCore mLc) {
 		if (savedMaxCallWhileGsmIncall == 0) {
 			Log.w("SIP calls are already allowed as no GSM call knowned to be running");
 			return;
 		}
 		mLc.setMaxCalls(savedMaxCallWhileGsmIncall);
 		savedMaxCallWhileGsmIncall = 0;
-	}
-	public static void setGsmIdle(boolean gsmIdle, int id) {
-		LinphoneTestManager mThis = instance;
-		if (mThis == null) return;
-		if (gsmIdle) {
-			mThis.allowSIPCalls(LinphoneTestManager.getLc(id));
-		} else {
-			mThis.preventSIPCalls(LinphoneTestManager.getLc(id));
-		}
 	}
 
 	private void doDestroy() {
@@ -294,11 +299,6 @@ public class LinphoneTestManager implements LinphoneCoreListener{
 			mLc2 = null;
 			instance = null;
 		}
-	}
-
-	public static synchronized void destroy() {
-		if (instance == null) return;
-		instance.doDestroy();
 	}
 
 	@Override
